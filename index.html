@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ViaFit | Explora el mundo, nutre tu cuerpo</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f8f7f2;
+        color: #26352d;
+    }
+
+    header {
+        text-align: center;
+        padding: 45px 20px 30px;
+        background: #f8f7f2;
+    }
+
+    .logo {
+        font-size: 42px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .plane {
+        display: inline-block;
+        font-size: 34px;
+        margin-left: 5px;
+    }
+
+    header h2 {
+        font-size: 25px;
+        margin: 18px 0 10px;
+        font-weight: 500;
+    }
+
+    header p {
+        font-size: 16px;
+        color: #68736d;
+    }
+
+    section {
+        padding: 25px 18px;
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+        text-align: center;
+        color: #68736d;
+        margin-bottom: 30px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 20px;
+        padding: 18px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+        text-align: center;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        border-radius: 15px;
+        background: #e8ebe5;
+    }
+
+    .card h3 {
+        margin: 15px 0 8px;
+        font-size: 21px;
+    }
+
+    .card p {
+        color: #68736d;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .plane-button {
+        border: none;
+        background: none;
+        font-size: 30px;
+        cursor: pointer;
+        margin-top: 8px;
+        transition: transform 0.5s;
+    }
+
+    .plane-button:hover {
+        transform: translateX(35px);
+    }
+
+    .macros {
+        display: none;
+        margin-top: 15px;
+        padding: 14px;
+        background: #f1f4ed;
+        border-radius: 14px;
+        text-align: left;
+    }
+
+    .macros.show {
+        display: block;
+    }
+
+    .macro-title {
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .macro-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 4px 0;
+        font-size: 14px;
+    }
+
+    .ingredients {
+        margin-top: 10px;
+        font-size: 13px;
+        color: #68736d;
+    }
+
+    .extras {
+        background: #edf2e8;
+        border-radius: 24px;
+        padding: 28px 20px;
+        margin-top: 35px;
+    }
+
+    .extras h2 {
+        text-align: center;
+        margin-top: 0;
+    }
+
+    .extras-intro {
+        text-align: center;
+        color: #68736d;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .extra-item {
+        background: white;
+        border-radius: 15px;
+        padding: 15px;
+        margin-bottom: 12px;
+    }
+
+    .extra-item h3 {
+        margin: 0 0 8px;
+        font-size: 17px;
+    }
+
+    .extra-macros {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+        font-size: 13px;
+        color: #526059;
+    }
+
+    .message {
+        max-width: 800px;
+        margin: 20px auto 60px;
+        padding: 30px 22px;
+        text-align: center;
+        line-height: 1.7;
+        color: #526059;
+    }
+
+    footer {
+        text-align: center;
+        padding: 25px;
+        font-size: 13px;
+        color: #7b847f;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        ViaFit <span class="plane">✈️</span>
+    </div>
+
+    <h2>Explora el mundo, nutre tu cuerpo.</h2>
+
+    <p>
+        Entonces, comer rico y saludable sí es posible.
+    </p>
+</header>
+
+
+<!-- PASTELERÍA -->
+
+<section>
+
+    <h1 class="section-title">
+        Una mordida que cae bien al bienestar
+    </h1>
+
+    <p class="section-subtitle">
+        Descubre nuestros productos y conoce lo que hay detrás de cada mordida.
+    </p>
+
+    <div class="products">
+
+        <div class="card">
+
+            <!-- Después reemplazaremos esto por tu foto -->
+            <div class="product-image"></div>
+
+            <h3>Cinnamon Roll</h3>
+
+            <p>
+                Rollito de canela estilo ViaFit.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <!-- EJEMPLO — después ponemos los datos reales -->
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>250 kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>8 g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>32 g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>10 g</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="card">
+
+            <div class="product-image"></div>
+
+            <h3>Carrot Cake</h3>
+
+            <p>
+                Pastel de zanahoria estilo ViaFit.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>220 kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>7 g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>29 g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>9 g</span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="card">
+
+            <div class="product-image"></div>
+
+            <h3>Chocolate Cake</h3>
+
+            <p>
+                Pastel de chocolate estilo ViaFit.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>230 kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>8 g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>30 g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>10 g</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <p class="section-subtitle" style="margin-top:30px;">
+        En ViaFit te ofrecemos productos elaborados con ingredientes seleccionados,
+        buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
+    </p>
+
+</section>
+
+
+<!-- BEBIDAS -->
+
+<section>
+
+    <h1 class="section-title">
+        Bebidas
+    </h1>
+
+    <p class="section-subtitle">
+        Explora nuestras bebidas y descubre su información nutricional.
+    </p>
+
+    <div class="products">
+
+
+        <!-- MATCHALANDIA -->
+
+        <div class="card">
+
+            <div class="product-image"></div>
+
+            <h3>Berry Matcha Latte</h3>
+
+            <p>
+                Matcha orgánico + bebida de avena + mermelada de fresa.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>XXX kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>XX g</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="product-image"></div>
+
+            <h3>Taro Matcha Latte</h3>
+
+            <p>
+                Taro sin azúcar + bebida de soya + matcha orgánico.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>XXX kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>XX g</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="product-image"></div>
+
+            <h3>Choco Matcha Latte</h3>
+
+            <p>
+                Cacao puro + bebida de avena + matcha orgánico.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>XXX kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>XX g</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FRUTI CAFÉ -->
+
+        <div class="card">
+
+            <div class="product-image"></div>
+
+            <h3>Banana Coffee Latte</h3>
+
+            <p>
+                Espresso + puré de banana + leche deslactosada light.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>XXX kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>XX g</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="product-image"></div>
+
+            <h3>Berry Coffee Latte</h3>
+
+            <p>
+                Espresso + mezcla de frutos rojos + leche deslactosada light.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>XXX kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>XX g</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIBES EUROPEAS -->
+
+        <div class="card">
+
+            <div class="product-image"></div>
+
+            <h3>Café Bombón</h3>
+
+            <p>
+                Estilo Madrid · Espresso + lechera vegana sin azúcar.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>XXX kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>XX g</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="product-image"></div>
+
+            <h3>Marroquino</h3>
+
+            <p>
+                Crema de avellana sin azúcar + doble espresso + leche deslactosada light.
+            </p>
+
+            <button class="plane-button"
+                    onclick="showMacros(this)">
+                ✈️
+            </button>
+
+            <div class="macros">
+
+                <div class="macro-title">
+                    Información nutricional
+                </div>
+
+                <div class="macro-row">
+                    <span>Calorías</span>
+                    <span>XXX kcal</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Proteína</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Carbohidratos</span>
+                    <span>XX g</span>
+                </div>
+
+                <div class="macro-row">
+                    <span>Grasas</span>
+                    <span>XX g</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ⭐ EXTRAS: UNA SOLA SECCIÓN AL FINAL ⭐ -->
+
+    <div class="extras">
+
+        <h2>
+            ✨ Macros extras por agregar extras a tu bebida
+        </h2>
+
+        <p class="extras-intro">
+            ¿Quieres personalizar tu bebida? 
+            Suma los macros del extra que elijas a los de tu bebida.
+        </p>
+
+
+        <div class="extra-item">
+
+            <h3>Proteína vegana</h3>
+
+            <div class="extra-macros">
+                <span>Calorías: XX kcal</span>
+                <span>Proteína: XX g</span>
+                <span>Carbohidratos: XX g</span>
+                <span>Grasas: XX g</span>
+            </div>
+
+        </div>
+
+
+        <div class="extra-item">
+
+            <h3>Yogurt griego</h3>
+
+            <div class="extra-macros">
+                <span>Calorías: XX kcal</span>
+                <span>Proteína: XX g</span>
+                <span>Carbohidratos: XX g</span>
+                <span>Grasas: XX g</span>
+            </div>
+
+        </div>
+
+
+        <div class="extra-item">
+
+            <h3>Extra foam</h3>
+
+            <div class="extra-macros">
+                <span>Calorías: XX kcal</span>
+                <span>Proteína: XX g</span>
+                <span>Carbohidratos: XX g</span>
+                <span>Grasas: XX g</span>
+            </div>
+
+        </div>
+
+
+        <div class="extra-item">
+
+            <h3>Espresso extra</h3>
+
+            <div class="extra-macros">
+                <span>Calorías: XX kcal</span>
+                <span>Proteína: XX g</span>
+                <span>Carbohidratos: XX g</span>
+                <span>Grasas: XX g</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MENSAJE FINAL -->
+
+<div class="message">
+
+    <h2>Gracias por elegir ViaFit ✈️</h2>
+
+    <p>
+        Gracias por elegir ViaFit como el puente para mejorar tus hábitos
+        y disfrutar de una vida más plena.
+    </p>
+
+    <p>
+        Tener salud es crucial para realizar nuestras actividades con comodidad,
+        pasar tiempo con la familia y disfrutar la vida. Así como la comida forma
+        parte de esos momentos, también nos importa tu bienestar.
+    </p>
+
+    <p>
+        En ViaFit creemos que la salud no se trata simplemente de comer pocas
+        calorías, sino de nutrir tu cuerpo y tu cerebro para disfrutar de una
+        mejor experiencia de vida.
+    </p>
+
+    <p>
+        Te llevamos de paseo por un mundo donde puedes disfrutar
+            ese postre que tanto se te antoja, mientras conoces lo que
+            hay detrás de cada receta
+
+    </p>
+
+    <p>
+        Tomamos en cuenta diferentes necesidades,enfermedades,mejores hábitos y dietas
+        especiales para ofrecerte información que te ayude a elegir.
+    </p>
+
+</div>
+
+
+<footer>
+    ViaFit · Explora el mundo, nutre tu cuerpo. ✈️
+</footer>
+
+
+<script>
+
+function showMacros(button) {
+
+    const macros = button.nextElementSibling;
+
+    macros.classList.toggle("show");
+
+    if (macros.classList.contains("show")) {
+        button.style.transform = "translateX(35px) rotate(8deg)";
+    } else {
+        button.style.transform = "translateX(0)";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
