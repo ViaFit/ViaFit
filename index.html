@@ -852,18 +852,22 @@
 <script>
 
 function showMacros(button) {
-
     const macros = button.nextElementSibling;
+    const isShowing = macros.classList.contains("show");
 
-    macros.classList.toggle("show");
-
-    if (macros.classList.contains("show")) {
-        button.style.transform = "translateX(35px) rotate(8deg)";
+    if (!isShowing) {
+        button.classList.add("flying");
+        setTimeout(() => {
+            macros.classList.add("show");
+        }, 400);
     } else {
-        button.style.transform = "translateX(0)";
-    }
-
+        macros.classList.remove("show");
+        button.classList.remove("flying");
 }
+
+    
+
+
 
 </script>
 
