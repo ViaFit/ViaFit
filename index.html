@@ -7,32 +7,77 @@
 <style>
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Arial, sans-serif; background: #f8f7f2; color: #26352d; }
+
+#leaf-container {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 999; overflow: hidden;
+}
+.leaf { position: absolute; top: -40px; font-size: 24px; animation: fall linear forwards; }
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
+}
+
+.hero-cycle {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+}
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    animation: heroFade 16s infinite;
+}
+.hero-slide:nth-child(1) { animation-delay: 0s; }
+.hero-slide:nth-child(2) { animation-delay: 4s; }
+.hero-slide:nth-child(3) { animation-delay: 8s; }
+.hero-slide:nth-child(4) { animation-delay: 12s; }
+@keyframes heroFade {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    20% { opacity: 1; }
+    25% { opacity: 0; }
+    100% { opacity: 0; }
+}
+.hero-drink-img {
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+.hero-label {
+    margin-top: 14px;
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    text-align: center;
+    padding: 0 20px;
+}
+
 header { text-align: center; padding: 45px 20px 30px; background: #f8f7f2; }
 .logo { font-size: 42px; font-weight: 700; letter-spacing: 1px; }
 .plane { display: inline-block; font-size: 34px; margin-left: 5px; }
 header h2 { font-size: 25px; margin: 18px 0 10px; font-weight: 500; }
 header p { font-size: 16px; color: #68736d; }
 
-.tabs {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    padding: 10px 0 0;
-}
+.tabs { display: flex; justify-content: center; gap: 12px; padding: 10px 0 0; }
 .tab-button {
-    border: none;
-    background: #edf2e8;
-    color: #26352d;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 10px 22px;
-    border-radius: 20px;
-    cursor: pointer;
+    border: none; background: #edf2e8; color: #26352d;
+    font-size: 15px; font-weight: bold; padding: 10px 22px;
+    border-radius: 20px; cursor: pointer;
 }
-.tab-button.active {
-    background: #26352d;
-    color: white;
-}
+.tab-button.active { background: #26352d; color: white; }
 
 section { padding: 25px 18px; max-width: 900px; margin: auto; }
 .section-title { text-align: center; font-size: 30px; margin-bottom: 10px; }
@@ -43,20 +88,36 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; }
 .card h3 { margin: 15px 0 8px; font-size: 21px; }
 .card p { color: #68736d; font-size: 14px; line-height: 1.5; }
 .plane-button {
-    border: none;
-    background: #edf2e8;
-    color: #26352d;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 8px 18px;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-top: 8px;
+    border: none; background: #edf2e8; color: #26352d;
+    font-size: 14px; font-weight: bold; padding: 8px 18px;
+    border-radius: 20px; cursor: pointer; margin-top: 8px;
 }
 .macros { display: none; margin-top: 15px; padding: 14px; background: #f1f4ed; border-radius: 14px; text-align: left; }
 .macros.show { display: block; }
 .macro-title { font-weight: bold; margin-bottom: 8px; }
 .macro-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 14px; }
+
+.drink-carousel {
+    position: relative; width: 100%; height: 260px;
+    border-radius: 20px; overflow: hidden; margin-bottom: 25px;
+}
+.carousel-img {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; animation: cycleFade 12s infinite;
+}
+.carousel-img:nth-child(1) { animation-delay: 0s; }
+.carousel-img:nth-child(2) { animation-delay: 3s; }
+.carousel-img:nth-child(3) { animation-delay: 6s; }
+.carousel-img:nth-child(4) { animation-delay: 9s; }
+@keyframes cycleFade {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    25% { opacity: 1; }
+    30% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
 .extras { background: #edf2e8; border-radius: 24px; padding: 28px 20px; margin-top: 35px; }
 .extras h2 { text-align: center; margin-top: 0; }
 .extras-intro { text-align: center; color: #68736d; font-size: 14px; margin-bottom: 25px; }
@@ -68,6 +129,27 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 </style>
 </head>
 <body>
+
+<div id="leaf-container"></div>
+
+<div class="hero-cycle">
+    <div class="hero-slide" style="background:#e8a15c;">
+        <img src="Berry Matcha Latte.jpg.jpg" class="hero-drink-img">
+        <div class="hero-label">Berry Matcha Latte</div>
+    </div>
+    <div class="hero-slide" style="background:#c97b6d;">
+        <img src="Banana Coffee Latte.jpg.jpg" class="hero-drink-img">
+        <div class="hero-label">Banana Coffee Latte</div>
+    </div>
+    <div class="hero-slide" style="background:#8a6a4f;">
+        <img src="Cafe Bombon.jpg.jpg" class="hero-drink-img">
+        <div class="hero-label">Café Bombón</div>
+    </div>
+    <div class="hero-slide" style="background:#6c8a5a;">
+        <img src="Marroquino.jpg.jpg" class="hero-drink-img">
+        <div class="hero-label">Marroquino</div>
+    </div>
+</div>
 
 <header>
     <div class="logo">ViaFit <span class="plane">✈️</span></div>
@@ -139,6 +221,14 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 <section id="bebidas">
 <h1 class="section-title">Bebidas</h1>
 <p class="section-subtitle">Explora nuestras bebidas y descubre su información nutricional.</p>
+
+<div class="drink-carousel">
+    <img src="Berry Matcha Latte.jpg.jpg" class="carousel-img">
+    <img src="Banana Coffee Latte.jpg.jpg" class="carousel-img">
+    <img src="Cafe Bombon.jpg.jpg" class="carousel-img">
+    <img src="Marroquino.jpg.jpg" class="carousel-img">
+</div>
+
 <div class="products">
 
 <div class="card">
@@ -298,6 +388,21 @@ function showSection(id, btn) {
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 }
+
+window.addEventListener('load', () => {
+    const container = document.getElementById('leaf-container');
+    const leafEmojis = ['🍃', '🌿'];
+    for (let i = 0; i < 20; i++) {
+        const leaf = document.createElement('span');
+        leaf.className = 'leaf';
+        leaf.textContent = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+        leaf.style.left = Math.random() * 100 + 'vw';
+        leaf.style.animationDuration = (4 + Math.random() * 3) + 's';
+        leaf.style.animationDelay = (Math.random() * 1.5) + 's';
+        container.appendChild(leaf);
+    }
+    setTimeout(() => container.remove(), 8000);
+});
 </script>
 
 </body>
