@@ -12,6 +12,28 @@ header { text-align: center; padding: 45px 20px 30px; background: #f8f7f2; }
 .plane { display: inline-block; font-size: 34px; margin-left: 5px; }
 header h2 { font-size: 25px; margin: 18px 0 10px; font-weight: 500; }
 header p { font-size: 16px; color: #68736d; }
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 0 0;
+}
+.tab-button {
+    border: none;
+    background: #edf2e8;
+    color: #26352d;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 22px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.tab-button.active {
+    background: #26352d;
+    color: white;
+}
+
 section { padding: 25px 18px; max-width: 900px; margin: auto; }
 .section-title { text-align: center; font-size: 30px; margin-bottom: 10px; }
 .section-subtitle { text-align: center; color: #68736d; margin-bottom: 30px; }
@@ -53,7 +75,13 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
     <p>Entonces, comer rico y saludable sí es posible.</p>
 </header>
 
-<section>
+<div class="tabs">
+    <button class="tab-button active" onclick="showSection('pasteleria', this)">Pastelería</button>
+    <button class="tab-button" onclick="showSection('bebidas', this)">Bebidas</button>
+</div>
+
+<!-- PASTELERÍA -->
+<section id="pasteleria">
 <h1 class="section-title">Una mordida que cae bien al bienestar</h1>
 <p class="section-subtitle">Descubre nuestros productos y conoce lo que hay detrás de cada mordida.</p>
 <div class="products">
@@ -107,7 +135,8 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 </p>
 </section>
 
-<section>
+<!-- BEBIDAS -->
+<section id="bebidas">
 <h1 class="section-title">Bebidas</h1>
 <p class="section-subtitle">Explora nuestras bebidas y descubre su información nutricional.</p>
 <div class="products">
@@ -261,6 +290,13 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 function showMacros(button) {
     const macros = button.nextElementSibling;
     macros.classList.toggle("show");
+}
+
+function showSection(id, btn) {
+    document.getElementById('pasteleria').style.display = (id === 'pasteleria') ? 'block' : 'none';
+    document.getElementById('bebidas').style.display = (id === 'bebidas') ? 'block' : 'none';
+    document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 }
 </script>
 
