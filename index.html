@@ -19,7 +19,6 @@ body { margin: 0; font-family: Arial, sans-serif; background: #f8f7f2; color: #2
     100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
 }
 
-/* HAMBURGER MENU */
 .top-bar {
     display: flex;
     align-items: center;
@@ -152,27 +151,6 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top:
 .macro-title { font-weight: bold; margin-bottom: 8px; }
 .macro-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 14px; }
 
-.drink-carousel {
-    position: relative; width: 100%; height: 260px;
-    border-radius: 20px; overflow: hidden; margin-bottom: 25px;
-}
-.carousel-img {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%; object-fit: cover;
-    opacity: 0; animation: cycleFade 12s infinite;
-}
-.carousel-img:nth-child(1) { animation-delay: 0s; }
-.carousel-img:nth-child(2) { animation-delay: 3s; }
-.carousel-img:nth-child(3) { animation-delay: 6s; }
-.carousel-img:nth-child(4) { animation-delay: 9s; }
-@keyframes cycleFade {
-    0% { opacity: 0; }
-    5% { opacity: 1; }
-    25% { opacity: 1; }
-    30% { opacity: 0; }
-    100% { opacity: 0; }
-}
-
 .extras { background: #edf2e8; border-radius: 24px; padding: 28px 20px; margin-top: 35px; }
 .extras h2 { text-align: center; margin-top: 0; }
 .extras-intro { text-align: center; color: #68736d; font-size: 14px; margin-bottom: 25px; }
@@ -180,7 +158,6 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top:
 .extra-item h3 { margin: 0 0 8px; font-size: 17px; }
 .extra-macros { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; color: #526059; }
 
-/* SOBRE VIAFIT */
 .about-box {
     background: white;
     border-radius: 20px;
@@ -193,7 +170,6 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top:
 .about-box p { margin: 0 0 16px; }
 .about-box p:last-child { margin-bottom: 0; }
 
-/* PEDIDOS placeholder */
 .pedidos-placeholder {
     background: white;
     border-radius: 20px;
@@ -203,7 +179,6 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top:
     box-shadow: 0 4px 18px rgba(0,0,0,0.06);
 }
 
-/* FAQ ACCORDION */
 .faq-item {
     background: white;
     border-radius: 15px;
@@ -370,13 +345,6 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 <div id="bebidas" style="display:none;">
 <h1 class="section-title">Bebidas</h1>
 <p class="section-subtitle">Explora nuestras bebidas y descubre su información nutricional.</p>
-
-<div class="drink-carousel">
-    <img src="Berry Matcha Latte.jpg.jpg" class="carousel-img">
-    <img src="Banana Coffee Latte.jpg.jpg" class="carousel-img">
-    <img src="Cafe Bombon.jpg.jpg" class="carousel-img">
-    <img src="Marroquino.jpg.jpg" class="carousel-img">
-</div>
 
 <div class="products">
 
@@ -587,7 +555,7 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 
 <footer>ViaFit · Explora el mundo, nutre tu cuerpo. ✈️</footer>
 
-<a href="https://wa.me/521XXXXXXXXXX" class="whatsapp-float" target="_blank">💬</a>
+<a href="https://wa.me/+52 441 203 0156" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
 function showMacros(button) {
