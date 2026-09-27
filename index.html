@@ -19,6 +19,61 @@ body { margin: 0; font-family: Arial, sans-serif; background: #f8f7f2; color: #2
     100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
 }
 
+/* HAMBURGER MENU */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #f8f7f2;
+}
+.hamburger {
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #26352d;
+}
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 260px;
+    height: 100%;
+    background: white;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+    padding: 70px 25px;
+    transition: left 0.3s ease;
+    z-index: 1001;
+}
+.side-menu.open { left: 0; }
+.side-menu a {
+    display: block;
+    padding: 14px 0;
+    color: #26352d;
+    text-decoration: none;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+}
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+.menu-overlay.show { display: block; }
+.close-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 26px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 .hero-cycle {
     position: relative;
     width: 100%;
@@ -65,7 +120,7 @@ body { margin: 0; font-family: Arial, sans-serif; background: #f8f7f2; color: #2
     padding: 0 20px;
 }
 
-header { text-align: center; padding: 45px 20px 30px; background: #f8f7f2; }
+header { text-align: center; padding: 25px 20px 30px; background: #f8f7f2; }
 .logo { font-size: 42px; font-weight: 700; letter-spacing: 1px; }
 .plane { display: inline-block; font-size: 34px; margin-left: 5px; }
 header h2 { font-size: 25px; margin: 18px 0 10px; font-weight: 500; }
@@ -79,7 +134,7 @@ header p { font-size: 16px; color: #68736d; }
 }
 .tab-button.active { background: #26352d; color: white; }
 
-section { padding: 25px 18px; max-width: 900px; margin: auto; }
+section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top: 20px; }
 .section-title { text-align: center; font-size: 30px; margin-bottom: 10px; }
 .section-subtitle { text-align: center; color: #68736d; margin-bottom: 30px; }
 .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
@@ -124,6 +179,84 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; }
 .extra-item { background: white; border-radius: 15px; padding: 15px; margin-bottom: 12px; }
 .extra-item h3 { margin: 0 0 8px; font-size: 17px; }
 .extra-macros { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; color: #526059; }
+
+/* SOBRE VIAFIT */
+.about-box {
+    background: white;
+    border-radius: 20px;
+    padding: 26px 22px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    line-height: 1.7;
+    color: #40493f;
+    font-size: 15px;
+}
+.about-box p { margin: 0 0 16px; }
+.about-box p:last-child { margin-bottom: 0; }
+
+/* PEDIDOS placeholder */
+.pedidos-placeholder {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 22px;
+    text-align: center;
+    color: #68736d;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+/* FAQ ACCORDION */
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 18px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #26352d;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.faq-question .arrow { transition: transform 0.3s; font-size: 18px; }
+.faq-question.open .arrow { transform: rotate(180deg); }
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 20px;
+    color: #526059;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.faq-answer.open { max-height: 300px; padding: 0 20px 18px; }
+.faq-answer ul { margin: 8px 0; padding-left: 20px; }
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    z-index: 900;
+}
+
 .message { max-width: 800px; margin: 20px auto 60px; padding: 30px 22px; text-align: center; line-height: 1.7; color: #526059; }
 footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 </style>
@@ -131,6 +264,20 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 <body>
 
 <div id="leaf-container"></div>
+
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+<div class="side-menu" id="sideMenu">
+    <button class="close-menu" onclick="closeMenu()">✕</button>
+    <a href="#menu-section" onclick="closeMenu()">Menú</a>
+    <a href="#pedidos" onclick="closeMenu()">Pedidos</a>
+    <a href="#sobre" onclick="closeMenu()">Sobre ViaFit</a>
+    <a href="#preguntas" onclick="closeMenu()">Preguntas frecuentes</a>
+</div>
+
+<div class="top-bar">
+    <button class="hamburger" onclick="openMenu()">☰</button>
+    <div></div>
+</div>
 
 <div class="hero-cycle">
     <div class="hero-slide" style="background:#e8a15c;">
@@ -157,13 +304,15 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
     <p>Entonces, comer rico y saludable sí es posible.</p>
 </header>
 
+<section id="menu-section">
+
 <div class="tabs">
     <button class="tab-button active" onclick="showSection('pasteleria', this)">Pastelería</button>
     <button class="tab-button" onclick="showSection('bebidas', this)">Bebidas</button>
 </div>
 
 <!-- PASTELERÍA -->
-<section id="pasteleria">
+<div id="pasteleria">
 <h1 class="section-title">Una mordida que cae bien al bienestar</h1>
 <p class="section-subtitle">Descubre nuestros productos y conoce lo que hay detrás de cada mordida.</p>
 <div class="products">
@@ -215,10 +364,10 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 En ViaFit te ofrecemos productos elaborados con ingredientes seleccionados,
 buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 </p>
-</section>
+</div>
 
 <!-- BEBIDAS -->
-<section id="bebidas">
+<div id="bebidas" style="display:none;">
 <h1 class="section-title">Bebidas</h1>
 <p class="section-subtitle">Explora nuestras bebidas y descubre su información nutricional.</p>
 
@@ -363,6 +512,68 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
     </div>
 </div>
 </div>
+</div>
+
+</section>
+
+<!-- PEDIDOS -->
+<section id="pedidos">
+<h1 class="section-title">Pedidos</h1>
+<p class="section-subtitle">Roles por caja, pasteles personalizados y más — próximamente con todos los detalles.</p>
+<div class="pedidos-placeholder">
+    🍰 Estamos armando esta sección con cajas de roles, sabores de pastel y precios.<br><br>
+    Mientras tanto, escríbenos por WhatsApp para hacer tu pedido personalizado.
+</div>
+</section>
+
+<!-- SOBRE VIAFIT -->
+<section id="sobre">
+<h1 class="section-title">Sobre ViaFit</h1>
+<div class="about-box">
+<p>Hola dietista! En ViaFit cuidamos rigurosamente todo el proceso de producción saludable, desde la estricta selección de materias primas libres de harinas y azúcares refinadas de la más alta calidad hasta la elaboración final de nuestros postres, para que vivas la experiencia de disfrutar sin poner en riesgo tu salud, en cada bocado.</p>
+<p>Buscamos ayudarte y guiarte a una mejor opción diseñada para cumplir tus propósitos.</p>
+<p>Recuerda que comer saludable no es lo mismo para ti que para otros. Como seres humanos no todos tenemos las mismas metas o enfermedades; comer balanceado no es quitar calorías, sino consumir alimentos especiales que se adapten a ti.</p>
+</div>
+</section>
+
+<!-- PREGUNTAS FRECUENTES -->
+<section id="preguntas">
+<h1 class="section-title">Preguntas frecuentes</h1>
+
+<div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Tienen azúcar?
+        <span class="arrow">▾</span>
+    </button>
+    <div class="faq-answer">
+        No, nuestros postres no contienen azúcar, pero pueden contener el azúcar de las frutas, ya que no causan los mismos daños que el azúcar procesado.
+    </div>
+</div>
+
+<div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Por qué usamos edulcorantes?
+        <span class="arrow">▾</span>
+    </button>
+    <div class="faq-answer">
+        <ul>
+            <li>Para evitar el cansancio que causan los carbohidratos altos.</li>
+            <li>Para mantener tus niveles de glucosa estables.</li>
+            <li>Dulzor limpio y delicioso, sin comprometer tu bienestar.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="faq-item">
+    <button class="faq-question" onclick="toggleFaq(this)">
+        ¿Me lo puedo comer todo?
+        <span class="arrow">▾</span>
+    </button>
+    <div class="faq-answer">
+        Nuestros postres individuales son perfectos para un delicioso snack balanceado, pero recuerda que todo es porción, en especial para diabéticos.
+    </div>
+</div>
+
 </section>
 
 <div class="message">
@@ -376,6 +587,8 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 
 <footer>ViaFit · Explora el mundo, nutre tu cuerpo. ✈️</footer>
 
+<a href="https://wa.me/521XXXXXXXXXX" class="whatsapp-float" target="_blank">💬</a>
+
 <script>
 function showMacros(button) {
     const macros = button.nextElementSibling;
@@ -387,6 +600,26 @@ function showSection(id, btn) {
     document.getElementById('bebidas').style.display = (id === 'bebidas') ? 'block' : 'none';
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+}
+
+function openMenu() {
+    document.getElementById('sideMenu').classList.add('open');
+    document.getElementById('menuOverlay').classList.add('show');
+}
+function closeMenu() {
+    document.getElementById('sideMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('show');
+}
+
+function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
+    if (!isOpen) {
+        answer.classList.add('open');
+        btn.classList.add('open');
+    }
 }
 
 window.addEventListener('load', () => {
