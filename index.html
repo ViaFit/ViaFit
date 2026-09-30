@@ -45,6 +45,7 @@ body { margin: 0; font-family: Arial, sans-serif; background: #f8f7f2; color: #2
     padding: 70px 25px;
     transition: left 0.3s ease;
     z-index: 1001;
+    overflow-y: auto;
 }
 .side-menu.open { left: 0; }
 .side-menu a {
@@ -240,6 +241,110 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top:
 .faq-answer.open { max-height: 300px; padding: 0 20px 18px; }
 .faq-answer ul { margin: 8px 0; padding-left: 20px; }
 
+/* INGREDIENTES POPULARES */
+.ing-title { text-align: center; font-size: 26px; font-weight: 800; letter-spacing: 0.3px; margin-bottom: 4px; }
+.ing-subtitle { text-align: center; color: #68736d; font-size: 15px; margin-bottom: 24px; }
+
+.ing-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.ing-tab-btn {
+    border: none; background: #edf2e8; color: #26352d;
+    font-size: 15px; font-weight: bold; padding: 10px 20px;
+    border-radius: 20px; cursor: pointer;
+}
+.ing-tab-btn.active { background: #26352d; color: white; }
+
+.ing-subtabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; }
+.ing-subtab-btn {
+    border: 1px solid #cfe0c8; background: white; color: #40493f;
+    font-size: 13px; font-weight: bold; padding: 7px 16px;
+    border-radius: 16px; cursor: pointer;
+}
+.ing-subtab-btn.active { background: #3d6b2f; color: white; border-color: #3d6b2f; }
+
+.ing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 14px;
+}
+.ing-item {
+    background: white;
+    border-radius: 16px;
+    padding: 12px 8px 14px;
+    text-align: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+.ing-photo {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #eaf0e6;
+}
+.ing-photo-placeholder {
+    width: 100%;
+    height: 90px;
+    border-radius: 12px;
+    background: #eaf0e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+}
+.ing-item h4 { margin: 8px 0 0; font-size: 13px; color: #26352d; font-weight: bold; }
+
+.ing-modal-overlay {
+    display: none;
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: 1100;
+}
+.ing-modal-overlay.show { display: block; }
+.ing-modal {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 22px;
+    padding: 26px 22px;
+    width: 85%;
+    max-width: 360px;
+    z-index: 1101;
+    text-align: center;
+}
+.ing-modal.show { display: block; }
+.ing-modal-close {
+    position: absolute;
+    top: 12px; right: 14px;
+    background: none; border: none;
+    font-size: 22px; cursor: pointer;
+    color: #68736d;
+}
+.ing-modal img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 14px;
+}
+.ing-modal-placeholder {
+    width: 100%;
+    height: 140px;
+    border-radius: 14px;
+    background: #eaf0e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 46px;
+    margin-bottom: 14px;
+}
+.ing-modal h3 { margin: 0 0 10px; font-size: 20px; }
+.ing-modal p { color: #526059; font-size: 14px; line-height: 1.6; margin: 0; }
+
 .whatsapp-float {
     position: fixed;
     bottom: 20px;
@@ -270,6 +375,7 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 <div class="side-menu" id="sideMenu">
     <button class="close-menu" onclick="closeMenu()">✕</button>
     <a href="#menu-section" onclick="closeMenu()">Menú</a>
+    <a href="#ingredientes" onclick="closeMenu()">Ingredientes populares</a>
     <a href="#pedidos" onclick="closeMenu()">Pedidos</a>
     <a href="#sobre" onclick="closeMenu()">Sobre ViaFit</a>
     <a href="#preguntas" onclick="closeMenu()">Preguntas frecuentes</a>
@@ -544,6 +650,146 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 
 </section>
 
+<!-- INGREDIENTES POPULARES -->
+<section id="ingredientes">
+<div class="ing-title">Ingredientes populares</div>
+<p class="ing-subtitle">Conoce lo que hay en</p>
+
+<div class="ing-tabs">
+    <button class="ing-tab-btn active" onclick="showIngCategory('postres', this)">Postres</button>
+    <button class="ing-tab-btn" onclick="showIngCategory('endulzantes', this)">Endulzantes</button>
+    <button class="ing-tab-btn" onclick="showIngCategory('bebidas', this)">Bebidas</button>
+</div>
+
+<!-- POSTRES -->
+<div id="ing-postres" class="ing-category">
+    <div class="ing-subtabs">
+        <button class="ing-subtab-btn active" onclick="showIngSub('postres','harinas', this)">Harinas</button>
+        <button class="ing-subtab-btn" onclick="showIngSub('postres','otros', this)">Otros</button>
+    </div>
+    <div id="ing-postres-harinas" class="ing-grid">
+        <button class="ing-item" onclick="openIngModal('harina-almendra')">
+            <img class="ing-photo" src="Harina de almendra.jpg.PNG" alt="Harina de almendra">
+            <h4>Harina de almendra</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('harina-coco')">
+            <img class="ing-photo" src="Harina de coco.jpg.PNG" alt="Harina de coco">
+            <h4>Harina de coco</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('harina-avena')">
+            <img class="ing-photo" src="Harina de avena.jpg.PNG" alt="Harina de avena">
+            <h4>Harina de avena</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('harina-integral')">
+            <img class="ing-photo" src="Harina integral.jpg.PNG" alt="Harina integral">
+            <h4>Harina integral</h4>
+        </button>
+    </div>
+    <div id="ing-postres-otros" class="ing-grid" style="display:none;">
+        <button class="ing-item" onclick="openIngModal('cacao')">
+            <img class="ing-photo" src="Cacao.jpg.PNG" alt="Cacao">
+            <h4>Cacao</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('nuez')">
+            <img class="ing-photo" src="Nuez.jpg.PNG" alt="Nuez">
+            <h4>Nuez</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('canela')">
+            <img class="ing-photo" src="Canela.jpg.PNG" alt="Canela">
+            <h4>Canela</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('zanahoria')">
+            <img class="ing-photo" src="Zanahoria.jpg.PNG" alt="Zanahoria">
+            <h4>Zanahoria</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('yogurt-griego')">
+            <img class="ing-photo" src="Yogurt griego.jpg.PNG" alt="Yogurt griego">
+            <h4>Yogurt griego</h4>
+        </button>
+    </div>
+</div>
+
+<!-- ENDULZANTES -->
+<div id="ing-endulzantes" class="ing-category" style="display:none;">
+    <div class="ing-grid">
+        <button class="ing-item" onclick="openIngModal('alulosa')">
+            <div class="ing-photo-placeholder">🍃</div>
+            <h4>Alulosa</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('monkfruit')">
+            <div class="ing-photo-placeholder">🍃</div>
+            <h4>Monk fruit</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('stevia')">
+            <div class="ing-photo-placeholder">🍃</div>
+            <h4>Stevia</h4>
+        </button>
+    </div>
+</div>
+
+<!-- BEBIDAS -->
+<div id="ing-bebidas" class="ing-category" style="display:none;">
+    <div class="ing-subtabs">
+        <button class="ing-subtab-btn active" onclick="showIngSub('bebidas','leches', this)">Leches</button>
+        <button class="ing-subtab-btn" onclick="showIngSub('bebidas','otros', this)">Otros</button>
+    </div>
+    <div id="ing-bebidas-leches" class="ing-grid">
+        <button class="ing-item" onclick="openIngModal('leche-deslactosada')">
+            <img class="ing-photo" src="Leche deslactosada light.jpg.PNG" alt="Leche deslactosada light">
+            <h4>Leche deslactosada light</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('bebida-soya')">
+            <img class="ing-photo" src="Bebida de soya.jpg.PNG" alt="Bebida de soya">
+            <h4>Bebida de soya</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('bebida-almendra')">
+            <img class="ing-photo" src="Bebida de almendras.jpg.PNG" alt="Bebida de almendra">
+            <h4>Bebida de almendra</h4>
+        </button>
+    </div>
+    <div id="ing-bebidas-otros" class="ing-grid" style="display:none;">
+        <button class="ing-item" onclick="openIngModal('fresas')">
+            <div class="ing-photo-placeholder">🍃</div>
+            <h4>Fresas</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('bananas')">
+            <img class="ing-photo" src="Bananas.jpg.PNG" alt="Bananas">
+            <h4>Bananas</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('matcha')">
+            <img class="ing-photo" src="Matcha Organico.jpg.PNG" alt="Matcha orgánica">
+            <h4>Matcha orgánica</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('taro')">
+            <img class="ing-photo" src="Taro organico.jpg.PNG" alt="Taro orgánico">
+            <h4>Taro orgánico</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('chai')">
+            <img class="ing-photo" src="Chai.jpg.PNG" alt="Chai">
+            <h4>Chai</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('cacahuate')">
+            <img class="ing-photo" src="Cacahuates.jpg.PNG" alt="Cacahuate">
+            <h4>Cacahuate</h4>
+        </button>
+        <button class="ing-item" onclick="openIngModal('proteina')">
+            <img class="ing-photo" src="Proteina.jpg.PNG" alt="Proteína">
+            <h4>Proteína</h4>
+        </button>
+    </div>
+</div>
+
+</section>
+
+<!-- INGREDIENT MODAL -->
+<div class="ing-modal-overlay" id="ingModalOverlay" onclick="closeIngModal()"></div>
+<div class="ing-modal" id="ingModal">
+    <button class="ing-modal-close" onclick="closeIngModal()">✕</button>
+    <div id="ingModalImgWrap"></div>
+    <h3 id="ingModalTitle"></h3>
+    <p id="ingModalDesc"></p>
+</div>
+
 <!-- PEDIDOS -->
 <section id="pedidos">
 <h1 class="section-title">Pedidos</h1>
@@ -676,6 +922,72 @@ function burstLeaves() {
 }
 
 window.addEventListener('load', burstLeaves);
+
+/* INGREDIENTES POPULARES */
+function showIngCategory(cat, btn) {
+    document.getElementById('ing-postres').style.display = (cat === 'postres') ? 'block' : 'none';
+    document.getElementById('ing-endulzantes').style.display = (cat === 'endulzantes') ? 'block' : 'none';
+    document.getElementById('ing-bebidas').style.display = (cat === 'bebidas') ? 'block' : 'none';
+    document.querySelectorAll('.ing-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+function showIngSub(cat, sub, btn) {
+    if (cat === 'postres') {
+        document.getElementById('ing-postres-harinas').style.display = (sub === 'harinas') ? 'grid' : 'none';
+        document.getElementById('ing-postres-otros').style.display = (sub === 'otros') ? 'grid' : 'none';
+        document.querySelectorAll('#ing-postres .ing-subtab-btn').forEach(b => b.classList.remove('active'));
+    } else {
+        document.getElementById('ing-bebidas-leches').style.display = (sub === 'leches') ? 'grid' : 'none';
+        document.getElementById('ing-bebidas-otros').style.display = (sub === 'otros') ? 'grid' : 'none';
+        document.querySelectorAll('#ing-bebidas .ing-subtab-btn').forEach(b => b.classList.remove('active'));
+    }
+    btn.classList.add('active');
+}
+
+const ingredientData = {
+    'harina-almendra': { name: 'Harina de almendra', img: 'Harina de almendra.jpg.PNG', desc: 'Rica en grasas saludables y baja en carbohidratos. Aporta textura suave y un sabor ligeramente dulce a nuestros postres. (Edita este texto con la información que prefieras.)' },
+    'harina-coco': { name: 'Harina de coco', img: 'Harina de coco.jpg.PNG', desc: 'Alta en fibra y sin gluten. Ideal para recetas más ligeras con un toque tropical. (Edita este texto con la información que prefieras.)' },
+    'harina-avena': { name: 'Harina de avena', img: 'Harina de avena.jpg.PNG', desc: 'Fuente de fibra y energía de liberación lenta. Aporta una textura suave a nuestros horneados. (Edita este texto con la información que prefieras.)' },
+    'harina-integral': { name: 'Harina integral', img: 'Harina integral.jpg.PNG', desc: 'Conserva más fibra y nutrientes que la harina refinada, ayudando a mantenerte satisfecho por más tiempo. (Edita este texto con la información que prefieras.)' },
+    'cacao': { name: 'Cacao', img: 'Cacao.jpg.PNG', desc: 'Rico en antioxidantes y con un sabor intenso a chocolate natural, sin azúcares añadidos. (Edita este texto con la información que prefieras.)' },
+    'nuez': { name: 'Nuez', img: 'Nuez.jpg.PNG', desc: 'Aporta grasas saludables, proteína y un toque crocante a nuestros postres. (Edita este texto con la información que prefieras.)' },
+    'canela': { name: 'Canela', img: 'Canela.jpg.PNG', desc: 'Especia natural que ayuda a regular los niveles de glucosa y le da ese sabor característico a nuestros roles. (Edita este texto con la información que prefieras.)' },
+    'zanahoria': { name: 'Zanahoria', img: 'Zanahoria.jpg.PNG', desc: 'Aporta humedad natural, fibra y un dulzor suave sin necesidad de azúcares añadidos. (Edita este texto con la información que prefieras.)' },
+    'yogurt-griego': { name: 'Yogurt griego', img: 'Yogurt griego.jpg.PNG', desc: 'Alto en proteína y con una textura cremosa que usamos en varias de nuestras recetas. (Edita este texto con la información que prefieras.)' },
+    'alulosa': { name: 'Alulosa', img: '', desc: 'Endulzante natural con prácticamente cero calorías y sin impacto glicémico. (Edita este texto con la información que prefieras.)' },
+    'monkfruit': { name: 'Monk fruit', img: '', desc: 'Endulzante natural derivado de la fruta del monje, sin calorías y sin afectar tus niveles de glucosa. (Edita este texto con la información que prefieras.)' },
+    'stevia': { name: 'Stevia', img: '', desc: 'Endulzante 100% natural de origen vegetal, sin calorías. (Edita este texto con la información que prefieras.)' },
+    'leche-deslactosada': { name: 'Leche deslactosada light', img: 'Leche deslactosada light.jpg.PNG', desc: 'Baja en grasa y fácil de digerir, ideal para quienes tienen sensibilidad a la lactosa. (Edita este texto con la información que prefieras.)' },
+    'bebida-soya': { name: 'Bebida de soya', img: 'Bebida de soya.jpg.PNG', desc: 'Alternativa vegetal rica en proteína, perfecta para bebidas 100% veganas. (Edita este texto con la información que prefieras.)' },
+    'bebida-almendra': { name: 'Bebida de almendra', img: 'Bebida de almendras.jpg.PNG', desc: 'Ligera, sin lactosa y con un sabor suave que combina perfecto con café y matcha. (Edita este texto con la información que prefieras.)' },
+    'fresas': { name: 'Fresas', img: '', desc: 'Aportan frescura, antioxidantes y un dulzor natural a nuestras bebidas. (Edita este texto con la información que prefieras.)' },
+    'bananas': { name: 'Bananas', img: 'Bananas.jpg.PNG', desc: 'Fuente natural de potasio y dulzor, perfectas para bebidas cremosas sin azúcar añadida. (Edita este texto con la información que prefieras.)' },
+    'matcha': { name: 'Matcha orgánica', img: 'Matcha Organico.jpg.PNG', desc: 'Rica en antioxidantes, aporta energía estable sin el bajón del café. (Edita este texto con la información que prefieras.)' },
+    'taro': { name: 'Taro orgánico', img: 'Taro organico.jpg.PNG', desc: 'Raíz de sabor suave y textura cremosa, usada en nuestras bebidas especiales. (Edita este texto con la información que prefieras.)' },
+    'chai': { name: 'Chai', img: 'Chai.jpg.PNG', desc: 'Mezcla de especias aromáticas que aportan calidez y sabor a nuestras bebidas. (Edita este texto con la información que prefieras.)' },
+    'cacahuate': { name: 'Cacahuate', img: 'Cacahuates.jpg.PNG', desc: 'Fuente de grasas saludables y proteína, con un sabor característico. (Edita este texto con la información que prefieras.)' },
+    'proteina': { name: 'Proteína', img: 'Proteina.jpg.PNG', desc: 'Ayuda a mantenerte satisfecho por más tiempo y complementa tus bebidas con un extra nutricional. (Edita este texto con la información que prefieras.)' }
+};
+
+function openIngModal(key) {
+    const data = ingredientData[key];
+    if (!data) return;
+    document.getElementById('ingModalTitle').textContent = data.name;
+    document.getElementById('ingModalDesc').textContent = data.desc;
+    const imgWrap = document.getElementById('ingModalImgWrap');
+    if (data.img) {
+        imgWrap.innerHTML = '<img src="' + data.img + '" alt="' + data.name + '">';
+    } else {
+        imgWrap.innerHTML = '<div class="ing-modal-placeholder">🍃</div>';
+    }
+    document.getElementById('ingModal').classList.add('show');
+    document.getElementById('ingModalOverlay').classList.add('show');
+}
+function closeIngModal() {
+    document.getElementById('ingModal').classList.remove('show');
+    document.getElementById('ingModalOverlay').classList.remove('show');
+}
 </script>
 
 </body>
