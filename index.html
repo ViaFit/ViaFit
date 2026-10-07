@@ -7,132 +7,45 @@
 <style>
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Arial, sans-serif; background: #f8f7f2; color: #26352d; }
+html { scroll-behavior: smooth; }
 
-#leaf-container {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none; z-index: 999; overflow: hidden;
-}
+#leaf-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; overflow: hidden; }
 .leaf { position: absolute; top: -40px; animation: fall linear forwards; }
 .leaf.leaf-img { width: 30px; height: auto; }
-@keyframes fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
-}
+@keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; } }
 
-.top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 20px;
-    background: #f8f7f2;
-}
-.hamburger {
-    font-size: 28px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #26352d;
-}
-.side-menu {
-    position: fixed;
-    top: 0;
-    left: -280px;
-    width: 260px;
-    height: 100%;
-    background: white;
-    box-shadow: 2px 0 20px rgba(0,0,0,0.1);
-    padding: 70px 25px;
-    transition: left 0.3s ease;
-    z-index: 1001;
-    overflow-y: auto;
-}
+.top-bar { position: absolute; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; }
+.hamburger { font-size: 26px; background: white; border: 1px solid #dfe6d6; border-radius: 12px; width: 44px; height: 44px; cursor: pointer; color: #26352d; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.brand-mini { color: #26352d; font-weight: 700; letter-spacing: 2px; font-size: 14px; }
+.side-menu { position: fixed; top: 0; left: -280px; width: 260px; height: 100%; background: white; box-shadow: 2px 0 20px rgba(0,0,0,0.1); padding: 70px 25px; transition: left 0.3s ease; z-index: 1001; overflow-y: auto; }
 .side-menu.open { left: 0; }
-.side-menu a {
-    display: block;
-    padding: 14px 0;
-    color: #26352d;
-    text-decoration: none;
-    font-size: 18px;
-    border-bottom: 1px solid #eee;
-}
-.menu-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.3);
-    z-index: 1000;
-}
+.side-menu a { display: block; padding: 14px 0; color: #26352d; text-decoration: none; font-size: 18px; border-bottom: 1px solid #eee; }
+.menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 1000; }
 .menu-overlay.show { display: block; }
-.close-menu {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 26px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
+.close-menu { position: absolute; top: 20px; right: 20px; font-size: 26px; background: none; border: none; cursor: pointer; }
 
-.hero-cycle {
-    position: relative;
-    width: 100%;
-    height: 340px;
-    overflow: hidden;
-    border-radius: 0 0 30px 30px;
-}
-.hero-slide {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    opacity: 0;
-    animation: heroFade 16s infinite;
-}
-.hero-slide:nth-child(1) { animation-delay: 0s; }
-.hero-slide:nth-child(2) { animation-delay: 4s; }
-.hero-slide:nth-child(3) { animation-delay: 8s; }
-.hero-slide:nth-child(4) { animation-delay: 12s; }
-@keyframes heroFade {
-    0% { opacity: 0; }
-    5% { opacity: 1; }
-    20% { opacity: 1; }
-    25% { opacity: 0; }
-    100% { opacity: 0; }
-}
-.hero-drink-img {
-    width: 170px;
-    height: 170px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 6px solid white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-}
-.hero-label {
-    margin-top: 14px;
-    font-size: 22px;
-    font-weight: 800;
-    color: white;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.25);
-    text-align: center;
-    padding: 0 20px;
-}
-
-header { text-align: center; padding: 25px 20px 30px; background: #f8f7f2; }
-.logo { font-size: 42px; font-weight: 700; letter-spacing: 1px; }
-.plane { display: inline-block; font-size: 34px; margin-left: 5px; }
-header h2 { font-size: 25px; margin: 18px 0 10px; font-weight: 500; }
-header p { font-size: 16px; color: #68736d; }
+/* HERO */
+.hero { position: relative; background: #f3efe3; color: #26352d; text-align: center; padding: 84px 20px 40px; border-radius: 0 0 34px 34px; overflow: hidden; }
+.hero::before { content: ""; position: absolute; width: 320px; height: 320px; border-radius: 50%; background: #e3ecd6; top: -120px; right: -100px; }
+.hero > * { position: relative; }
+.hero .top-bar { position: absolute; }
+.hero-eyebrow { display: inline-block; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #5b7a4a; margin-bottom: 14px; font-weight: bold; }
+.hero h1 { font-size: 34px; line-height: 1.15; margin: 0 0 12px; font-weight: 800; }
+.hero h1 span { color: #5b7a4a; }
+.hero-sub { font-size: 16px; line-height: 1.55; max-width: 480px; margin: 0 auto 6px; color: #526059; }
+.hero-incl { font-size: 15px; font-style: italic; color: #5b7a4a; margin: 0 0 22px; }
+.hero-cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
+.btn-primary, .btn-secondary { text-decoration: none; font-weight: bold; font-size: 15px; padding: 14px 26px; border-radius: 30px; }
+.btn-primary { background: #26352d; color: white; }
+.btn-secondary { background: white; border: 1.5px solid #cfe0c8; color: #26352d; }
+.hero-photos { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; max-width: 460px; height: 300px; margin: 0 auto 24px; }
+.hero-photos img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; border: 4px solid white; box-shadow: 0 8px 22px rgba(38,53,45,0.14); background: #eaf0e6; }
+.hero-photos img:first-child { grid-row: 1 / 3; border-radius: 120px 120px 22px 22px; }
+.hero-chips { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.chip { font-size: 12.5px; background: white; border: 1px solid #dfe6d6; color: #40493f; padding: 7px 12px; border-radius: 16px; }
 
 .tabs { display: flex; justify-content: center; gap: 12px; padding: 10px 0 0; }
-.tab-button {
-    border: none; background: #edf2e8; color: #26352d;
-    font-size: 15px; font-weight: bold; padding: 10px 22px;
-    border-radius: 20px; cursor: pointer;
-}
+.tab-button { border: none; background: #edf2e8; color: #26352d; font-size: 15px; font-weight: bold; padding: 10px 22px; border-radius: 20px; cursor: pointer; }
 .tab-button.active { background: #26352d; color: white; }
 
 section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top: 20px; }
@@ -145,17 +58,8 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top:
 .card p { color: #68736d; font-size: 14px; line-height: 1.5; }
 
 .button-row { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 8px; }
-.plane-button {
-    border: none; background: #edf2e8; color: #26352d;
-    font-size: 14px; font-weight: bold; padding: 8px 18px;
-    border-radius: 20px; cursor: pointer;
-}
-.leaf-button {
-    border: none; background: #eaf5e3;
-    padding: 8px 12px;
-    border-radius: 20px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-}
+.plane-button { border: none; background: #edf2e8; color: #26352d; font-size: 14px; font-weight: bold; padding: 8px 18px; border-radius: 20px; cursor: pointer; }
+.leaf-button { border: none; background: #eaf5e3; padding: 8px 12px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .leaf-button img { width: 22px; height: 22px; object-fit: contain; display: block; }
 
 .macros { display: none; margin-top: 15px; padding: 14px; background: #f1f4ed; border-radius: 14px; text-align: left; }
@@ -166,14 +70,7 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top:
 .leaf-info { display: none; margin-top: 15px; padding: 16px; background: #f4faf0; border-radius: 14px; text-align: left; }
 .leaf-info.show { display: block; }
 .leaf-info p { color: #40493f; font-size: 14px; line-height: 1.6; margin: 0 0 12px; }
-.leaf-warning {
-    background: #dff2d8;
-    border: 1px solid #b7dba5;
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 13px;
-    color: #2f4a25;
-}
+.leaf-warning { background: #dff2d8; border: 1px solid #b7dba5; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #2f4a25; }
 .leaf-warning strong { display: block; margin-bottom: 6px; }
 .leaf-warning ul { margin: 0; padding-left: 18px; }
 .leaf-warning li { margin-bottom: 4px; }
@@ -185,161 +82,38 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top:
 .extra-item h3 { margin: 0 0 8px; font-size: 17px; }
 .extra-macros { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; color: #526059; }
 
-.about-box {
-    background: white;
-    border-radius: 20px;
-    padding: 26px 22px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-    line-height: 1.7;
-    color: #40493f;
-    font-size: 15px;
-}
+.about-box { background: white; border-radius: 20px; padding: 26px 22px; box-shadow: 0 4px 18px rgba(0,0,0,0.06); line-height: 1.7; color: #40493f; font-size: 15px; }
 .about-box p { margin: 0 0 16px; }
 .about-box p:last-child { margin-bottom: 0; }
+.pedidos-placeholder { background: white; border-radius: 20px; padding: 40px 22px; text-align: center; color: #68736d; box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
 
-.pedidos-placeholder {
-    background: white;
-    border-radius: 20px;
-    padding: 40px 22px;
-    text-align: center;
-    color: #68736d;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-}
-
-.faq-item {
-    background: white;
-    border-radius: 15px;
-    margin-bottom: 12px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-    overflow: hidden;
-}
-.faq-question {
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: none;
-    padding: 18px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #26352d;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.faq-item { background: white; border-radius: 15px; margin-bottom: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.05); overflow: hidden; }
+.faq-question { width: 100%; text-align: left; background: none; border: none; padding: 18px 20px; font-size: 16px; font-weight: bold; color: #26352d; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
 .faq-question .arrow { transition: transform 0.3s; font-size: 18px; }
 .faq-question.open .arrow { transform: rotate(180deg); }
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    padding: 0 20px;
-    color: #526059;
-    font-size: 14px;
-    line-height: 1.6;
-}
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 20px; color: #526059; font-size: 14px; line-height: 1.6; }
 .faq-answer.open { max-height: 300px; padding: 0 20px 18px; }
 .faq-answer ul { margin: 8px 0; padding-left: 20px; }
 
-/* INGREDIENTES POPULARES */
 .ing-title { text-align: center; font-size: 26px; font-weight: 800; letter-spacing: 0.3px; margin-bottom: 4px; }
 .ing-subtitle { text-align: center; color: #68736d; font-size: 15px; margin-bottom: 24px; }
-
 .ing-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-.ing-tab-btn {
-    border: none; background: #edf2e8; color: #26352d;
-    font-size: 15px; font-weight: bold; padding: 10px 20px;
-    border-radius: 20px; cursor: pointer;
-}
+.ing-tab-btn { border: none; background: #edf2e8; color: #26352d; font-size: 15px; font-weight: bold; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
 .ing-tab-btn.active { background: #26352d; color: white; }
-
 .ing-subtabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
-.ing-subtab-btn {
-    border: 1px solid #cfe0c8; background: white; color: #40493f;
-    font-size: 13px; font-weight: bold; padding: 7px 16px;
-    border-radius: 16px; cursor: pointer;
-}
+.ing-subtab-btn { border: 1px solid #cfe0c8; background: white; color: #40493f; font-size: 13px; font-weight: bold; padding: 7px 16px; border-radius: 16px; cursor: pointer; }
 .ing-subtab-btn.active { background: #3d6b2f; color: white; border-color: #3d6b2f; }
-
-.ing-carousel-wrap {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.ing-arrow {
-    flex-shrink: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background: #26352d;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.ing-scroll-row {
-    flex: 1;
-    display: flex;
-    gap: 14px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 6px;
-    scrollbar-width: none;
-}
+.ing-carousel-wrap { display: flex; align-items: center; gap: 8px; }
+.ing-arrow { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; border: none; background: #26352d; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.ing-scroll-row { flex: 1; display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: none; }
 .ing-scroll-row::-webkit-scrollbar { display: none; }
-.ing-scroll-card {
-    flex: 0 0 78%;
-    scroll-snap-align: start;
-    background: white;
-    border-radius: 20px;
-    padding: 16px;
-    text-align: center;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-}
-.ing-scroll-photo {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 14px;
-    margin-bottom: 12px;
-    background: #eaf0e6;
-}
-.ing-scroll-placeholder {
-    width: 100%;
-    height: 200px;
-    border-radius: 14px;
-    margin-bottom: 12px;
-    background: #eaf0e6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 50px;
-}
+.ing-scroll-card { flex: 0 0 78%; scroll-snap-align: start; background: white; border-radius: 20px; padding: 16px; text-align: center; box-shadow: 0 4px 18px rgba(0,0,0,0.08); }
+.ing-scroll-photo { width: 100%; height: 200px; object-fit: cover; border-radius: 14px; margin-bottom: 12px; background: #eaf0e6; }
+.ing-scroll-placeholder { width: 100%; height: 200px; border-radius: 14px; margin-bottom: 12px; background: #eaf0e6; display: flex; align-items: center; justify-content: center; font-size: 50px; }
 .ing-scroll-card h3 { margin: 0 0 8px; font-size: 18px; }
 .ing-scroll-card p { color: #526059; font-size: 13px; line-height: 1.5; margin: 0; }
 
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25D366;
-    color: white;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    text-decoration: none;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-    z-index: 900;
-}
-
+.whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.2); z-index: 900; }
 .message { max-width: 800px; margin: 20px auto 60px; padding: 30px 22px; text-align: center; line-height: 1.7; color: #526059; }
 footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 </style>
@@ -358,35 +132,32 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
     <a href="#preguntas" onclick="closeMenu()">Preguntas frecuentes</a>
 </div>
 
-<div class="top-bar">
-    <button class="hamburger" onclick="openMenu()">☰</button>
-    <div></div>
+<!-- HERO -->
+<div class="hero">
+    <div class="top-bar">
+        <button class="hamburger" onclick="openMenu()">☰</button>
+        <div class="brand-mini">VIAFIT ✈️</div>
+        <div style="width:44px;"></div>
+    </div>
+    <div class="hero-eyebrow">Pastelería saludable</div>
+    <h1>Explora el mundo,<br><span>nutre tu cuerpo.</span></h1>
+    <p class="hero-sub">Una mordida saludable que se siente como postre. Cuidarte no tiene que sentirse como una renuncia.</p>
+    <p class="hero-incl">No te quedes sin tu postre.</p>
+    <div class="hero-photos">
+        <img src="cinnamon-roll.jpg.jpg" alt="Cinnamon Roll ViaFit">
+        <img src="Brownies Keto.jpg.jpg" alt="Brownies Keto ViaFit">
+        <img src="Chocolate Cake.jpg.jpg" alt="Chocolate Cake ViaFit">
+    </div>
+    <div class="hero-cta">
+        <a href="#menu-section" class="btn-primary">Ver menú</a>
+        <a href="https://wa.me/524412030156" target="_blank" class="btn-secondary">Pedir por WhatsApp</a>
+    </div>
+    <div class="hero-chips">
+        <span class="chip">🌿 Sin azúcares refinadas</span>
+        <span class="chip">📊 Macros transparentes</span>
+        <span class="chip">🌱 Opciones veganas y keto</span>
+    </div>
 </div>
-
-<div class="hero-cycle">
-    <div class="hero-slide" style="background:#e8a15c;">
-        <img src="Berry Matcha Latte.jpg.jpg" class="hero-drink-img">
-        <div class="hero-label">Berry Matcha Latte</div>
-    </div>
-    <div class="hero-slide" style="background:#c97b6d;">
-        <img src="Banana Coffee Latte.jpg.jpg" class="hero-drink-img">
-        <div class="hero-label">Banana Coffee Latte</div>
-    </div>
-    <div class="hero-slide" style="background:#8a6a4f;">
-        <img src="Cafe Bombon.jpg.jpg" class="hero-drink-img">
-        <div class="hero-label">Café Bombón</div>
-    </div>
-    <div class="hero-slide" style="background:#6c8a5a;">
-        <img src="Marroquino.jpg.jpg" class="hero-drink-img">
-        <div class="hero-label">Marroquino</div>
-    </div>
-</div>
-
-<header>
-    <div class="logo">ViaFit <span class="plane">✈️</span></div>
-    <h2>Explora el mundo, nutre tu cuerpo.</h2>
-    <p>Entonces, comer rico y saludable sí es posible.</p>
-</header>
 
 <section id="menu-section">
 
@@ -395,268 +166,56 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
     <button class="tab-button" onclick="showSection('bebidas', this)">Bebidas</button>
 </div>
 
-<!-- PASTELERÍA -->
 <div id="pasteleria">
 <h1 class="section-title">Una mordida que cae bien al bienestar</h1>
 <p class="section-subtitle">Descubre nuestros productos y conoce lo que hay detrás de cada mordida.</p>
-<div class="products">
-
-<div class="card">
-    <img class="product-image" src="cinnamon-roll.jpg.jpg" alt="Cinnamon Roll ViaFit">
-    <h3>Cinnamon Roll</h3>
-    <p>Rol de canela por porción</p>
-    <div class="button-row">
-        <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-        <button class="leaf-button" onclick="toggleLeafInfo(this)"><img src="Leaf button.jpg.PNG" alt="leaf"></button>
-    </div>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>285 kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>7 g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>38 g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>13 g</span></div>
-    </div>
-    <div class="leaf-info">
-        <p>100% vegano<br>Sin lácteos ni huevo<br>Sin azúcares añadidas</p>
-    </div>
-</div>
-
-<div class="card">
-    <img class="product-image" src="carrot-cake.jpg.jpg" alt="Pastel de zanahoria por rebanada">
-    <h3>Carrot Cake</h3>
-    <p>Pastel de zanahoria por rebanada</p>
-    <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>220 kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>7 g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>29 g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>9 g</span></div>
-    </div>
-</div>
-
-<div class="card">
-    <img class="product-image" src="Chocolate Cake.jpg.jpg" alt="Pastel de chocolate por rebanada">
-    <h3>Chocolate Cake</h3>
-    <p>Pastel de chocolate por rebanada</p>
-    <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>230 kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>8 g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>30 g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>10 g</span></div>
-    </div>
-</div>
-
-<div class="card">
-    <img class="product-image" src="Brownies Keto.jpg.jpg" alt="Brownies Keto extra chocolatosos">
-    <h3>Brownies Keto extra chocolatosos</h3>
-    <p>Brownie keto intenso, extra chocolatoso</p>
-    <div class="button-row">
-        <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-        <button class="leaf-button" onclick="toggleLeafInfo(this)"><img src="Leaf button.jpg.PNG" alt="leaf"></button>
-    </div>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>175 kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>9 g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>3 g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>15 g</span></div>
-    </div>
-    <div class="leaf-info">
-        <p>Sin azúcar añadida<br>Bajo en carbohidratos<br>Chocolate oscuro y cacao</p>
-        <div class="leaf-warning">
-            <strong>Ten en cuenta que:</strong>
-            <ul>
-                <li>No apto para veganos</li>
-                <li>Contiene huevo, lácteos y almendras</li>
-                <li>Si tienes diabetes consulta con tu médico o nutriólogo</li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-</div>
+<div class="products" id="grid-pasteleria"></div>
 <p class="section-subtitle" style="margin-top:30px;">
 En ViaFit te ofrecemos productos elaborados con ingredientes seleccionados,
 buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 </p>
 </div>
 
-<!-- BEBIDAS -->
 <div id="bebidas" style="display:none;">
 <h1 class="section-title">Bebidas</h1>
 <p class="section-subtitle">Explora nuestras bebidas y descubre su información nutricional.</p>
-
-<div class="products">
-
-<div class="card">
-    <img class="product-image" src="Berry Matcha Latte.jpg.jpg" alt="Berry Matcha Latte">
-    <h3>Berry Matcha Latte</h3>
-    <p>Matcha orgánico + bebida de avena + mermelada de fresa.</p>
-    <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>XXX kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>XX g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>XX g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>XX g</span></div>
-    </div>
-</div>
-
-<div class="card">
-    <img class="product-image" src="Taro Matcha Latte.jpg.jpg" alt="Taro Matcha Latte">
-    <h3>Taro Matcha Latte</h3>
-    <p>Taro sin azúcar + bebida de soya + matcha orgánico.</p>
-    <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>XXX kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>XX g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>XX g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>XX g</span></div>
-    </div>
-</div>
-
-<div class="card">
-    <img class="product-image" src="Choco Matcha Latte.jpg.jpg" alt="Choco Matcha Latte">
-    <h3>Choco Matcha Latte</h3>
-    <p>Cacao puro + bebida de avena + matcha orgánico.</p>
-    <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>XXX kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>XX g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>XX g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>XX g</span></div>
-    </div>
-</div>
-
-<div class="card">
-    <img class="product-image" src="Banana Coffee Latte.jpg.jpg" alt="Banana Coffee Latte">
-    <h3>Banana Coffee Latte</h3>
-    <p>Espresso + puré de banana + leche deslactosada light.</p>
-    <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>XXX kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>XX g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>XX g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>XX g</span></div>
-    </div>
-</div>
-
-<div class="card">
-    <img class="product-image" src="Berry Coffee Latte.jpg.jpg" alt="Berry Coffee Latte">
-    <h3>Berry Coffee Latte</h3>
-    <p>Espresso + mezcla de frutos rojos + leche deslactosada light.</p>
-    <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>XXX kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>XX g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>XX g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>XX g</span></div>
-    </div>
-</div>
-
-<div class="card">
-    <img class="product-image" src="Cafe Bombon.jpg.jpg" alt="Café Bombón">
-    <h3>Café Bombón</h3>
-    <p>Estilo Madrid · Espresso + lechera vegana sin azúcar.</p>
-    <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>XXX kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>XX g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>XX g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>XX g</span></div>
-    </div>
-</div>
-
-<div class="card">
-    <img class="product-image" src="Marroquino.jpg.jpg" alt="Marroquino">
-    <h3>Marroquino</h3>
-    <p>Crema de avellana sin azúcar + doble espresso + leche deslactosada light.</p>
-    <button class="plane-button" onclick="showMacros(this)">Ver macros</button>
-    <div class="macros">
-        <div class="macro-title">Información nutricional</div>
-        <div class="macro-row"><span>Calorías</span><span>XXX kcal</span></div>
-        <div class="macro-row"><span>Proteína</span><span>XX g</span></div>
-        <div class="macro-row"><span>Carbohidratos</span><span>XX g</span></div>
-        <div class="macro-row"><span>Grasas</span><span>XX g</span></div>
-    </div>
-</div>
-
-</div>
+<div class="products" id="grid-bebidas"></div>
 
 <div class="extras">
 <h2>✨ Macros extras por agregar extras a tu bebida</h2>
 <p class="extras-intro">¿Quieres personalizar tu bebida? Suma los macros del extra que elijas a los de tu bebida.</p>
-<div class="extra-item">
-    <h3>Proteína vegana</h3>
-    <div class="extra-macros">
-        <span>Calorías: XX kcal</span><span>Proteína: XX g</span>
-        <span>Carbohidratos: XX g</span><span>Grasas: XX g</span>
-    </div>
-</div>
-<div class="extra-item">
-    <h3>Yogurt griego</h3>
-    <div class="extra-macros">
-        <span>Calorías: XX kcal</span><span>Proteína: XX g</span>
-        <span>Carbohidratos: XX g</span><span>Grasas: XX g</span>
-    </div>
-</div>
-<div class="extra-item">
-    <h3>Extra foam</h3>
-    <div class="extra-macros">
-        <span>Calorías: XX kcal</span><span>Proteína: XX g</span>
-        <span>Carbohidratos: XX g</span><span>Grasas: XX g</span>
-    </div>
-</div>
-<div class="extra-item">
-    <h3>Espresso extra</h3>
-    <div class="extra-macros">
-        <span>Calorías: XX kcal</span><span>Proteína: XX g</span>
-        <span>Carbohidratos: XX g</span><span>Grasas: XX g</span>
-    </div>
-</div>
+<div class="extra-item"><h3>Proteína vegana</h3><div class="extra-macros"><span>Calorías: XX kcal</span><span>Proteína: XX g</span><span>Carbohidratos: XX g</span><span>Grasas: XX g</span></div></div>
+<div class="extra-item"><h3>Yogurt griego</h3><div class="extra-macros"><span>Calorías: XX kcal</span><span>Proteína: XX g</span><span>Carbohidratos: XX g</span><span>Grasas: XX g</span></div></div>
+<div class="extra-item"><h3>Extra foam</h3><div class="extra-macros"><span>Calorías: XX kcal</span><span>Proteína: XX g</span><span>Carbohidratos: XX g</span><span>Grasas: XX g</span></div></div>
+<div class="extra-item"><h3>Espresso extra</h3><div class="extra-macros"><span>Calorías: XX kcal</span><span>Proteína: XX g</span><span>Carbohidratos: XX g</span><span>Grasas: XX g</span></div></div>
 </div>
 </div>
 
 </section>
 
-<!-- INGREDIENTES POPULARES -->
 <section id="ingredientes">
 <div class="ing-title">Ingredientes populares</div>
 <p class="ing-subtitle">Conoce lo que hay en</p>
-
 <div class="ing-tabs">
     <button class="ing-tab-btn active" onclick="setIngCategory('postres', this)">Postres</button>
     <button class="ing-tab-btn" onclick="setIngCategory('endulzantes', this)">Endulzantes</button>
     <button class="ing-tab-btn" onclick="setIngCategory('bebidas', this)">Bebidas</button>
 </div>
-
 <div class="ing-subtabs" id="ing-subtabs-postres">
     <button class="ing-subtab-btn active" onclick="setIngGroup('postres-harinas', this)">Harinas</button>
     <button class="ing-subtab-btn" onclick="setIngGroup('postres-otros', this)">Otros</button>
 </div>
-
 <div class="ing-subtabs" id="ing-subtabs-bebidas" style="display:none;">
     <button class="ing-subtab-btn active" onclick="setIngGroup('bebidas-leches', this)">Leches</button>
     <button class="ing-subtab-btn" onclick="setIngGroup('bebidas-otros', this)">Otros</button>
 </div>
-
 <div class="ing-carousel-wrap">
     <button class="ing-arrow" onclick="scrollIng(-1)">‹</button>
     <div class="ing-scroll-row" id="ingScrollRow"></div>
     <button class="ing-arrow" onclick="scrollIng(1)">›</button>
 </div>
-
 </section>
 
-<!-- PEDIDOS -->
 <section id="pedidos">
 <h1 class="section-title">Pedidos</h1>
 <p class="section-subtitle">Roles por caja, pasteles personalizados y más — próximamente con todos los detalles.</p>
@@ -666,7 +225,6 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 </div>
 </section>
 
-<!-- SOBRE VIAFIT -->
 <section id="sobre">
 <h1 class="section-title">Sobre ViaFit</h1>
 <div class="about-box">
@@ -676,44 +234,24 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 </div>
 </section>
 
-<!-- PREGUNTAS FRECUENTES -->
 <section id="preguntas">
 <h1 class="section-title">Preguntas frecuentes</h1>
-
 <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">
-        ¿Tienen azúcar?
-        <span class="arrow">▾</span>
-    </button>
-    <div class="faq-answer">
-        No, nuestros postres no contienen azúcar, pero pueden contener el azúcar de las frutas, ya que no causan los mismos daños que el azúcar procesado.
-    </div>
+    <button class="faq-question" onclick="toggleFaq(this)">¿Tienen azúcar?<span class="arrow">▾</span></button>
+    <div class="faq-answer">No, nuestros postres no contienen azúcar, pero pueden contener el azúcar de las frutas, ya que no causan los mismos daños que el azúcar procesado.</div>
 </div>
-
 <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">
-        ¿Por qué usamos edulcorantes?
-        <span class="arrow">▾</span>
-    </button>
-    <div class="faq-answer">
-        <ul>
-            <li>Para evitar el cansancio que causan los carbohidratos altos.</li>
-            <li>Para mantener tus niveles de glucosa estables.</li>
-            <li>Dulzor limpio y delicioso, sin comprometer tu bienestar.</li>
-        </ul>
-    </div>
+    <button class="faq-question" onclick="toggleFaq(this)">¿Por qué usamos edulcorantes?<span class="arrow">▾</span></button>
+    <div class="faq-answer"><ul>
+        <li>Para evitar el cansancio que causan los carbohidratos altos.</li>
+        <li>Para mantener tus niveles de glucosa estables.</li>
+        <li>Dulzor limpio y delicioso, sin comprometer tu bienestar.</li>
+    </ul></div>
 </div>
-
 <div class="faq-item">
-    <button class="faq-question" onclick="toggleFaq(this)">
-        ¿Me lo puedo comer todo?
-        <span class="arrow">▾</span>
-    </button>
-    <div class="faq-answer">
-        Nuestros postres individuales son perfectos para un delicioso snack balanceado, pero recuerda que todo es porción, en especial para diabéticos.
-    </div>
+    <button class="faq-question" onclick="toggleFaq(this)">¿Me lo puedo comer todo?<span class="arrow">▾</span></button>
+    <div class="faq-answer">Nuestros postres individuales son perfectos para un delicioso snack balanceado, pero recuerda que todo es porción, en especial para diabéticos.</div>
 </div>
-
 </section>
 
 <div class="message">
@@ -730,27 +268,74 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 <a href="https://wa.me/524412030156" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
-function showMacros(button) {
-    const macros = button.closest('.card').querySelector('.macros');
-    macros.classList.toggle("show");
-}
+/* ===== MENÚ ===== */
+/* macros: [kcal, proteína, carbohidratos, grasas] — null = pendiente (muestra XXX).
+   Cuando tengas los macros, reemplaza null por los números, ej: [220, 7, 29, 9] */
+const CAKE_PENDING = 'Información de ingredientes y alérgenos próximamente.';
+const CAFFEINE = 'Contiene cafeína';
+const menuItems = [
+  { tab:'pasteleria', img:'cinnamon-roll.jpg.jpg', name:'Cinnamon Roll', desc:'Rol de canela por porción',
+    macros:[285,7,38,13], leaf:'100% vegano<br>Sin lácteos ni huevo<br>Sin azúcares añadidas', warn:null },
+  { tab:'pasteleria', img:'carrot-cake.jpg.jpg', name:'Carrot Cake', desc:'Pastel de zanahoria por rebanada',
+    macros:null, leaf:CAKE_PENDING, warn:null },
+  { tab:'pasteleria', img:'Chocolate Cake.jpg.jpg', name:'Chocolate Cake', desc:'Pastel de chocolate por rebanada',
+    macros:null, leaf:CAKE_PENDING, warn:null },
+  { tab:'pasteleria', img:'Brownies Keto.jpg.jpg', name:'Brownies Keto extra chocolatosos', desc:'Brownie keto intenso, extra chocolatoso',
+    macros:[175,9,3,15], leaf:'Sin azúcar añadida<br>Bajo en carbohidratos<br>Chocolate oscuro y cacao',
+    warn:['No apto para veganos','Contiene huevo, lácteos y almendras','Si tienes diabetes consulta con tu médico o nutriólogo'] },
+  { tab:'bebidas', img:'Berry Matcha Latte.jpg.jpg', name:'Berry Matcha Latte', desc:'Matcha orgánico + bebida de avena + mermelada de fresa.',
+    macros:null, leaf:'Matcha orgánico<br>Bebida de avena<br>Mermelada de fresa', warn:[CAFFEINE] },
+  { tab:'bebidas', img:'Taro Matcha Latte.jpg.jpg', name:'Taro Matcha Latte', desc:'Taro sin azúcar + bebida de soya + matcha orgánico.',
+    macros:null, leaf:'Taro sin azúcar<br>Bebida de soya<br>Matcha orgánico', warn:['Contiene soya',CAFFEINE] },
+  { tab:'bebidas', img:'Choco Matcha Latte.jpg.jpg', name:'Choco Matcha Latte', desc:'Cacao puro + bebida de avena + matcha orgánico.',
+    macros:null, leaf:'Cacao puro<br>Bebida de avena<br>Matcha orgánico', warn:[CAFFEINE] },
+  { tab:'bebidas', img:'Banana Coffee Latte.jpg.jpg', name:'Banana Coffee Latte', desc:'Espresso + puré de banana + leche deslactosada light.',
+    macros:null, leaf:'Espresso<br>Puré de banana<br>Leche deslactosada light', warn:['Contiene lácteos (sin lactosa)',CAFFEINE] },
+  { tab:'bebidas', img:'Berry Coffee Latte.jpg.jpg', name:'Berry Coffee Latte', desc:'Espresso + mezcla de frutos rojos + leche deslactosada light.',
+    macros:null, leaf:'Espresso<br>Mezcla de frutos rojos<br>Leche deslactosada light', warn:['Contiene lácteos (sin lactosa)',CAFFEINE] },
+  { tab:'bebidas', img:'Cafe Bombon.jpg.jpg', name:'Café Bombón', desc:'Estilo Madrid · Espresso + lechera vegana sin azúcar.',
+    macros:null, leaf:'Opción vegana<br>Lechera vegana sin azúcar<br>Espresso estilo Madrid', warn:[CAFFEINE] },
+  { tab:'bebidas', img:'Marroquino.jpg.jpg', name:'Marroquino', desc:'Crema de avellana sin azúcar + doble espresso + leche deslactosada light.',
+    macros:null, leaf:'Crema de avellana sin azúcar<br>Doble espresso<br>Leche deslactosada light', warn:['Contiene avellana y lácteos (sin lactosa)',CAFFEINE] }
+];
 
+function renderMenu() {
+    menuItems.forEach(it => {
+        const m = it.macros;
+        const v = (i, unit) => m ? m[i] + ' ' + unit : (i === 0 ? 'XXX kcal' : 'XX g');
+        const warn = it.warn ? '<div class="leaf-warning"><strong>Ten en cuenta que:</strong><ul>' +
+            it.warn.map(w => '<li>' + w + '</li>').join('') + '</ul></div>' : '';
+        const html = '<div class="card">' +
+            '<img class="product-image" src="' + it.img + '" alt="' + it.name + '">' +
+            '<h3>' + it.name + '</h3><p>' + it.desc + '</p>' +
+            '<div class="button-row"><button class="plane-button" onclick="showMacros(this)">Ver macros</button>' +
+            '<button class="leaf-button" onclick="toggleLeafInfo(this)"><img src="Leaf button.jpg.PNG" alt="leaf"></button></div>' +
+            '<div class="macros"><div class="macro-title">Información nutricional</div>' +
+            '<div class="macro-row"><span>Calorías</span><span>' + v(0,'kcal') + '</span></div>' +
+            '<div class="macro-row"><span>Proteína</span><span>' + v(1,'g') + '</span></div>' +
+            '<div class="macro-row"><span>Carbohidratos</span><span>' + v(2,'g') + '</span></div>' +
+            '<div class="macro-row"><span>Grasas</span><span>' + v(3,'g') + '</span></div></div>' +
+            '<div class="leaf-info"><p>' + it.leaf + '</p>' + warn + '</div></div>';
+        document.getElementById('grid-' + it.tab).insertAdjacentHTML('beforeend', html);
+    });
+}
+renderMenu();
+
+function showMacros(button) {
+    button.closest('.card').querySelector('.macros').classList.toggle('show');
+}
 function toggleLeafInfo(button) {
     const leafInfo = button.closest('.card').querySelector('.leaf-info');
     const isOpen = leafInfo.classList.contains('show');
     leafInfo.classList.toggle('show');
-    if (!isOpen) {
-        burstLeaves();
-    }
+    if (!isOpen) burstLeaves();
 }
-
 function showSection(id, btn) {
     document.getElementById('pasteleria').style.display = (id === 'pasteleria') ? 'block' : 'none';
     document.getElementById('bebidas').style.display = (id === 'bebidas') ? 'block' : 'none';
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 }
-
 function openMenu() {
     document.getElementById('sideMenu').classList.add('open');
     document.getElementById('menuOverlay').classList.add('show');
@@ -759,18 +344,13 @@ function closeMenu() {
     document.getElementById('sideMenu').classList.remove('open');
     document.getElementById('menuOverlay').classList.remove('show');
 }
-
 function toggleFaq(btn) {
     const answer = btn.nextElementSibling;
     const isOpen = answer.classList.contains('open');
     document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
     document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
-    if (!isOpen) {
-        answer.classList.add('open');
-        btn.classList.add('open');
-    }
+    if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
 }
-
 function burstLeaves() {
     const container = document.getElementById('leaf-container');
     for (let i = 0; i < 20; i++) {
@@ -782,39 +362,35 @@ function burstLeaves() {
         leaf.style.animationDelay = (Math.random() * 1.5) + 's';
         container.appendChild(leaf);
     }
-    setTimeout(() => {
-        container.innerHTML = '';
-    }, 8000);
+    setTimeout(() => { container.innerHTML = ''; }, 8000);
 }
-
 window.addEventListener('load', burstLeaves);
 
-/* INGREDIENTES POPULARES */
+/* ===== INGREDIENTES POPULARES ===== */
 const ingredientData = {
-    'harina-almendra': { name: 'Harina de almendra', img: 'Harina de almendra.jpg.PNG', desc: 'Rica en grasas saludables y baja en carbohidratos, apta para personas con celiaquía o sensibilidad al gluten, Ayuda a evitar picos de azúcar en la sangre  y Contiene vitamina E, magnesio, calcio y antioxidantes. )' },
-    'harina-coco': { name: 'Harina de coco', img: 'Harina de coco.jpg.PNG', desc: 'Alta en fibra y sin gluten con un índice glucémico bajo,alta en fribra que mejora la digestion y da saciedad.)' },
-    'harina-avena': { name: 'Harina de avena', img: 'Harina de avena.jpg.PNG', desc: 'Fuente de fibra y energía de liberación lenta,ayuda a disminuir la absorción de colesterol en el intestino,bajo indice glucemico)' },
-    'harina-integral': { name: 'Harina integral', img: 'Harina integral.jpg.PNG', desc: 'Conserva más fibra y nutrientes que la harina refinada, ayudando a mantenerte satisfecho por más tiempo.)' },
-    'cacao': { name: 'Cacao', img: 'Cacao.jpg.PNG', desc: 'Rico en antioxidantes y con un sabor intenso a chocolate natural, sin azúcares añadidos.)' },
-    'nuez': { name: 'Nuez', img: 'Nuez.jpg.PNG', desc: 'Aporta grasas saludables, proteína y un toque crocante a nuestros postres.)' },
-    'canela': { name: 'Canela', img: 'Canela.jpg.PNG', desc: 'Especia natural que ayuda a regular los niveles de glucosa y le da ese sabor característico a nuestros postres.)' },
-    'zanahoria': { name: 'Zanahoria', img: 'Zanahoria.jpg.PNG', desc: 'Aporta humedad natural, fibra y un dulzor suave sin necesidad de azúcares añadidos.)' },
-    'yogurt-griego': { name: 'Yogurt griego', img: 'Yogurt griego.jpg.PNG', desc: 'Alto en proteína y con una textura cremosa que usamos en varias de nuestras recetas..)' },
-    'alulosa': { name: 'Alulosa', img: 'Alulosa.jpg.PNG', desc: 'Endulzante natural con prácticamente cero calorías y sin impacto glicémico.)' },
-    'monkfruit': { name: 'Monk fruit', img: 'Monk fruit.jpg.PNG', desc: 'Endulzante natural derivado de la fruta del monje, sin calorías y sin afectar tus niveles de glucosa.)' },
-    'stevia': { name: 'Stevia', img: 'Stevia.jpg.PNG', desc: 'Endulzante 100% natural de origen vegetal, sin calorías.)' },
-    'leche-deslactosada': { name: 'Leche deslactosada light', img: 'Leche deslactosada light.jpg.PNG', desc: 'Baja en grasa y fácil de digerir, ideal para quienes tienen sensibilidad a la lactosa.)' },
-    'bebida-soya': { name: 'Bebida de soya', img: 'Bebida de soya.jpg.PNG', desc: 'Alternativa vegetal rica en proteína, perfecta para bebidas 100% veganas.)' },
-    'bebida-almendra': { name: 'Bebida de almendra', img: 'Bebida de almendras.jpg.PNG', desc: 'Ligera, sin lactosa y con un sabor suave que combina perfecto con nuestras bebidas.)' },
-    'fresas': { name: 'Fresas', img: 'Fresas.jpg.PNG', desc: 'Aportan frescura, antioxidantes y un dulzor natural a nuestras bebidas.)' },
-    'bananas': { name: 'Bananas', img: 'Bananas.jpg.PNG', desc: 'Fuente natural de potasio y dulzor, perfectas para bebidas cremosas sin azúcar añadida..)' },
-    'matcha': { name: 'Matcha orgánica', img: 'Matcha Organico.jpg.PNG', desc: 'Rica en antioxidantes, aporta energía estable sin el bajón del café.)' },
-    'taro': { name: 'Taro orgánico', img: 'Taro organico.jpg.PNG', desc: 'Raíz de sabor suave y textura cremosa, usada en nuestras bebidas especiales.)' },
-    'chai': { name: 'Chai', img: 'Chai.jpg.PNG', desc: 'Mezcla de especias aromáticas que aportan calidez y sabor a nuestras bebidas.)' },
-    'cacahuate': { name: 'Cacahuate', img: 'Cacahuates.jpg.PNG', desc: 'Fuente de grasas saludables y proteína, con un sabor característico.)' },
-    'proteina': { name: 'Proteína', img: 'Proteina.jpg.PNG', desc: 'Ayuda a mantenerte satisfecho por más tiempo y complementa tus bebidas con extra proteina.l)' }
+    'harina-almendra': { name: 'Harina de almendra', img: 'Harina de almendra.jpg.PNG', desc: 'Rica en grasas saludables y baja en carbohidratos, apta para personas con celiaquía o sensibilidad al gluten, ayuda a evitar picos de azúcar en la sangre y contiene vitamina E, magnesio, calcio y antioxidantes.' },
+    'harina-coco': { name: 'Harina de coco', img: 'Harina de coco.jpg.PNG', desc: 'Alta en fibra y sin gluten con un índice glucémico bajo, mejora la digestión y da saciedad.' },
+    'harina-avena': { name: 'Harina de avena', img: 'Harina de avena.jpg.PNG', desc: 'Fuente de fibra y energía de liberación lenta, ayuda a disminuir la absorción de colesterol en el intestino, bajo índice glucémico.' },
+    'harina-integral': { name: 'Harina integral', img: 'Harina integral.jpg.PNG', desc: 'Conserva más fibra y nutrientes que la harina refinada, ayudando a mantenerte satisfecho por más tiempo.' },
+    'cacao': { name: 'Cacao', img: 'Cacao.jpg.PNG', desc: 'Rico en antioxidantes y con un sabor intenso a chocolate natural, sin azúcares añadidos.' },
+    'nuez': { name: 'Nuez', img: 'Nuez.jpg.PNG', desc: 'Aporta grasas saludables, proteína y un toque crocante a nuestros postres.' },
+    'canela': { name: 'Canela', img: 'Canela.jpg.PNG', desc: 'Especia natural que ayuda a regular los niveles de glucosa y le da ese sabor característico a nuestros postres.' },
+    'zanahoria': { name: 'Zanahoria', img: 'Zanahoria.jpg.PNG', desc: 'Aporta humedad natural, fibra y un dulzor suave sin necesidad de azúcares añadidos.' },
+    'yogurt-griego': { name: 'Yogurt griego', img: 'Yogurt griego.jpg.PNG', desc: 'Alto en proteína y con una textura cremosa que usamos en varias de nuestras recetas.' },
+    'alulosa': { name: 'Alulosa', img: 'Alulosa.jpg.PNG', desc: 'Endulzante natural con prácticamente cero calorías y sin impacto glicémico.' },
+    'monkfruit': { name: 'Monk fruit', img: 'Monk fruit.jpg.PNG', desc: 'Endulzante natural derivado de la fruta del monje, sin calorías y sin afectar tus niveles de glucosa.' },
+    'stevia': { name: 'Stevia', img: 'Stevia.jpg.PNG', desc: 'Endulzante 100% natural de origen vegetal, sin calorías.' },
+    'leche-deslactosada': { name: 'Leche deslactosada light', img: 'Leche deslactosada light.jpg.PNG', desc: 'Baja en grasa y fácil de digerir, ideal para quienes tienen sensibilidad a la lactosa.' },
+    'bebida-soya': { name: 'Bebida de soya', img: 'Bebida de soya.jpg.PNG', desc: 'Alternativa vegetal rica en proteína, perfecta para bebidas 100% veganas.' },
+    'bebida-almendra': { name: 'Bebida de almendra', img: 'Bebida de almendras.jpg.PNG', desc: 'Ligera, sin lactosa y con un sabor suave que combina perfecto con nuestras bebidas.' },
+    'fresas': { name: 'Fresas', img: 'Fresas.jpg.PNG', desc: 'Aportan frescura, antioxidantes y un dulzor natural a nuestras bebidas.' },
+    'bananas': { name: 'Bananas', img: 'Bananas.jpg.PNG', desc: 'Fuente natural de potasio y dulzor, perfectas para bebidas cremosas sin azúcar añadida.' },
+    'matcha': { name: 'Matcha orgánica', img: 'Matcha Organico.jpg.PNG', desc: 'Rica en antioxidantes, aporta energía estable sin el bajón del café.' },
+    'taro': { name: 'Taro orgánico', img: 'Taro organico.jpg.PNG', desc: 'Raíz de sabor suave y textura cremosa, usada en nuestras bebidas especiales.' },
+    'chai': { name: 'Chai', img: 'Chai.jpg.PNG', desc: 'Mezcla de especias aromáticas que aportan calidez y sabor a nuestras bebidas.' },
+    'cacahuate': { name: 'Cacahuate', img: 'Cacahuates.jpg.PNG', desc: 'Fuente de grasas saludables y proteína, con un sabor característico.' },
+    'proteina': { name: 'Proteína', img: 'Proteina.jpg.PNG', desc: 'Ayuda a mantenerte satisfecho por más tiempo y complementa tus bebidas con proteína extra.' }
 };
-
 const ingGroups = {
     'postres-harinas': ['harina-almendra', 'harina-coco', 'harina-avena', 'harina-integral'],
     'postres-otros': ['cacao', 'nuez', 'canela', 'zanahoria', 'yogurt-griego'],
@@ -822,35 +398,27 @@ const ingGroups = {
     'bebidas-leches': ['leche-deslactosada', 'bebida-soya', 'bebida-almendra'],
     'bebidas-otros': ['fresas', 'bananas', 'matcha', 'taro', 'chai', 'cacahuate', 'proteina']
 };
-
 let currentIngGroup = 'postres-harinas';
 
 function renderIngScroll() {
-    const arr = ingGroups[currentIngGroup];
     const container = document.getElementById('ingScrollRow');
-    container.innerHTML = arr.map(key => {
+    container.innerHTML = ingGroups[currentIngGroup].map(key => {
         const d = ingredientData[key];
-        const imgHtml = d.img
-            ? '<img class="ing-scroll-photo" src="' + d.img + '" alt="' + d.name + '">'
-            : '<div class="ing-scroll-placeholder">🍃</div>';
+        const imgHtml = d.img ? '<img class="ing-scroll-photo" src="' + d.img + '" alt="' + d.name + '">' : '<div class="ing-scroll-placeholder">🍃</div>';
         return '<div class="ing-scroll-card">' + imgHtml + '<h3>' + d.name + '</h3><p>' + d.desc + '</p></div>';
     }).join('');
     container.scrollTo({ left: 0 });
 }
-
 function scrollIng(dir) {
     const container = document.getElementById('ingScrollRow');
     const card = container.querySelector('.ing-scroll-card');
-    const amount = card ? card.offsetWidth + 14 : 300;
-    container.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    container.scrollBy({ left: dir * (card ? card.offsetWidth + 14 : 300), behavior: 'smooth' });
 }
-
 function setIngCategory(cat, btn) {
     document.querySelectorAll('.ing-tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('ing-subtabs-postres').style.display = (cat === 'postres') ? 'flex' : 'none';
     document.getElementById('ing-subtabs-bebidas').style.display = (cat === 'bebidas') ? 'flex' : 'none';
-
     if (cat === 'postres') {
         currentIngGroup = 'postres-harinas';
         document.querySelectorAll('#ing-subtabs-postres .ing-subtab-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
@@ -862,15 +430,12 @@ function setIngCategory(cat, btn) {
     }
     renderIngScroll();
 }
-
 function setIngGroup(group, btn) {
     currentIngGroup = group;
-    const parent = btn.closest('.ing-subtabs');
-    parent.querySelectorAll('.ing-subtab-btn').forEach(b => b.classList.remove('active'));
+    btn.closest('.ing-subtabs').querySelectorAll('.ing-subtab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     renderIngScroll();
 }
-
 renderIngScroll();
 </script>
 
