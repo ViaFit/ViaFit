@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ViaFit | Explora el mundo, nutre tu cuerpo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Arial, sans-serif; background: #f8f7f2; color: #26352d; }
@@ -25,24 +26,35 @@ html { scroll-behavior: smooth; }
 .close-menu { position: absolute; top: 20px; right: 20px; font-size: 26px; background: none; border: none; cursor: pointer; }
 
 /* HERO */
-.hero { position: relative; background: #f3efe3; color: #26352d; text-align: center; padding: 84px 20px 40px; border-radius: 0 0 34px 34px; overflow: hidden; }
-.hero::before { content: ""; position: absolute; width: 320px; height: 320px; border-radius: 50%; background: #e3ecd6; top: -120px; right: -100px; }
-.hero > * { position: relative; }
-.hero .top-bar { position: absolute; }
-.hero-eyebrow { display: inline-block; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #5b7a4a; margin-bottom: 14px; font-weight: bold; }
-.hero h1 { font-size: 34px; line-height: 1.15; margin: 0 0 12px; font-weight: 800; }
-.hero h1 span { color: #5b7a4a; }
-.hero-sub { font-size: 16px; line-height: 1.55; max-width: 480px; margin: 0 auto 6px; color: #526059; }
-.hero-incl { font-size: 15px; font-style: italic; color: #5b7a4a; margin: 0 0 22px; }
-.hero-cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
-.btn-primary, .btn-secondary { text-decoration: none; font-weight: bold; font-size: 15px; padding: 14px 26px; border-radius: 30px; }
-.btn-primary { background: #26352d; color: white; }
-.btn-secondary { background: white; border: 1.5px solid #cfe0c8; color: #26352d; }
-.hero-photos { display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; max-width: 460px; height: 300px; margin: 0 auto 24px; }
-.hero-photos img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; border: 4px solid white; box-shadow: 0 8px 22px rgba(38,53,45,0.14); background: #eaf0e6; }
-.hero-photos img:first-child { grid-row: 1 / 3; border-radius: 120px 120px 22px 22px; }
-.hero-chips { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.chip { font-size: 12.5px; background: white; border: 1px solid #dfe6d6; color: #40493f; padding: 7px 12px; border-radius: 16px; }
+.h2-top { position: relative; background: #ece6da; padding: 88px 22px 46px; overflow: hidden; }
+.h2-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(42px, 12vw, 84px); line-height: 1; color: #1d2a20; max-width: 760px; margin: 0 auto; text-align: left; text-transform: uppercase; }
+.h2-title span { display: block; }
+.h2-title .l2 { padding-left: 8%; }
+.h2-title .l3 { padding-left: 38%; margin-top: 4px; }
+.h2-title i { font-style: italic; text-transform: none; font-weight: 500; }
+.ring { display: inline-block; border: 2.5px solid #b9d46e; border-radius: 50%; padding: 0 .26em .06em; transform: rotate(-4deg); }
+.top-cup { position: absolute; right: 5%; top: 90px; width: 26vw; max-width: 150px; height: auto; transform: rotate(6deg); filter: drop-shadow(0 10px 12px rgba(29,42,32,0.25)); -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%); mask-image: linear-gradient(to bottom, transparent 0, #000 12%); pointer-events: none; }
+.seal { position: absolute; left: 7%; bottom: 8px; width: 92px; height: 92px; animation: spin 22s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.h2-band { background: linear-gradient(to bottom, #ece6da 50%, #2b3d28 50%); padding: 0 16px; }
+.h2-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 860px; margin: 0 auto; }
+.h2-card { position: relative; aspect-ratio: 4 / 4.8; border-radius: 18px; overflow: hidden; background: #dfe7cf; box-shadow: 0 10px 24px rgba(29,42,32,0.18); }
+.h2-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.h2-card img.contain { object-fit: contain; padding: 6px 4px 0; }
+.h2-tag { position: absolute; left: 8px; bottom: 8px; right: 8px; background: rgba(255,255,255,0.92); color: #1d2a20; font-size: 11px; font-weight: bold; padding: 6px 9px; border-radius: 12px; text-align: center; }
+.h2-green { background: #2b3d28; color: #f3efe3; padding: 34px 22px 44px; border-radius: 0 0 34px 34px; }
+.h2-band { position: relative; z-index: 2; }
+.h2-inner { max-width: 760px; margin: 0 auto; }
+.h2-eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #cfe58a; font-weight: bold; margin-bottom: 10px; }
+.h2-green h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 40px; line-height: 1.05; margin: 0 0 14px; }
+.h2-green h2 i { color: #cfe58a; }
+.h2-green p { font-size: 15px; line-height: 1.7; color: #dfe6d6; margin: 0 0 22px; max-width: 520px; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.btn-primary, .btn-secondary { text-decoration: none; font-weight: bold; font-size: 15px; padding: 13px 24px; border-radius: 28px; }
+.btn-primary { background: #cfe58a; color: #1d2a20; }
+.btn-secondary { border: 1.5px solid rgba(243,239,227,0.6); color: #f3efe3; }
+.hero-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { font-size: 12.5px; border: 1px solid rgba(243,239,227,0.3); color: #dfe6d6; padding: 7px 12px; border-radius: 16px; }
 
 .tabs { display: flex; justify-content: center; gap: 12px; padding: 10px 0 0; }
 .tab-button { border: none; background: #edf2e8; color: #26352d; font-size: 15px; font-weight: bold; padding: 10px 22px; border-radius: 20px; cursor: pointer; }
@@ -133,29 +145,48 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 </div>
 
 <!-- HERO -->
-<div class="hero">
+<div class="h2-top">
     <div class="top-bar">
         <button class="hamburger" onclick="openMenu()">☰</button>
         <div class="brand-mini">VIAFIT ✈️</div>
         <div style="width:44px;"></div>
     </div>
-    <div class="hero-eyebrow">Pastelería saludable</div>
-    <h1>Explora el mundo,<br><span>nutre tu cuerpo.</span></h1>
-    <p class="hero-sub">Una mordida saludable que se siente como postre. Cuidarte no tiene que sentirse como una renuncia.</p>
-    <p class="hero-incl">No te quedes sin tu postre.</p>
-    <div class="hero-photos">
-        <img src="cinnamon-roll.jpg.jpg" alt="Cinnamon Roll ViaFit">
-        <img src="Brownies Keto.jpg.jpg" alt="Brownies Keto ViaFit">
-        <img src="Chocolate Cake.jpg.jpg" alt="Chocolate Cake ViaFit">
+    <img class="top-cup" src="Drink banner.jpg.PNG" alt="Bebida ViaFit">
+    <h1 class="h2-title">
+        <span class="l1">Elige <i>hoy</i></span>
+        <span class="l2">a quien serás</span>
+        <span class="l3"><i class="ring">mañana</i></span>
+    </h1>
+    <svg class="seal" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="48" fill="#b9d46e"/>
+        <defs><path id="sealPath" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/></defs>
+        <text font-size="8.5" font-weight="bold" fill="#2b3d28" font-family="Arial, sans-serif"><textPath href="#sealPath" textLength="222" lengthAdjust="spacing">EXPLORA EL MUNDO • NUTRE TU CUERPO •</textPath></text>
+        <text x="50" y="60" text-anchor="middle" font-size="24">✈️</text>
+    </svg>
+</div>
+
+<div class="h2-band">
+    <div class="h2-cards">
+        <div class="h2-card"><img src="Running.jpg.JPG" alt="Bienestar"><div class="h2-tag">Mañana lo sientes</div></div>
+        <div class="h2-card"><img src="Cake.jpg.PNG" alt="Cheesecake de nuez ViaFit"><div class="h2-tag">Sin renunciar</div></div>
     </div>
-    <div class="hero-cta">
-        <a href="#menu-section" class="btn-primary">Ver menú</a>
-        <a href="https://wa.me/524412030156" target="_blank" class="btn-secondary">Pedir por WhatsApp</a>
-    </div>
-    <div class="hero-chips">
-        <span class="chip">🌿 Sin azúcares refinadas</span>
-        <span class="chip">📊 Macros transparentes</span>
-        <span class="chip">🌱 Opciones veganas y keto</span>
+</div>
+
+<div class="h2-green">
+    <div class="h2-inner">
+        <div class="h2-eyebrow">Tu yo del futuro</div>
+        <h2>Cada elección <i>cuenta.</i></h2>
+        <p>Lo que eliges hoy se nota en tu energía, tus actividades y tus metas. En ViaFit puedes disfrutar ese postre que se te antoja mientras cuidas a la persona que serás mañana. Cuidarte no tiene que sentirse como una renuncia.</p>
+        <div class="hero-cta">
+            <a href="#menu-section" class="btn-primary" onclick="goToTab('pasteleria')">Ver menú</a>
+            <a href="#menu-section" class="btn-secondary" onclick="goToTab('bebidas')">Ver bebidas</a>
+            <a href="https://wa.me/524412030156" target="_blank" class="btn-secondary">Pedir por WhatsApp</a>
+        </div>
+        <div class="hero-chips">
+            <span class="chip">Sin azúcares refinadas</span>
+            <span class="chip">Macros transparentes</span>
+            <span class="chip">Opciones veganas y keto</span>
+        </div>
     </div>
 </div>
 
@@ -335,6 +366,10 @@ function showSection(id, btn) {
     document.getElementById('bebidas').style.display = (id === 'bebidas') ? 'block' : 'none';
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+}
+function goToTab(id) {
+    const btn = document.querySelectorAll('.tab-button')[id === 'bebidas' ? 1 : 0];
+    showSection(id, btn);
 }
 function openMenu() {
     document.getElementById('sideMenu').classList.add('open');
