@@ -320,6 +320,14 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 <a href="https://wa.me/524412030156" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
+/* Siempre abrir en el banner (arriba) */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+function goTop() { window.scrollTo(0, 0); }
+window.addEventListener('load', goTop);
+window.addEventListener('pageshow', goTop);
+goTop();
+
 /* ===== MENÚ ===== */
 /* macros: [kcal, proteína, carbohidratos, grasas] — null = pendiente (muestra XXX).
    Cuando tengas los macros, reemplaza null por los números, ej: [220, 7, 29, 9] */
