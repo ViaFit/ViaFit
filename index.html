@@ -128,6 +128,27 @@ section { padding: 25px 18px; max-width: 900px; margin: auto; scroll-margin-top:
 .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.2); z-index: 900; }
 .message { max-width: 800px; margin: 20px auto 60px; padding: 30px 22px; text-align: center; line-height: 1.7; color: #526059; }
 footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
+/* CARDS */
+.section-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 38px; line-height: 1.05; color: #1d2a20; }
+.section-title i { color: #5b7a4a; }
+.products { gap: 22px; }
+.card { background: #fff; border: 1px solid #ece6da; border-radius: 28px; padding: 12px; text-align: left; box-shadow: 0 10px 28px rgba(29,42,32,0.07); }
+.card-media { position: relative; border-radius: 20px; overflow: hidden; background: #dfe7cf; }
+.card .product-image { display: block; width: 100%; height: auto; aspect-ratio: 4 / 4.6; object-fit: cover; border: none; padding: 0; border-radius: 0; background: none; }
+.card-tag { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.94); color: #1d2a20; font-size: 11.5px; font-weight: bold; letter-spacing: 0.3px; padding: 6px 12px; border-radius: 14px; }
+.card-body { padding: 16px 8px 8px; }
+.card h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 27px; line-height: 1.05; color: #1d2a20; margin: 0 0 8px; }
+.card p { color: #68736d; font-size: 14px; line-height: 1.55; margin: 0; }
+.button-row { justify-content: flex-start; margin-top: 16px; }
+.plane-button { background: #2b3d28; color: #f3efe3; padding: 10px 20px; }
+.leaf-button { background: #cfe58a; width: 40px; height: 40px; padding: 0; border-radius: 50%; }
+.macros { background: #f3efe3; border-radius: 18px; padding: 16px; }
+.macro-title { font-size: 11.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #5b7a4a; margin-bottom: 12px; }
+.macro-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; text-align: center; }
+.macro-stat b { display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 600; color: #1d2a20; line-height: 1; }
+.macro-stat small { display: block; font-size: 11px; color: #68736d; margin-top: 2px; }
+.macro-stat span { display: block; font-size: 11px; color: #40493f; font-weight: bold; margin-top: 6px; }
+.leaf-info { background: #eef4dc; border-radius: 18px; }
 </style>
 </head>
 <body>
@@ -168,7 +189,7 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 <div class="h2-band">
     <div class="h2-cards">
         <div class="h2-card"><img src="Running.jpg.JPG" alt="Bienestar"><div class="h2-tag">Mañana lo sientes</div></div>
-        <div class="h2-card"><img src="Cake.jpg.PNG" alt="Cheesecake de nuez ViaFit"><div class="h2-tag">Sin renunciar</div></div>
+        <div class="h2-card"><img src="55CD5B30-DE22-4F73-AB0E-8C97882C13CF.png" alt="Cheesecake de nuez ViaFit"><div class="h2-tag">Sin renunciar</div></div>
     </div>
 </div>
 
@@ -198,7 +219,7 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 </div>
 
 <div id="pasteleria">
-<h1 class="section-title">Una mordida que cae bien al bienestar</h1>
+<h1 class="section-title">Una mordida que cae <i>bien</i> al bienestar</h1>
 <p class="section-subtitle">Descubre nuestros productos y conoce lo que hay detrás de cada mordida.</p>
 <div class="products" id="grid-pasteleria"></div>
 <p class="section-subtitle" style="margin-top:30px;">
@@ -305,48 +326,45 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 const CAKE_PENDING = 'Información de ingredientes y alérgenos próximamente.';
 const CAFFEINE = 'Contiene cafeína';
 const menuItems = [
-  { tab:'pasteleria', img:'cinnamon-roll.jpg.jpg', name:'Cinnamon Roll', desc:'Rol de canela por porción',
+  { tab:'pasteleria', img:'cinnamon-roll.jpg.jpg', name:'Cinnamon Roll', tag:'100% vegano', desc:'Rol de canela por porción',
     macros:[285,7,38,13], leaf:'100% vegano<br>Sin lácteos ni huevo<br>Sin azúcares añadidas', warn:null },
-  { tab:'pasteleria', img:'carrot-cake.jpg.jpg', name:'Carrot Cake', desc:'Pastel de zanahoria por rebanada',
+  { tab:'pasteleria', img:'carrot-cake.jpg.jpg', name:'Carrot Cake', tag:'Postre', desc:'Pastel de zanahoria por rebanada',
     macros:null, leaf:CAKE_PENDING, warn:null },
-  { tab:'pasteleria', img:'Chocolate Cake.jpg.jpg', name:'Chocolate Cake', desc:'Pastel de chocolate por rebanada',
+  { tab:'pasteleria', img:'Chocolate Cake.jpg.jpg', name:'Chocolate Cake', tag:'Postre', desc:'Pastel de chocolate por rebanada',
     macros:null, leaf:CAKE_PENDING, warn:null },
-  { tab:'pasteleria', img:'Brownies Keto.jpg.jpg', name:'Brownies Keto extra chocolatosos', desc:'Brownie keto intenso, extra chocolatoso',
+  { tab:'pasteleria', img:'Brownies Keto.jpg.jpg', name:'Brownies Keto extra chocolatosos', tag:'Keto', desc:'Brownie keto intenso, extra chocolatoso',
     macros:[175,9,3,15], leaf:'Sin azúcar añadida<br>Bajo en carbohidratos<br>Chocolate oscuro y cacao',
     warn:['No apto para veganos','Contiene huevo, lácteos y almendras','Si tienes diabetes consulta con tu médico o nutriólogo'] },
-  { tab:'bebidas', img:'Berry Matcha Latte.jpg.jpg', name:'Berry Matcha Latte', desc:'Matcha orgánico + bebida de avena + mermelada de fresa.',
+  { tab:'bebidas', img:'Berry Matcha Latte.jpg.jpg', name:'Berry Matcha Latte', tag:'Matcha', desc:'Matcha orgánico + bebida de avena + mermelada de fresa.',
     macros:null, leaf:'Matcha orgánico<br>Bebida de avena<br>Mermelada de fresa', warn:[CAFFEINE] },
-  { tab:'bebidas', img:'Taro Matcha Latte.jpg.jpg', name:'Taro Matcha Latte', desc:'Taro sin azúcar + bebida de soya + matcha orgánico.',
+  { tab:'bebidas', img:'Taro Matcha Latte.jpg.jpg', name:'Taro Matcha Latte', tag:'Matcha', desc:'Taro sin azúcar + bebida de soya + matcha orgánico.',
     macros:null, leaf:'Taro sin azúcar<br>Bebida de soya<br>Matcha orgánico', warn:['Contiene soya',CAFFEINE] },
-  { tab:'bebidas', img:'Choco Matcha Latte.jpg.jpg', name:'Choco Matcha Latte', desc:'Cacao puro + bebida de avena + matcha orgánico.',
+  { tab:'bebidas', img:'Choco Matcha Latte.jpg.jpg', name:'Choco Matcha Latte', tag:'Matcha', desc:'Cacao puro + bebida de avena + matcha orgánico.',
     macros:null, leaf:'Cacao puro<br>Bebida de avena<br>Matcha orgánico', warn:[CAFFEINE] },
-  { tab:'bebidas', img:'Banana Coffee Latte.jpg.jpg', name:'Banana Coffee Latte', desc:'Espresso + puré de banana + leche deslactosada light.',
+  { tab:'bebidas', img:'Banana Coffee Latte.jpg.jpg', name:'Banana Coffee Latte', tag:'Café', desc:'Espresso + puré de banana + leche deslactosada light.',
     macros:null, leaf:'Espresso<br>Puré de banana<br>Leche deslactosada light', warn:['Contiene lácteos (sin lactosa)',CAFFEINE] },
-  { tab:'bebidas', img:'Berry Coffee Latte.jpg.jpg', name:'Berry Coffee Latte', desc:'Espresso + mezcla de frutos rojos + leche deslactosada light.',
+  { tab:'bebidas', img:'Berry Coffee Latte.jpg.jpg', name:'Berry Coffee Latte', tag:'Café', desc:'Espresso + mezcla de frutos rojos + leche deslactosada light.',
     macros:null, leaf:'Espresso<br>Mezcla de frutos rojos<br>Leche deslactosada light', warn:['Contiene lácteos (sin lactosa)',CAFFEINE] },
-  { tab:'bebidas', img:'Cafe Bombon.jpg.jpg', name:'Café Bombón', desc:'Estilo Madrid · Espresso + lechera vegana sin azúcar.',
+  { tab:'bebidas', img:'Cafe Bombon.jpg.jpg', name:'Café Bombón', tag:'Opción vegana', desc:'Estilo Madrid · Espresso + lechera vegana sin azúcar.',
     macros:null, leaf:'Opción vegana<br>Lechera vegana sin azúcar<br>Espresso estilo Madrid', warn:[CAFFEINE] },
-  { tab:'bebidas', img:'Marroquino.jpg.jpg', name:'Marroquino', desc:'Crema de avellana sin azúcar + doble espresso + leche deslactosada light.',
+  { tab:'bebidas', img:'Marroquino.jpg.jpg', name:'Marroquino', tag:'Café', desc:'Crema de avellana sin azúcar + doble espresso + leche deslactosada light.',
     macros:null, leaf:'Crema de avellana sin azúcar<br>Doble espresso<br>Leche deslactosada light', warn:['Contiene avellana y lácteos (sin lactosa)',CAFFEINE] }
 ];
 
 function renderMenu() {
     menuItems.forEach(it => {
         const m = it.macros;
-        const v = (i, unit) => m ? m[i] + ' ' + unit : (i === 0 ? 'XXX kcal' : 'XX g');
+        const stat = (i, unit, label) => '<div class="macro-stat"><b>' + (m ? m[i] : 'XX') + '</b><small>' + unit + '</small><span>' + label + '</span></div>';
         const warn = it.warn ? '<div class="leaf-warning"><strong>Ten en cuenta que:</strong><ul>' +
             it.warn.map(w => '<li>' + w + '</li>').join('') + '</ul></div>' : '';
         const html = '<div class="card">' +
-            '<img class="product-image" src="' + it.img + '" alt="' + it.name + '">' +
-            '<h3>' + it.name + '</h3><p>' + it.desc + '</p>' +
+            '<div class="card-media"><img class="product-image" src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span></div>' +
+            '<div class="card-body"><h3>' + it.name + '</h3><p>' + it.desc + '</p>' +
             '<div class="button-row"><button class="plane-button" onclick="showMacros(this)">Ver macros</button>' +
-            '<button class="leaf-button" onclick="toggleLeafInfo(this)"><img src="Leaf button.jpg.PNG" alt="leaf"></button></div>' +
-            '<div class="macros"><div class="macro-title">Información nutricional</div>' +
-            '<div class="macro-row"><span>Calorías</span><span>' + v(0,'kcal') + '</span></div>' +
-            '<div class="macro-row"><span>Proteína</span><span>' + v(1,'g') + '</span></div>' +
-            '<div class="macro-row"><span>Carbohidratos</span><span>' + v(2,'g') + '</span></div>' +
-            '<div class="macro-row"><span>Grasas</span><span>' + v(3,'g') + '</span></div></div>' +
-            '<div class="leaf-info"><p>' + it.leaf + '</p>' + warn + '</div></div>';
+            '<button class="leaf-button" onclick="toggleLeafInfo(this)" aria-label="Ingredientes"><img src="Leaf button.jpg.PNG" alt="leaf"></button></div>' +
+            '<div class="macros"><div class="macro-title">Información nutricional</div><div class="macro-grid">' +
+            stat(0,'kcal','Calorías') + stat(1,'g','Proteína') + stat(2,'g','Carbos') + stat(3,'g','Grasas') + '</div></div>' +
+            '<div class="leaf-info"><p>' + it.leaf + '</p>' + warn + '</div></div></div>';
         document.getElementById('grid-' + it.tab).insertAdjacentHTML('beforeend', html);
     });
 }
