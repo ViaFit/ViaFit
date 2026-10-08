@@ -44,7 +44,54 @@ html { scroll-behavior: smooth; }
 .h2-tag { position: absolute; left: 8px; bottom: 8px; right: 8px; background: rgba(255,255,255,0.92); color: #1d2a20; font-size: 11px; font-weight: bold; padding: 6px 9px; border-radius: 12px; text-align: center; }
 .h2-green { background: #2b3d28; color: #f3efe3; padding: 34px 22px 44px; border-radius: 0 0 34px 34px; }
 .h2-band { position: relative; z-index: 2; }
-.h2-green .h2-inner { max-width: 760px; margin: 0 auto; }
+.products.carousel { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 4px 2px 10px; align-items: flex-start; }
+.products.carousel::-webkit-scrollbar { display: none; }
+.products.carousel .card { flex: 0 0 min(78%, 300px); scroll-snap-align: start; }
+.car-controls { display: flex; justify-content: center; align-items: center; gap: 18px; margin: 14px 0 18px; color: #68736d; font-size: 14px; }
+.car-controls.hide { display: none; }
+.car-arrow { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid #cfe0c8; background: white; color: #26352d; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.ver-todos { border: none; background: #2b3d28; color: #f3efe3; font-size: 15px; font-weight: bold; letter-spacing: 0.5px; padding: 14px 38px; border-radius: 30px; cursor: pointer; }
+.ver-todos { margin-top: 6px; }
+.products:not(.carousel) { grid-template-columns: repeat(2, 1fr); gap: 12px; align-items: start; }
+.products:not(.carousel) .card { padding: 8px; border-radius: 20px; }
+.products:not(.carousel) .card-media { border-radius: 14px; }
+.products:not(.carousel) .card-tag { top: 8px; left: 8px; font-size: 10px; padding: 4px 9px; }
+.products:not(.carousel) .card-body { padding: 12px 4px 4px; }
+.products:not(.carousel) .card h3 { font-size: 20px; }
+.products:not(.carousel) .card p { font-size: 12px; line-height: 1.45; }
+.products:not(.carousel) .button-row { flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.products:not(.carousel) .plane-button { font-size: 12.5px; padding: 8px 14px; }
+.products:not(.carousel) .leaf-button { width: 34px; height: 34px; }
+.products:not(.carousel) .leaf-button img { width: 18px; height: 18px; }
+.products:not(.carousel) .macros, .products:not(.carousel) .leaf-info { padding: 12px; }
+.products:not(.carousel) .macro-grid { grid-template-columns: repeat(2, 1fr); gap: 12px 6px; }
+.products:not(.carousel) .leaf-info p, .products:not(.carousel) .leaf-warning { font-size: 12px; }
+.card-media, .card h3 { cursor: pointer; }
+.ver-detalle { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: bold; color: #5b7a4a; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.detail { position: fixed; inset: 0; background: #f8f7f2; z-index: 1100; overflow-y: auto; -webkit-overflow-scrolling: touch; display: none; }
+.detail.open { display: block; }
+.detail-top { position: sticky; top: 0; z-index: 2; background: rgba(248,247,242,0.95); padding: 14px 18px; }
+.detail-back { border: 1px solid #dfe6d6; background: white; border-radius: 20px; padding: 9px 16px; font-weight: bold; color: #26352d; font-size: 14px; cursor: pointer; }
+.detail-inner { max-width: 560px; margin: 0 auto; padding: 4px 18px 70px; }
+.detail-media { position: relative; border-radius: 26px; overflow: hidden; background: #dfe7cf; }
+.detail-media img { display: block; width: 100%; aspect-ratio: 4 / 4.6; object-fit: cover; }
+.detail h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 40px; line-height: 1.05; color: #1d2a20; margin: 22px 0 10px; }
+.detail-desc { color: #526059; line-height: 1.65; font-size: 15px; margin: 0; }
+.detail-quote { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 23px; line-height: 1.2; color: #5b7a4a; margin: 16px 0 22px; }
+.detail-wa { display: inline-block; text-decoration: none; background: #2b3d28; color: #f3efe3; font-weight: bold; font-size: 15px; padding: 14px 28px; border-radius: 30px; margin-bottom: 28px; }
+.acc { border-top: 1.5px solid #1d2a20; }
+.acc:last-child { border-bottom: 1.5px solid #1d2a20; }
+.acc-q { width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; padding: 18px 0; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 27px; font-weight: 600; color: #1d2a20; cursor: pointer; text-align: left; }
+.acc.open .acc-q { color: #5b7a4a; }
+.acc-q .pm::after { content: '+'; font-family: Arial, sans-serif; font-size: 22px; }
+.acc.open .pm::after { content: '\2212'; }
+.acc-a { display: none; padding: 0 0 20px; color: #40493f; font-size: 15px; line-height: 1.7; }
+.acc.open .acc-a { display: block; }
+.acc-a ul { margin: 0 0 10px; padding-left: 20px; }
+.acc-label { font-size: 11.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #5b7a4a; font-weight: bold; margin: 12px 0 6px; }
+.acc-label.warn { color: #a2661f; }
+.acc-note { font-size: 13px; color: #68736d; margin: 10px 0 0; }
+.h2-inner { max-width: 760px; margin: 0 auto; }
 .h2-eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #cfe58a; font-weight: bold; margin-bottom: 10px; }
 .h2-green h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 40px; line-height: 1.05; margin: 0 0 14px; }
 .h2-green h2 i { color: #cfe58a; }
@@ -223,7 +270,13 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 <div id="pasteleria">
 <h1 class="section-title">Una mordida que cae <i>bien</i> al bienestar</h1>
 <p class="section-subtitle">Descubre nuestros productos y conoce lo que hay detrás de cada mordida.</p>
-<div class="products" id="grid-pasteleria"></div>
+<div class="products carousel" id="grid-pasteleria"></div>
+<div class="car-controls" id="carControls-pasteleria">
+    <button class="car-arrow" onclick="carScroll('pasteleria', -1)" aria-label="Anterior">‹</button>
+    <span id="carCount-pasteleria">1/1</span>
+    <button class="car-arrow" onclick="carScroll('pasteleria', 1)" aria-label="Siguiente">›</button>
+</div>
+<div style="text-align:center;"><button class="ver-todos" id="verTodos-pasteleria" onclick="toggleTodos('pasteleria')">Ver todos</button></div>
 <p class="section-subtitle" style="margin-top:30px;">
 En ViaFit te ofrecemos productos elaborados con ingredientes seleccionados,
 buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
@@ -233,7 +286,13 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 <div id="bebidas" style="display:none;">
 <h1 class="section-title">Bebidas</h1>
 <p class="section-subtitle">Explora nuestras bebidas y descubre su información nutricional.</p>
-<div class="products" id="grid-bebidas"></div>
+<div class="products carousel" id="grid-bebidas"></div>
+<div class="car-controls" id="carControls-bebidas">
+    <button class="car-arrow" onclick="carScroll('bebidas', -1)" aria-label="Anterior">‹</button>
+    <span id="carCount-bebidas">1/1</span>
+    <button class="car-arrow" onclick="carScroll('bebidas', 1)" aria-label="Siguiente">›</button>
+</div>
+<div style="text-align:center;"><button class="ver-todos" id="verTodos-bebidas" onclick="toggleTodos('bebidas')">Ver todos</button></div>
 
 <div class="extras">
 <h2>✨ Macros extras por agregar extras a tu bebida</h2>
@@ -282,7 +341,7 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 <section id="sobre">
 <h1 class="section-title">Sobre ViaFit</h1>
 <div class="about-box">
-<p>Hola dietista! En ViaFit cuidamos rigurosamente todo el proceso de producción saludable, desde la estricta selección de materias primas libres de harinas y azúcares refinadas de la más alta calidad hasta la elaboración final de nuestros postres, para que vivas la experiencia de disfrutar sin poner en riesgo tu salud, en cada bocado.</p>
+<p>¡Hola Viajeros! En ViaFit cuidamos rigurosamente todo el proceso de producción saludable, desde la estricta selección de materias primas libres de harinas y azúcares refinadas de la más alta calidad hasta la elaboración final de nuestros postres, para que vivas la experiencia de disfrutar sin poner en riesgo tu salud, en cada bocado.</p>
 <p>Buscamos ayudarte y guiarte a una mejor opción diseñada para cumplir tus propósitos.</p>
 <p>Recuerda que comer saludable no es lo mismo para ti que para otros. Como seres humanos no todos tenemos las mismas metas o enfermedades; comer balanceado no es quitar calorías, sino consumir alimentos especiales que se adapten a ti.</p>
 </div>
@@ -318,6 +377,11 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 </div>
 
 <footer>ViaFit · Explora el mundo, nutre tu cuerpo. ✈️</footer>
+
+<div class="detail" id="detail">
+    <div class="detail-top"><button class="detail-back" onclick="history.back()">‹ Volver</button></div>
+    <div class="detail-inner" id="detailInner"></div>
+</div>
 
 <a href="https://wa.me/524412030156" class="whatsapp-float" target="_blank">💬</a>
 
@@ -362,14 +426,14 @@ const menuItems = [
 ];
 
 function renderMenu() {
-    menuItems.forEach(it => {
+    menuItems.forEach((it, idx) => {
         const m = it.macros;
         const stat = (i, unit, label) => '<div class="macro-stat"><b>' + (m ? m[i] : 'XX') + '</b><small>' + unit + '</small><span>' + label + '</span></div>';
         const warn = it.warn ? '<div class="leaf-warning"><strong>Ten en cuenta que:</strong><ul>' +
             it.warn.map(w => '<li>' + w + '</li>').join('') + '</ul></div>' : '';
         const html = '<div class="card">' +
-            '<div class="card-media"><img class="product-image" src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span></div>' +
-            '<div class="card-body"><h3>' + it.name + '</h3><p>' + it.desc + '</p>' +
+            '<div class="card-media" onclick="openDetail(' + idx + ')"><img class="product-image" src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span></div>' +
+            '<div class="card-body"><h3 onclick="openDetail(' + idx + ')">' + it.name + '</h3><p>' + it.desc + '</p><a class="ver-detalle" onclick="openDetail(' + idx + ')">Ver detalle ›</a>' +
             '<div class="button-row"><button class="plane-button" onclick="showMacros(this)">Ver macros</button>' +
             '<button class="leaf-button" onclick="toggleLeafInfo(this)" aria-label="Ingredientes"><img src="Leaf button.jpg.PNG" alt="leaf"></button></div>' +
             '<div class="macros"><div class="macro-title">Información nutricional</div><div class="macro-grid">' +
@@ -394,6 +458,7 @@ function showSection(id, btn) {
     document.getElementById('bebidas').style.display = (id === 'bebidas') ? 'block' : 'none';
     document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    updateCount(id);
 }
 function goToTab(id) {
     const btn = document.querySelectorAll('.tab-button')[id === 'bebidas' ? 1 : 0];
@@ -431,7 +496,7 @@ window.addEventListener('load', burstLeaves);
 
 /* ===== INGREDIENTES POPULARES ===== */
 const ingredientData = {
-    'harina-almendra': { name: 'Harina de almendra', img: 'Harina de almendra.jpg.PNG', desc: 'Rica en grasas saludables y baja en carbohidratos, apta para personas con celiaquía o sensibilidad al gluten, ayuda a evitar picos de azúcar en la sangre y contiene vitamina E, magnesio, calcio y antioxidantes.' },
+    'harina-almendra': { name: 'Harina de almendra', img: 'Harina de almendra.jpg.PNG', desc: 'Baja en carbohidratos, rica en grasas saludables y naturalmente sin gluten.' },
     'harina-coco': { name: 'Harina de coco', img: 'Harina de coco.jpg.PNG', desc: 'Alta en fibra y sin gluten con un índice glucémico bajo, mejora la digestión y da saciedad.' },
     'harina-avena': { name: 'Harina de avena', img: 'Harina de avena.jpg.PNG', desc: 'Fuente de fibra y energía de liberación lenta, ayuda a disminuir la absorción de colesterol en el intestino, bajo índice glucémico.' },
     'harina-integral': { name: 'Harina integral', img: 'Harina integral.jpg.PNG', desc: 'Conserva más fibra y nutrientes que la harina refinada, ayudando a mantenerte satisfecho por más tiempo.' },
@@ -500,6 +565,81 @@ function setIngGroup(group, btn) {
     renderIngScroll();
 }
 renderIngScroll();
+
+/* ===== CARRUSEL (PASTELERÍA Y BEBIDAS) ===== */
+function carEl(t) { return document.getElementById('grid-' + t); }
+function carStep(t) { const c = carEl(t).querySelector('.card'); return c ? c.offsetWidth + 14 : 300; }
+function carScroll(t, d) { carEl(t).scrollBy({ left: d * carStep(t), behavior: 'smooth' }); }
+function updateCount(t) {
+    const g = carEl(t);
+    const n = g.querySelectorAll('.card').length;
+    const i = Math.min(n, Math.round(g.scrollLeft / carStep(t)) + 1);
+    document.getElementById('carCount-' + t).textContent = i + '/' + n;
+}
+function toggleTodos(t) {
+    const g = carEl(t);
+    const isCarousel = g.classList.toggle('carousel');
+    document.getElementById('carControls-' + t).classList.toggle('hide', !isCarousel);
+    document.getElementById('verTodos-' + t).textContent = isCarousel ? 'Ver todos' : 'Ver menos';
+    if (isCarousel) { g.scrollLeft = 0; updateCount(t); }
+}
+['pasteleria', 'bebidas'].forEach(t => {
+    carEl(t).addEventListener('scroll', () => updateCount(t));
+    updateCount(t);
+});
+
+/* ===== PÁGINA DE PRODUCTO ===== */
+const details = {
+  'Cinnamon Roll': { long:'Rol de canela por porción, suave y aromático. 100% vegano y sin azúcares añadidas, para que disfrutes algo dulce sin salirte de tu rumbo.', ing:null, contains:[], free:['100% vegano','Sin lácteos ni huevo','Sin azúcares añadidas'] },
+  'Carrot Cake': { long:'Pastel de zanahoria por rebanada. Un clásico reinventado para disfrutarlo sin renunciar a lo que quieres lograr.', ing:null },
+  'Chocolate Cake': { long:'Pastel de chocolate por rebanada. Intenso y reconfortante, pensado para que te cuides mientras lo disfrutas.', ing:null },
+  'Brownies Keto extra chocolatosos': { long:'Brownie keto intenso y extra chocolatoso. Sin azúcar añadida y bajo en carbohidratos, para antojos que suman a tu día.', ing:['Chocolate oscuro y cacao','Almendras'],
+    contains:['No apto para veganos','Contiene huevo, lácteos y almendras'], free:['Sin azúcar añadida','Bajo en carbohidratos'], note:'Si tienes diabetes consulta con tu médico o nutriólogo.' },
+  'Berry Matcha Latte': { ing:['Matcha orgánico','Leche deslactosada light','Mermelada de fresa'] },
+  'Taro Matcha Latte': { ing:['Taro sin azúcar','Leche deslactosada light','Matcha orgánico'] },
+  'Choco Matcha Latte': { ing:['Cacao puro','Leche deslactosada light','Matcha orgánico'] },
+  'Banana Coffee Latte': { ing:['Espresso','Puré de banana','Leche deslactosada light'] },
+  'Berry Coffee Latte': { ing:['Espresso','Mezcla de frutos rojos','Leche deslactosada light'] },
+  'Café Bombón': { ing:['Espresso','Lechera vegana sin azúcar'] },
+  'Marroquino': { ing:['Crema de avellana sin azúcar','Doble espresso','Leche deslactosada light'] }
+};
+function accItem(title, inner, open) {
+    return '<div class="acc' + (open ? ' open' : '') + '"><button class="acc-q" onclick="this.parentNode.classList.toggle(\'open\')">' + title + '<span class="pm"></span></button><div class="acc-a">' + inner + '</div></div>';
+}
+function listHtml(arr) { return '<ul>' + arr.map(x => '<li>' + x + '</li>').join('') + '</ul>'; }
+function openDetail(idx) {
+    const it = menuItems[idx];
+    const d = details[it.name] || {};
+    const m = it.macros;
+    const long = d.long || (it.desc + ' Una bebida pensada para acompañar tu día.');
+    const stat = (i, unit, label) => '<div class="macro-stat"><b>' + (m ? m[i] : 'XX') + '</b><small>' + unit + '</small><span>' + label + '</span></div>';
+    const ing = d.ing ? listHtml(d.ing) : '<p style="margin:0;">Lista de ingredientes próximamente.</p>';
+    let all = '';
+    if (d.contains && d.contains.length) all += '<div class="acc-label warn">Contiene</div>' + listHtml(d.contains);
+    if (d.free && d.free.length) all += '<div class="acc-label">Libre de</div>' + listHtml(d.free);
+    if (!all) all = '<p style="margin:0;">Información de alérgenos próximamente.</p>';
+    if (d.note) all += '<p class="acc-note">' + d.note + '</p>';
+    all += '<p class="acc-note">Si tienes alguna alergia, escríbenos por WhatsApp antes de pedir.</p>';
+    const nut = '<div class="macro-grid">' + stat(0,'kcal','Calorías') + stat(1,'g','Proteína') + stat(2,'g','Carbos') + stat(3,'g','Grasas') + '</div>' +
+        (m ? '' : '<p class="acc-note">Macros próximamente.</p>');
+    const wa = 'https://wa.me/524412030156?text=' + encodeURIComponent('Hola, quiero pedir: ' + it.name);
+    document.getElementById('detailInner').innerHTML =
+        '<div class="detail-media"><img src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span></div>' +
+        '<h1>' + it.name + '</h1><p class="detail-desc">' + long + '</p>' +
+        '<div class="detail-quote">Elige hoy lo que tu yo del futuro va a agradecer.</div>' +
+        '<a class="detail-wa" href="' + wa + '" target="_blank">Pedir por WhatsApp</a>' +
+        accItem('Ingredientes', ing, true) + accItem('Alérgenos', all, false) + accItem('Información nutricional', nut, false);
+    const el = document.getElementById('detail');
+    el.classList.add('open');
+    el.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    history.pushState({ detail: true }, '');
+}
+function closeDetail() {
+    document.getElementById('detail').classList.remove('open');
+    document.body.style.overflow = '';
+}
+window.addEventListener('popstate', closeDetail);
 </script>
 
 </body>
