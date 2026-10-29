@@ -34,6 +34,7 @@ html { scroll-behavior: smooth; }
 .h2-title i { font-style: italic; text-transform: none; font-weight: 500; }
 .ring { display: inline-block; border: 2.5px solid #b9d46e; border-radius: 50%; padding: 0 .26em .06em; transform: rotate(-4deg); }
 .top-cup { position: absolute; right: 5%; top: 90px; width: 26vw; max-width: 150px; height: auto; transform: rotate(6deg); filter: drop-shadow(0 10px 12px rgba(29,42,32,0.25)); -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%); mask-image: linear-gradient(to bottom, transparent 0, #000 12%); pointer-events: none; }
+.top-box { position: absolute; right: -2%; bottom: 6px; width: 30vw; max-width: 150px; height: auto; transform: rotate(-3deg); filter: drop-shadow(0 8px 10px rgba(29,42,32,0.22)); pointer-events: none; }
 .seal { position: absolute; left: 7%; bottom: 8px; width: 92px; height: 92px; animation: spin 22s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .h2-band { background: linear-gradient(to bottom, #ece6da 50%, #2b3d28 50%); padding: 0 16px; }
@@ -182,6 +183,7 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 .card { background: #fff; border: 1px solid #ece6da; border-radius: 28px; padding: 12px; text-align: left; box-shadow: 0 10px 28px rgba(29,42,32,0.07); }
 .card-media { position: relative; border-radius: 20px; overflow: hidden; background: #dfe7cf; }
 .card .product-image { display: block; width: 100%; height: auto; aspect-ratio: 4 / 4.6; object-fit: cover; border: none; padding: 0; border-radius: 0; background: none; }
+.card .product-image[src="IMG_1275.png"] { object-fit: contain; }
 .card-tag { position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.94); color: #1d2a20; font-size: 11.5px; font-weight: bold; letter-spacing: 0.3px; padding: 6px 12px; border-radius: 14px; }
 .card-body { padding: 16px 8px 8px; }
 .card h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 27px; line-height: 1.05; color: #1d2a20; margin: 0 0 8px; }
@@ -231,6 +233,7 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
         <text font-size="8.5" font-weight="bold" fill="#2b3d28" font-family="Arial, sans-serif"><textPath href="#sealPath" textLength="222" lengthAdjust="spacing">EXPLORA EL MUNDO • NUTRE TU CUERPO •</textPath></text>
         <text x="50" y="60" text-anchor="middle" font-size="24">✈️</text>
     </svg>
+    <img class="top-box" src="IMG_1276.png" alt="Carrot cake ViaFit en caja">
 </div>
 
 <div class="h2-band">
@@ -402,7 +405,7 @@ const CAFFEINE = 'Contiene cafeína';
 const menuItems = [
   { tab:'pasteleria', img:'cinnamon-roll.jpg.jpg', name:'Cinnamon Roll', tag:'100% vegano', desc:'Rol de canela por porción',
     macros:[285,7,38,13], leaf:'100% vegano<br>Sin lácteos ni huevo<br>Sin azúcares añadidas', warn:null },
-  { tab:'pasteleria', img:'carrot-cake.jpg.jpg', name:'Carrot Cake', tag:'Postre', desc:'Pastel de zanahoria por rebanada',
+  { tab:'pasteleria', img:'IMG_1275.png', name:'Carrot Cake', tag:'Postre', desc:'Pastel de zanahoria por rebanada',
     macros:null, leaf:CAKE_PENDING, warn:null },
   { tab:'pasteleria', img:'IMG_0858.jpeg', name:'Chocolate Cake', tag:'Postre', desc:'Pastel de chocolate por rebanada',
     macros:null, leaf:CAKE_PENDING, warn:null },
