@@ -198,6 +198,30 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 .macro-stat small { display: block; font-size: 11px; color: #68736d; margin-top: 2px; }
 .macro-stat span { display: block; font-size: 11px; color: #40493f; font-weight: bold; margin-top: 6px; }
 .leaf-info { background: #eef4dc; border-radius: 18px; }
+
+/* ESTRELLA, TIP SECRETO Y COMPARACION */
+.star-badge { position: absolute; left: 12px; bottom: 12px; background: #cfe58a; color: #1d2a20; font-size: 11px; font-weight: bold; padding: 6px 11px; border-radius: 14px; }
+.tip-btn { position: absolute; right: 10px; bottom: 10px; width: 62px; height: 62px; border-radius: 50%; border: 2px solid #fff; background: #d63a2f; color: #fff; font-size: 9px; font-weight: bold; letter-spacing: 0.6px; line-height: 1.15; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(214,58,47,0.45); animation: tipPulse 2.2s ease-in-out infinite; padding: 0; }
+@keyframes tipPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.products:not(.carousel) .tip-btn { width: 48px; height: 48px; font-size: 7px; right: 6px; bottom: 6px; }
+.products:not(.carousel) .star-badge { left: 8px; bottom: 8px; font-size: 10px; padding: 4px 8px; }
+.products:not(.carousel) .star-text { display: none; }
+.macro-note { font-size: 12px; color: #68736d; margin: 12px 0 0; text-align: center; }
+.tip-modal { display: none; position: fixed; inset: 0; background: rgba(29,42,32,0.55); z-index: 1300; align-items: center; justify-content: center; padding: 24px; }
+.tip-modal.open { display: flex; }
+.tip-box { background: #f8f7f2; border-radius: 24px; padding: 26px 24px 22px; max-width: 360px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-top: 6px solid #d63a2f; }
+.tip-eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #d63a2f; font-weight: bold; margin-bottom: 10px; }
+.tip-box p { font-size: 16px; line-height: 1.6; color: #26352d; margin: 0 0 18px; }
+.tip-close { border: none; background: #2b3d28; color: #f3efe3; font-weight: bold; font-size: 14px; padding: 11px 28px; border-radius: 24px; cursor: pointer; }
+.cmp-row { padding: 12px 0; border-bottom: 1px solid #e4e8dc; }
+.cmp-row:last-child { border-bottom: none; }
+.cmp-param { font-weight: bold; font-size: 14px; color: #1d2a20; margin-bottom: 8px; }
+.cmp-vals { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cmp-us, .cmp-them { border-radius: 12px; padding: 9px 10px; font-size: 13.5px; line-height: 1.35; }
+.cmp-us { background: #e4efd3; color: #1d2a20; font-weight: bold; }
+.cmp-them { background: #efe6d8; color: #5a4a36; }
+.cmp-us small, .cmp-them small { display: block; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; opacity: 0.75; margin-bottom: 3px; font-weight: bold; }
+.cmp-why { font-size: 13px; color: #526059; margin-top: 8px; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -386,6 +410,14 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
     <div class="detail-inner" id="detailInner"></div>
 </div>
 
+<div class="tip-modal" id="tipModal" onclick="closeTip()">
+    <div class="tip-box" onclick="event.stopPropagation()">
+        <div class="tip-eyebrow">Tip secreto</div>
+        <p id="tipText"></p>
+        <button class="tip-close" onclick="closeTip()">Entendido</button>
+    </div>
+</div>
+
 <a href="https://wa.me/524412030156" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
@@ -404,7 +436,9 @@ const CAKE_PENDING = 'Información de ingredientes y alérgenos próximamente.';
 const CAFFEINE = 'Contiene cafeína';
 const menuItems = [
   { tab:'pasteleria', img:'cinnamon-roll.jpg.jpg', name:'Cinnamon Roll', tag:'100% vegano', desc:'Rol de canela por porción',
-    macros:[285,7,38,13], leaf:'100% vegano<br>Sin lácteos ni huevo<br>Sin azúcares añadidas', warn:null },
+    macros:[246,6.3,31.6,10.6], star:true, macroNote:'Por pieza aprox. · Carbohidratos netos · Equivale a 2 porciones de carbohidratos',
+    tip:'Calienta tu rol durante 10–15 segundos en el microondas para recuperar su textura suave y esponjosa, como recién horneado.',
+    leaf:'100% vegano<br>Sin lácteos ni huevo<br>Sin azúcares añadidas', warn:null },
   { tab:'pasteleria', img:'Cakicarrot.PNG', name:'Carrot Cake', tag:'Postre', desc:'Pastel de zanahoria por rebanada',
     macros:null, leaf:CAKE_PENDING, warn:null },
   { tab:'pasteleria', img:'Chocolatecakeee.PNG', name:'Chocolate Cake', tag:'Postre', desc:'Pastel de chocolate por rebanada',
@@ -428,6 +462,16 @@ const menuItems = [
     macros:null, leaf:CAKE_PENDING, warn:null }
 ];
 
+function badgesHtml(it, idx) {
+    return (it.star ? '<span class="star-badge">⭐<span class="star-text"> Nuestra estrella</span></span>' : '') +
+        (it.tip ? '<button class="tip-btn" onclick="event.stopPropagation(); showTip(' + idx + ')" aria-label="Tip secreto"><span>TIP</span><span>SECRETO</span></button>' : '');
+}
+function showTip(idx) {
+    document.getElementById('tipText').textContent = menuItems[idx].tip;
+    document.getElementById('tipModal').classList.add('open');
+}
+function closeTip() { document.getElementById('tipModal').classList.remove('open'); }
+
 function renderMenu() {
     menuItems.forEach((it, idx) => {
         const m = it.macros;
@@ -435,12 +479,12 @@ function renderMenu() {
         const warn = it.warn ? '<div class="leaf-warning"><strong>Ten en cuenta que:</strong><ul>' +
             it.warn.map(w => '<li>' + w + '</li>').join('') + '</ul></div>' : '';
         const html = '<div class="card">' +
-            '<div class="card-media" onclick="openDetail(' + idx + ')"><img class="product-image" src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span></div>' +
+            '<div class="card-media" onclick="openDetail(' + idx + ')"><img class="product-image" src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span>' + badgesHtml(it, idx) + '</div>' +
             '<div class="card-body"><h3 onclick="openDetail(' + idx + ')">' + it.name + '</h3><p>' + it.desc + '</p><a class="ver-detalle" onclick="openDetail(' + idx + ')">Ver detalle ›</a>' +
             '<div class="button-row"><button class="plane-button" onclick="showMacros(this)">Ver macros</button>' +
             '<button class="leaf-button" onclick="toggleLeafInfo(this)" aria-label="Ingredientes"><img src="Leaf button.jpg.PNG" alt="leaf"></button></div>' +
             '<div class="macros"><div class="macro-title">Información nutricional</div><div class="macro-grid">' +
-            stat(0,'kcal','Calorías') + stat(1,'g','Proteína') + stat(2,'g','Carbos') + stat(3,'g','Grasas') + '</div></div>' +
+            stat(0,'kcal','Calorías') + stat(1,'g','Proteína') + stat(2,'g','Carbos') + stat(3,'g','Grasas') + '</div>' + (it.macroNote ? '<p class="macro-note">' + it.macroNote + '</p>' : '') + '</div>' +
             '<div class="leaf-info"><p>' + it.leaf + '</p>' + warn + '</div></div></div>';
         document.getElementById('grid-' + it.tab).insertAdjacentHTML('beforeend', html);
     });
@@ -592,8 +636,25 @@ function toggleTodos(t) {
 });
 
 /* ===== PÁGINA DE PRODUCTO ===== */
+const COMPARE_ROLL = [
+  ['🔥','Calorías','~246 kcal','~390 a 450 kcal','Ahorras casi el 50% de energía, ideal para control de peso.'],
+  ['🍬','Azúcar añadida','0 gramos','~24 a 26 gramos','Evitas el equivalente a 5 cucharaditas de azúcar refinada.'],
+  ['🌾','Equivalentes / porciones de carbohidratos','2 porciones (netas)','4 a 5 porciones','Conteo claro de porciones para quienes controlan su glucosa.'],
+  ['📉','Tipo de absorción (glucosa)','Lenta y sostenida','Pico drástico (impacto rápido)','No causa el famoso “bajón” de energía ni fatiga a media tarde.'],
+  ['💧','Grasas saturadas','Mínimas (~1.5 g)','11 a 13 gramos','Sustituyes grasas pesadas por grasas monoinsaturadas buenas del aguacate.'],
+  ['🥛','Lácteos / lactosa','0% libre de lácteos','Sí contiene (mantequilla y leche)','Elaborado con leche de soya, sin lácteos ni lactosa.'],
+  ['🌿','Fibra (digestión)','~3.5 gramos (el triple)','~1 gramo o menos','Gracias al toque integral que apoya el tránsito intestinal.'],
+  ['☁️','Textura / suavidad','Técnica japonesa Tangzhong','Grasas saturadas y mejorantes','Mantiene su frescura de nube de forma natural por días.']
+];
+function compareHtml(rows) {
+    return '<p class="acc-note" style="margin:0 0 6px;">Valores aproximados por pieza: tu rol saludable (aguacate + alulosa) vs. un rol de panadería tradicional.</p>' +
+        rows.map(r => '<div class="cmp-row"><div class="cmp-param">' + r[0] + ' ' + r[1] + '</div><div class="cmp-vals">' +
+            '<div class="cmp-us"><small>Tu rol saludable</small>' + r[2] + '</div>' +
+            '<div class="cmp-them"><small>Panadería tradicional</small>' + r[3] + '</div></div>' +
+            '<div class="cmp-why">' + r[4] + '</div></div>').join('');
+}
 const details = {
-  'Cinnamon Roll': { long:'Rol de canela por porción, suave y aromático. 100% vegano y sin azúcares añadidas, para que disfrutes algo dulce sin salirte de tu rumbo.', ing:null, contains:[], free:['100% vegano','Sin lácteos ni huevo','Sin azúcares añadidas'] },
+  'Cinnamon Roll': { long:'Rol de canela premium, hecho en casa: ultra suave, esponjoso y consciente. Sin azúcar añadida (alulosa + monk fruit), 100% libre de lácteos de vaca (leche de soya), con aceite de aguacate y un toque integral. El balance perfecto entre sabor y salud.', ing:null, contains:[], free:['100% vegano','Sin lácteos ni huevo','Sin azúcares añadidas'], compare:COMPARE_ROLL },
   'Carrot Cake': { long:'Pastel de zanahoria por rebanada. Un clásico reinventado para disfrutarlo sin renunciar a lo que quieres lograr.', ing:null },
   'Chocolate Cake': { long:'Pastel de chocolate por rebanada. Intenso y reconfortante, pensado para que te cuides mientras lo disfrutas.', ing:null },
   'Brownies Keto extra chocolatosos': { long:'Brownie keto intenso y extra chocolatoso. Sin azúcar añadida y bajo en carbohidratos, para antojos que suman a tu día.', ing:['Chocolate oscuro y cacao','Almendras'],
@@ -624,14 +685,14 @@ function openDetail(idx) {
     if (d.note) all += '<p class="acc-note">' + d.note + '</p>';
     all += '<p class="acc-note">Si tienes alguna alergia, escríbenos por WhatsApp antes de pedir.</p>';
     const nut = '<div class="macro-grid">' + stat(0,'kcal','Calorías') + stat(1,'g','Proteína') + stat(2,'g','Carbos') + stat(3,'g','Grasas') + '</div>' +
-        (m ? '' : '<p class="acc-note">Macros próximamente.</p>');
+        (m ? '' : '<p class="acc-note">Macros próximamente.</p>') + (it.macroNote ? '<p class="acc-note">' + it.macroNote + '</p>' : '');
     const wa = 'https://wa.me/524412030156?text=' + encodeURIComponent('Hola, quiero pedir: ' + it.name);
     document.getElementById('detailInner').innerHTML =
-        '<div class="detail-media"><img src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span></div>' +
+        '<div class="detail-media"><img src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span>' + badgesHtml(it, idx) + '</div>' +
         '<h1>' + it.name + '</h1><p class="detail-desc">' + long + '</p>' +
         '<div class="detail-quote">Elige hoy lo que tu yo del futuro va a agradecer.</div>' +
         '<a class="detail-wa" href="' + wa + '" target="_blank">Pedir por WhatsApp</a>' +
-        accItem('Ingredientes', ing, true) + accItem('Alérgenos', all, false) + accItem('Información nutricional', nut, false);
+        accItem('Ingredientes', ing, true) + accItem('Alérgenos', all, false) + (d.compare ? accItem('Comparación con pastelería tradicional', compareHtml(d.compare), false) : '') + accItem('Información nutricional', nut, false);
     const el = document.getElementById('detail');
     el.classList.add('open');
     el.scrollTop = 0;
