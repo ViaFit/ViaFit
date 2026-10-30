@@ -200,12 +200,12 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 .leaf-info { background: #eef4dc; border-radius: 18px; }
 
 /* ESTRELLA, TIP SECRETO Y COMPARACION */
-.plane-tag { position: absolute; top: 8px; left: 10px; width: 70px; height: 70px; overflow: visible; filter: drop-shadow(0 4px 6px rgba(29,42,32,0.18)); pointer-events: none; }
-.detail-media .plane-tag { width: 84px; height: 84px; top: 12px; left: 14px; }
-.pt-fill { fill: #cfe58a; }
-.pt-shadow { fill: #2b3d28; }
-.pt-text text { font-family: Arial, sans-serif; font-weight: 700; fill: #1d2a20; letter-spacing: 0.6px; }
-.products:not(.carousel) .plane-tag { width: 58px; height: 58px; top: 5px; left: 5px; }
+.plane-tag { position: absolute; top: 10px; right: 10px; width: 84px; height: 45px; overflow: visible; filter: drop-shadow(0 4px 6px rgba(29,42,32,0.18)); pointer-events: none; }
+.detail-media .plane-tag { width: 100px; height: 53px; top: 14px; right: 14px; }
+.pt-fill { fill: #3b7bbf; stroke: #b9d46e; stroke-width: 3; stroke-linejoin: round; }
+.pt-shadow { fill: #17335c; }
+.pt-text text { font-family: Arial, sans-serif; font-weight: 700; fill: #fff; letter-spacing: 0.5px; }
+.products:not(.carousel) .plane-tag { width: 62px; height: 33px; top: 5px; right: 5px; }
 .star-badge { position: absolute; left: 12px; bottom: 12px; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.94); color: #1d2a20; font-size: 9.5px; font-weight: bold; letter-spacing: 1.4px; text-transform: uppercase; padding: 6px 11px; border-radius: 14px; }
 .star-mark { color: #5b7a4a; font-size: 11px; letter-spacing: 0; }
 .tip-btn { position: absolute; right: 10px; bottom: 10px; width: 62px; height: 62px; border-radius: 50%; border: 2px solid #5b7a4a; background: #fff; color: #3f5a2f; font-size: 9px; font-weight: bold; letter-spacing: 0.6px; line-height: 1.15; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(43,61,40,0.28); animation: tipPulse 2.2s ease-in-out infinite; padding: 0; }
@@ -469,14 +469,12 @@ const menuItems = [
     macros:null, leaf:CAKE_PENDING, warn:null }
 ];
 
-const PLANE_D = 'M60 6 C64 6 67 14 67 24 L67 44 L112 76 L112 88 L67 76 L67 92 L86 108 L86 114 L63 108 L60 116 L57 108 L34 114 L34 108 L53 92 L53 76 L8 88 L8 76 L53 44 L53 24 C53 14 56 6 60 6 Z';
+const PLANE_D = 'M166 45 C164 37 154 33 140 33 L100 33 L64 5 L52 5 L68 33 L30 33 L14 22 L7 22 L16 38 L12 45 L16 52 L7 68 L14 68 L30 57 L68 57 L52 85 L64 85 L100 57 L140 57 C154 57 164 53 166 45 Z';
 function tagHtml(it) {
     if (!it.planeTag) return '<span class="card-tag">' + it.tag + '</span>';
-    const t = it.planeTag;
-    const txt = t.length === 1
-        ? '<text x="60" y="69" font-size="16">' + t[0] + '</text>'
-        : '<text x="60" y="62" font-size="12">' + t[0] + '</text><text x="60" y="73.5" font-size="10.5">' + t[1] + '</text>';
-    return '<svg class="plane-tag" viewBox="0 0 120 120" role="img" aria-label="' + it.tag + '"><path class="pt-shadow" transform="translate(4 4)" d="' + PLANE_D + '"/><path class="pt-fill" d="' + PLANE_D + '"/><g class="pt-text" text-anchor="middle">' + txt + '</g></svg>';
+    const label = it.planeTag.join(' ');
+    const txt = '<text x="88" y="' + (label.length < 8 ? 50 : 49.5) + '" font-size="' + (label.length < 8 ? 15 : 12) + '">' + label + '</text>';
+    return '<svg class="plane-tag" viewBox="0 0 172 92" role="img" aria-label="' + it.tag + '"><path class="pt-fill" d="' + PLANE_D + '"/><g class="pt-text" text-anchor="middle">' + txt + '</g></svg>';
 }
 function badgesHtml(it, idx) {
     return (it.star ? '<span class="star-badge"><span class="star-mark">★</span><span class="star-text">Nuestra estrella</span></span>' : '') +
@@ -669,8 +667,17 @@ function compareHtml(rows) {
             '<div class="cmp-them"><small>Panadería tradicional</small>' + r[3] + '</div></div>' +
             '<div class="cmp-why">' + r[4] + '</div></div>').join('');
 }
+const STORY_ROLL =
+  '<div class="acc-label">Un origen misterioso</div>' +
+  '<p style="margin:0 0 10px;">Nadie sabe con exactitud dónde nació el rol de canela. Los panes dulces enrollados con especias existen en Europa desde hace siglos, cuando la canela, que viaja desde Sri Lanka por las rutas del comercio, era una de las especias más valiosas del mundo.</p>' +
+  '<div class="acc-label">Del norte de Europa al mundo</div>' +
+  '<p style="margin:0 0 10px;">El rol que conocemos hoy se popularizó en Suecia, donde se llama <i>kanelbulle</i>. Llegó a las cocinas suecas a finales de los años 20 y se volvió parte del <i>fika</i>, la pausa del café acompañada de algo dulce. Los inmigrantes escandinavos llevaron sus recetas a Estados Unidos, donde el rol se hizo más grande, más suave y cubierto de glaseado, hasta convertirse en un clásico del desayuno.</p>' +
+  '<div class="acc-label">Dato curioso</div>' +
+  '<p style="margin:0 0 10px;">Cada 4 de octubre Suecia celebra el Día del Rol de Canela (<i>Kanelbullens dag</i>), una fecha que existe desde 1999.</p>' +
+  '<div class="acc-label">A nuestra manera</div>' +
+  '<p style="margin:0;">En ViaFit guardamos lo mejor de esta tradición, lo suave, lo aromático y lo hecho en casa, con alulosa + monk fruit, leche de soya y aceite de aguacate, sin azúcar añadida.</p>';
 const details = {
-  'Cinnamon Roll': { long:'Rol de canela premium, hecho en casa: ultra suave, esponjoso y consciente. Sin azúcar añadida, 100% libre de lácteos de vaca.<br>El balance perfecto entre sabor y salud.', ing:['Alulosa + monk fruit','Leche de soya','Aceite de aguacate','Harina integral'], contains:[], free:['100% vegano','Sin lácteos ni huevo','Sin azúcares añadidas'], compare:COMPARE_ROLL },
+  'Cinnamon Roll': { long:'Rol de canela premium, hecho en casa: ultra suave, esponjoso y consciente. Sin azúcar añadida, 100% libre de lácteos de vaca.<br>El balance perfecto entre sabor y salud.', ing:['Alulosa + monk fruit','Leche de soya','Aceite de aguacate','Harina integral'], contains:[], free:['100% vegano','Sin lácteos ni huevo','Sin azúcares añadidas'], compare:COMPARE_ROLL, story:STORY_ROLL },
   'Carrot Cake': { long:'Pastel de zanahoria por rebanada. Un clásico reinventado para disfrutarlo sin renunciar a lo que quieres lograr.', ing:null },
   'Chocolate Cake': { long:'Pastel de chocolate por rebanada. Intenso y reconfortante, pensado para que te cuides mientras lo disfrutas.', ing:null },
   'Brownies Keto extra chocolatosos': { long:'Brownie keto intenso y extra chocolatoso. Sin azúcar añadida y bajo en carbohidratos, para antojos que suman a tu día.', ing:['Chocolate oscuro y cacao','Almendras'],
@@ -708,7 +715,7 @@ function openDetail(idx) {
         '<h1>' + it.name + '</h1><p class="detail-desc">' + long + '</p>' +
         '<div class="detail-quote">Elige hoy lo que tu yo del futuro va a agradecer.</div>' +
         '<a class="detail-wa" href="' + wa + '" target="_blank">Pedir por WhatsApp</a>' +
-        accItem('Ingredientes', ing, true) + accItem('Alérgenos', all, false) + (d.compare ? accItem('Comparación con pastelería tradicional', compareHtml(d.compare), false) : '') + accItem('Información nutricional', nut, false);
+        accItem('Ingredientes', ing, true) + accItem('Alérgenos', all, false) + (d.compare ? accItem('Comparación con pastelería tradicional', compareHtml(d.compare), false) : '') + accItem('Información nutricional', nut, false) + (d.story ? accItem('La historia de los roles', d.story, false) : '');
     const el = document.getElementById('detail');
     el.classList.add('open');
     el.scrollTop = 0;
