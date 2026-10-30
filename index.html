@@ -200,17 +200,24 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 .leaf-info { background: #eef4dc; border-radius: 18px; }
 
 /* ESTRELLA, TIP SECRETO Y COMPARACION */
-.star-badge { position: absolute; left: 12px; bottom: 12px; background: #cfe58a; color: #1d2a20; font-size: 11px; font-weight: bold; padding: 6px 11px; border-radius: 14px; }
-.tip-btn { position: absolute; right: 10px; bottom: 10px; width: 62px; height: 62px; border-radius: 50%; border: 2px solid #fff; background: #d63a2f; color: #fff; font-size: 9px; font-weight: bold; letter-spacing: 0.6px; line-height: 1.15; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(214,58,47,0.45); animation: tipPulse 2.2s ease-in-out infinite; padding: 0; }
+.plane-tag { position: absolute; top: 8px; left: 10px; width: 70px; height: 70px; overflow: visible; filter: drop-shadow(0 4px 6px rgba(29,42,32,0.18)); pointer-events: none; }
+.detail-media .plane-tag { width: 84px; height: 84px; top: 12px; left: 14px; }
+.pt-fill { fill: #cfe58a; }
+.pt-shadow { fill: #2b3d28; }
+.pt-text text { font-family: Arial, sans-serif; font-weight: 700; fill: #1d2a20; letter-spacing: 0.6px; }
+.products:not(.carousel) .plane-tag { width: 58px; height: 58px; top: 5px; left: 5px; }
+.star-badge { position: absolute; left: 12px; bottom: 12px; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.94); color: #1d2a20; font-size: 9.5px; font-weight: bold; letter-spacing: 1.4px; text-transform: uppercase; padding: 6px 11px; border-radius: 14px; }
+.star-mark { color: #5b7a4a; font-size: 11px; letter-spacing: 0; }
+.tip-btn { position: absolute; right: 10px; bottom: 10px; width: 62px; height: 62px; border-radius: 50%; border: 2px solid #5b7a4a; background: #fff; color: #3f5a2f; font-size: 9px; font-weight: bold; letter-spacing: 0.6px; line-height: 1.15; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(43,61,40,0.28); animation: tipPulse 2.2s ease-in-out infinite; padding: 0; }
 @keyframes tipPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
 .products:not(.carousel) .tip-btn { width: 48px; height: 48px; font-size: 7px; right: 6px; bottom: 6px; }
-.products:not(.carousel) .star-badge { left: 8px; bottom: 8px; font-size: 10px; padding: 4px 8px; }
+.products:not(.carousel) .star-badge { left: 8px; bottom: 8px; padding: 4px 8px; }
 .products:not(.carousel) .star-text { display: none; }
 .macro-note { font-size: 12px; color: #68736d; margin: 12px 0 0; text-align: center; }
 .tip-modal { display: none; position: fixed; inset: 0; background: rgba(29,42,32,0.55); z-index: 1300; align-items: center; justify-content: center; padding: 24px; }
 .tip-modal.open { display: flex; }
-.tip-box { background: #f8f7f2; border-radius: 24px; padding: 26px 24px 22px; max-width: 360px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-top: 6px solid #d63a2f; }
-.tip-eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #d63a2f; font-weight: bold; margin-bottom: 10px; }
+.tip-box { background: #f8f7f2; border-radius: 24px; padding: 26px 24px 22px; max-width: 360px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-top: 6px solid #5b7a4a; }
+.tip-eyebrow { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #5b7a4a; font-weight: bold; margin-bottom: 10px; }
 .tip-box p { font-size: 16px; line-height: 1.6; color: #26352d; margin: 0 0 18px; }
 .tip-close { border: none; background: #2b3d28; color: #f3efe3; font-weight: bold; font-size: 14px; padding: 11px 28px; border-radius: 24px; cursor: pointer; }
 .cmp-row { padding: 12px 0; border-bottom: 1px solid #e4e8dc; }
@@ -435,7 +442,7 @@ goTop();
 const CAKE_PENDING = 'Información de ingredientes y alérgenos próximamente.';
 const CAFFEINE = 'Contiene cafeína';
 const menuItems = [
-  { tab:'pasteleria', img:'cinnamon-roll.jpg.jpg', name:'Cinnamon Roll', tag:'100% vegano', desc:'Rol de canela por porción',
+  { tab:'pasteleria', img:'cinnamon-roll.jpg.jpg', name:'Cinnamon Roll', tag:'100% vegano', planeTag:['100%','VEGANO'], desc:'Rol de canela por porción',
     macros:[246,6.3,31.6,10.6], star:true, macroNote:'Por pieza aprox. · Carbohidratos netos · Equivale a 2 porciones de carbohidratos',
     tip:'Calienta tu rol durante 10–15 segundos en el microondas para recuperar su textura suave y esponjosa, como recién horneado.',
     leaf:'100% vegano<br>Sin lácteos ni huevo<br>Sin azúcares añadidas', warn:null },
@@ -443,7 +450,7 @@ const menuItems = [
     macros:null, leaf:CAKE_PENDING, warn:null },
   { tab:'pasteleria', img:'Chocolatecakeee.PNG', name:'Chocolate Cake', tag:'Postre', desc:'Pastel de chocolate por rebanada',
     macros:null, leaf:CAKE_PENDING, warn:null },
-  { tab:'pasteleria', img:'Browniee .PNG', name:'Brownies Keto extra chocolatosos', tag:'Keto', desc:'Brownie keto intenso, extra chocolatoso',
+  { tab:'pasteleria', img:'Browniee .PNG', name:'Brownies Keto extra chocolatosos', tag:'Keto', planeTag:['KETO'], desc:'Brownie keto intenso, extra chocolatoso',
     macros:[175,9,3,15], leaf:'Sin azúcar añadida<br>Bajo en carbohidratos<br>Chocolate oscuro y cacao',
     warn:['No apto para veganos','Contiene huevo, lácteos y almendras','Si tienes diabetes consulta con tu médico o nutriólogo'] },
   { tab:'bebidas', img:'Berry Matcha Latte.jpg.jpg', name:'Berry Matcha Latte', tag:'Matcha', desc:'Matcha orgánico + leche deslactosada light + mermelada de fresa.',
@@ -462,8 +469,17 @@ const menuItems = [
     macros:null, leaf:CAKE_PENDING, warn:null }
 ];
 
+const PLANE_D = 'M60 6 C64 6 67 14 67 24 L67 44 L112 76 L112 88 L67 76 L67 92 L86 108 L86 114 L63 108 L60 116 L57 108 L34 114 L34 108 L53 92 L53 76 L8 88 L8 76 L53 44 L53 24 C53 14 56 6 60 6 Z';
+function tagHtml(it) {
+    if (!it.planeTag) return '<span class="card-tag">' + it.tag + '</span>';
+    const t = it.planeTag;
+    const txt = t.length === 1
+        ? '<text x="60" y="69" font-size="16">' + t[0] + '</text>'
+        : '<text x="60" y="62" font-size="12">' + t[0] + '</text><text x="60" y="73.5" font-size="10.5">' + t[1] + '</text>';
+    return '<svg class="plane-tag" viewBox="0 0 120 120" role="img" aria-label="' + it.tag + '"><path class="pt-shadow" transform="translate(4 4)" d="' + PLANE_D + '"/><path class="pt-fill" d="' + PLANE_D + '"/><g class="pt-text" text-anchor="middle">' + txt + '</g></svg>';
+}
 function badgesHtml(it, idx) {
-    return (it.star ? '<span class="star-badge">⭐<span class="star-text"> Nuestra estrella</span></span>' : '') +
+    return (it.star ? '<span class="star-badge"><span class="star-mark">★</span><span class="star-text">Nuestra estrella</span></span>' : '') +
         (it.tip ? '<button class="tip-btn" onclick="event.stopPropagation(); showTip(' + idx + ')" aria-label="Tip secreto"><span>TIP</span><span>SECRETO</span></button>' : '');
 }
 function showTip(idx) {
@@ -479,7 +495,7 @@ function renderMenu() {
         const warn = it.warn ? '<div class="leaf-warning"><strong>Ten en cuenta que:</strong><ul>' +
             it.warn.map(w => '<li>' + w + '</li>').join('') + '</ul></div>' : '';
         const html = '<div class="card">' +
-            '<div class="card-media" onclick="openDetail(' + idx + ')"><img class="product-image" src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span>' + badgesHtml(it, idx) + '</div>' +
+            '<div class="card-media" onclick="openDetail(' + idx + ')"><img class="product-image" src="' + it.img + '" alt="' + it.name + '">' + tagHtml(it) + badgesHtml(it, idx) + '</div>' +
             '<div class="card-body"><h3 onclick="openDetail(' + idx + ')">' + it.name + '</h3><p>' + it.desc + '</p><a class="ver-detalle" onclick="openDetail(' + idx + ')">Ver detalle ›</a>' +
             '<div class="button-row"><button class="plane-button" onclick="showMacros(this)">Ver macros</button>' +
             '<button class="leaf-button" onclick="toggleLeafInfo(this)" aria-label="Ingredientes"><img src="Leaf button.jpg.PNG" alt="leaf"></button></div>' +
@@ -654,7 +670,7 @@ function compareHtml(rows) {
             '<div class="cmp-why">' + r[4] + '</div></div>').join('');
 }
 const details = {
-  'Cinnamon Roll': { long:'Rol de canela premium, hecho en casa: ultra suave, esponjoso y consciente. Sin azúcar añadida (alulosa + monk fruit), 100% libre de lácteos de vaca (leche de soya), con aceite de aguacate y un toque integral. El balance perfecto entre sabor y salud.', ing:null, contains:[], free:['100% vegano','Sin lácteos ni huevo','Sin azúcares añadidas'], compare:COMPARE_ROLL },
+  'Cinnamon Roll': { long:'Rol de canela premium, hecho en casa: ultra suave, esponjoso y consciente. Sin azúcar añadida, 100% libre de lácteos de vaca.<br>El balance perfecto entre sabor y salud.', ing:['Alulosa + monk fruit','Leche de soya','Aceite de aguacate','Harina integral'], contains:[], free:['100% vegano','Sin lácteos ni huevo','Sin azúcares añadidas'], compare:COMPARE_ROLL },
   'Carrot Cake': { long:'Pastel de zanahoria por rebanada. Un clásico reinventado para disfrutarlo sin renunciar a lo que quieres lograr.', ing:null },
   'Chocolate Cake': { long:'Pastel de chocolate por rebanada. Intenso y reconfortante, pensado para que te cuides mientras lo disfrutas.', ing:null },
   'Brownies Keto extra chocolatosos': { long:'Brownie keto intenso y extra chocolatoso. Sin azúcar añadida y bajo en carbohidratos, para antojos que suman a tu día.', ing:['Chocolate oscuro y cacao','Almendras'],
@@ -688,7 +704,7 @@ function openDetail(idx) {
         (m ? '' : '<p class="acc-note">Macros próximamente.</p>') + (it.macroNote ? '<p class="acc-note">' + it.macroNote + '</p>' : '');
     const wa = 'https://wa.me/524412030156?text=' + encodeURIComponent('Hola, quiero pedir: ' + it.name);
     document.getElementById('detailInner').innerHTML =
-        '<div class="detail-media"><img src="' + it.img + '" alt="' + it.name + '"><span class="card-tag">' + it.tag + '</span>' + badgesHtml(it, idx) + '</div>' +
+        '<div class="detail-media"><img src="' + it.img + '" alt="' + it.name + '">' + tagHtml(it) + badgesHtml(it, idx) + '</div>' +
         '<h1>' + it.name + '</h1><p class="detail-desc">' + long + '</p>' +
         '<div class="detail-quote">Elige hoy lo que tu yo del futuro va a agradecer.</div>' +
         '<a class="detail-wa" href="' + wa + '" target="_blank">Pedir por WhatsApp</a>' +
