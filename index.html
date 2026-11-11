@@ -229,6 +229,117 @@ footer { text-align: center; padding: 25px; font-size: 13px; color: #7b847f; }
 .cmp-them { background: #efe6d8; color: #5a4a36; }
 .cmp-us small, .cmp-them small { display: block; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; opacity: 0.75; margin-bottom: 3px; font-weight: bold; }
 .cmp-why { font-size: 13px; color: #526059; margin-top: 8px; line-height: 1.5; }
+
+/* PEDIDOS */
+.ped-sub{text-align:center;color:#68736d;margin:0 0 22px}
+.ped-back{border:1px solid #dfe6d6;background:#fff;border-radius:20px;padding:9px 16px;font-weight:bold;color:#26352d;font-size:14px;cursor:pointer;margin-bottom:16px}
+.ped-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ped-tile{border:1.5px solid #cfe0c8;background:#fff;border-radius:22px;overflow:hidden;cursor:pointer;text-align:center;padding:0;font-family:inherit;box-shadow:0 8px 20px rgba(29,42,32,.07)}
+.ped-tile .ped-ph,.ped-tile img{width:100%;aspect-ratio:1/1;object-fit:cover;display:flex}
+.ped-tile h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;color:#1d2a20;margin:12px 6px 4px}
+.ped-tile p{font-size:12px;color:#68736d;margin:0 10px 14px;line-height:1.4}
+.ped-ph{background:#dfe7cf;color:#5b7a4a;align-items:center;justify-content:center;flex-direction:column;font-size:46px;text-align:center}
+.ped-ph small{font-size:12px;font-weight:bold;margin-top:6px}
+.ped-gal{position:relative}
+.ped-slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:24px;background:#dfe7cf}
+.ped-slides::-webkit-scrollbar{display:none}
+.ped-slide{flex:0 0 100%;scroll-snap-align:start}
+.ped-slide img,.ped-slide .ped-ph{width:100%;aspect-ratio:4/4.4;object-fit:cover;display:flex}
+.ped-ctrl{display:flex;justify-content:center;align-items:center;gap:18px;margin:12px 0 4px;color:#68736d;font-size:14px}
+.ped-card{background:#fff;border:1px solid #ece6da;border-radius:24px;padding:14px;margin-bottom:14px;display:flex;gap:12px;align-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(29,42,32,.06)}
+.ped-card .ped-thumb{flex:0 0 84px;height:84px;border-radius:16px;overflow:hidden;background:#dfe7cf;display:flex}
+.ped-card .ped-thumb img,.ped-card .ped-thumb .ped-ph{width:100%;height:100%;object-fit:cover;font-size:30px}
+.ped-card .ped-thumb .ped-ph small{display:none}
+.ped-card h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:23px;margin:0 0 3px;color:#1d2a20;font-weight:600}
+.ped-card p{font-size:12.5px;color:#68736d;margin:0 0 6px;line-height:1.4}
+.ped-badge{display:inline-block;background:#cfe58a;color:#1d2a20;font-size:11px;font-weight:bold;padding:3px 10px;border-radius:12px;margin-right:6px}
+.ped-price-s{font-size:13px;font-weight:bold;color:#5b7a4a}
+.ped-brand{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#5b7a4a;font-weight:bold;margin:16px 0 4px}
+.ped-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:36px;line-height:1.05;color:#1d2a20;margin:0 0 8px;font-weight:500}
+.ped-desc{color:#526059;font-size:14.5px;line-height:1.6;margin:0 0 6px}
+.ped-label{font-weight:bold;color:#1d2a20;margin:18px 0 8px;font-size:15px}
+.ped-sizes{display:flex;gap:10px;flex-wrap:wrap}
+.ped-size{border:1.5px solid #cfe0c8;background:#fff;color:#26352d;font-size:15px;padding:10px 22px;border-radius:24px;cursor:pointer;font-family:inherit}
+.ped-size.on{border-color:#2b3d28;background:#2b3d28;color:#f3efe3;font-weight:bold}
+.ped-total{font-family:'Cormorant Garamond',Georgia,serif;font-size:44px;color:#1d2a20;margin:16px 0 0;line-height:1;font-weight:600}
+.ped-total.small{font-size:24px}
+.ped-hr{border:none;border-top:1px solid #e4e8dc;margin:14px 0}
+.ped-qty{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.ped-qty button{width:46px;height:46px;border-radius:50%;border:1.5px solid #2b3d28;background:#fff;color:#2b3d28;font-size:24px;cursor:pointer}
+.ped-qty span{font-size:20px;font-weight:bold}
+.ped-order{display:block;text-align:center;text-decoration:none;background:#2b3d28;color:#f3efe3;font-weight:bold;font-size:16px;padding:16px;border-radius:30px}
+.ped-note{font-size:12.5px;color:#68736d;margin:12px 0 0;text-align:center;line-height:1.5}
+
+.ped-card.feat{border:2px solid #b9d46e;background:#f6faea;position:relative;animation:pedGlow 2.4s ease-in-out infinite}
+@keyframes pedGlow{0%,100%{box-shadow:0 8px 20px rgba(29,42,32,.06)}50%{box-shadow:0 0 0 5px rgba(185,212,110,.4)}}
+.ped-feat-tag{position:absolute;top:-11px;left:16px;background:#2b3d28;color:#cfe58a;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:12px}
+.ped-glaze-row{margin-bottom:14px}
+.ped-glaze-lbl{font-size:12.5px;font-weight:bold;color:#5b7a4a;margin-bottom:6px}
+.ped-chips{display:grid;grid-template-columns:1fr;gap:8px}
+.ped-chip{display:flex;align-items:center;gap:10px;text-align:left;border:1.5px solid #cfe0c8;background:#fff;color:#26352d;font-size:14px;padding:11px 14px;border-radius:16px;cursor:pointer;font-family:inherit;line-height:1.3}
+.ped-chip .fl{font-size:22px}
+.ped-chip.on{border-color:#2b3d28;background:#2b3d28;color:#f3efe3;font-weight:bold}
+.ped-warn{color:#a2661f;font-size:13px;font-weight:bold;text-align:center;margin:0 0 10px;min-height:0}
+
+.ped-box{border:2px solid #cfe0c8;border-radius:22px;overflow:hidden;background:#f1f3ec}
+.ped-hero{position:relative;cursor:pointer}
+.ped-hero img,.ped-hero .ped-ph{width:100%;aspect-ratio:4/3;object-fit:cover;display:flex}
+.ped-hero-tag{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.94);color:#1d2a20;font-size:12px;font-weight:bold;padding:6px 12px;border-radius:14px}
+.ped-pages{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-top:10px}
+.ped-pages::-webkit-scrollbar{display:none}
+.ped-page{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px}
+.ped-pcard{background:#fff;border-radius:16px;padding:8px 8px 12px;text-align:center;display:flex;flex-direction:column;position:relative;border:2px solid transparent}
+.ped-pcard.feat{border-color:#b9d46e;background:#f6faea}
+.ped-pcard .ped-pimg{border-radius:12px;overflow:hidden;background:#dfe7cf;display:flex}
+.ped-pcard .ped-pimg img,.ped-pcard .ped-pimg .ped-ph{width:100%;aspect-ratio:1/1;object-fit:cover;display:flex;font-size:34px}
+.ped-pcard .ped-pimg .ped-ph small{display:none}
+.ped-pprice{font-size:14px;color:#5b7a4a;font-weight:bold;margin:10px 0 2px}
+.ped-pname{font-family:'Cormorant Garamond',Georgia,serif;font-size:21px;line-height:1.1;color:#1d2a20;font-weight:600;margin:0 0 10px;flex:1}
+.ped-pbtn{border:none;background:#2b3d28;color:#f3efe3;font-weight:bold;font-size:13.5px;padding:11px 6px;border-radius:22px;cursor:pointer;font-family:inherit}
+.ped-pfeat{position:absolute;top:-2px;left:-2px;background:#2b3d28;color:#cfe58a;font-size:10px;font-weight:bold;letter-spacing:.8px;text-transform:uppercase;padding:4px 9px;border-radius:14px 0 12px 0;z-index:1}
+.ped-box .ped-ctrl{margin:10px 0 12px}
+
+/* PEDIDOS · ESTILO PASTELERÍA EUROPEA */
+#pedidos{background:#f4ecdd;border-radius:34px;width:calc(100% - 24px);max-width:860px;margin:36px auto;padding:38px 18px 40px;position:relative}
+#pedidos::before{content:"";position:absolute;inset:8px;border:1px solid #c9ac78;border-radius:27px;pointer-events:none}
+.eu-eyebrow{text-align:center;font-size:11.5px;letter-spacing:3px;text-transform:uppercase;color:#9a7b45;font-weight:bold;margin-bottom:10px}
+.eu-orn{display:flex;align-items:center;justify-content:center;gap:12px;color:#b08d57;margin:2px 0 14px;font-size:14px}
+.eu-orn::before,.eu-orn::after{content:"";height:1px;width:56px;background:#c9ac78}
+#pedidos .ped-sub{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:20px;color:#6b6250;margin-bottom:26px}
+.eu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.eu-tile{border:none;background:none;padding:0;cursor:pointer;font-family:inherit;text-align:center;display:flex;flex-direction:column;align-items:center;transition:transform .25s ease}
+.eu-tile:active{transform:scale(.97)}
+.eu-frame{width:100%;padding:6px;border:1.5px solid #b08d57;border-radius:999px 999px 22px 22px;background:#fffaf0}
+.eu-arch{position:relative;display:block;width:100%;aspect-ratio:3/4;border-radius:999px 999px 16px 16px;overflow:hidden;background:linear-gradient(160deg,#efe1c6,#d9c49a);display:flex;align-items:center;justify-content:center}
+.eu-arch::before{content:attr(data-label);position:absolute;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:30px;color:#8a6d3b;opacity:.8}
+.eu-arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.eu-tile:hover .eu-arch img{transform:scale(1.06)}
+.eu-kicker{font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:#9a7b45;font-weight:bold;margin-top:14px}
+.eu-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;font-weight:500;color:#1d2a20;line-height:1;margin:4px 0 6px}
+.eu-desc{font-size:12.5px;color:#6b6250;line-height:1.4;margin:0 6px 12px}
+.eu-cta{display:inline-flex;align-items:center;gap:8px;background:#2b3d28;color:#f4ecdd;font-size:13px;font-weight:bold;letter-spacing:.5px;padding:11px 20px;border-radius:26px;animation:euNudge 2.6s ease-in-out infinite}
+.eu-cta i{font-style:normal;font-size:16px}
+@keyframes euNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(3px)}}
+.eu-foot{text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:17px;color:#6b6250;margin:26px 0 0}
+
+/* PEDIDOS · PUERTAS DE EMBARQUE */
+.gate-list{display:flex;flex-direction:column;gap:18px}
+.gate{border:none;padding:0;background:#17335c;border-radius:20px;overflow:hidden;cursor:pointer;font-family:inherit;text-align:left;box-shadow:0 12px 26px rgba(23,51,92,.28);transition:transform .2s ease;display:block;width:100%}
+.gate:active{transform:scale(.98)}
+.gate-photo{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:16/8;background:linear-gradient(160deg,#2b4f86,#17335c);overflow:hidden}
+.gate-photo::before{content:"✈  " attr(data-label);position:absolute;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:30px;color:#cfe0f5;opacity:.85}
+.gate-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gate-sign{display:flex;align-items:stretch;background:#0f2442}
+.gate-no{flex:0 0 78px;background:#f5c518;color:#0f2442;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 0}
+.gate-no small{font-size:9.5px;font-weight:bold;letter-spacing:1.8px}
+.gate-no b{font-size:34px;line-height:1;font-family:Arial,sans-serif;letter-spacing:1px}
+.gate-info{flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 14px;min-width:0}
+.gate-name{font-family:Arial,sans-serif;font-weight:bold;font-size:24px;letter-spacing:2px;text-transform:uppercase;color:#fff}
+.gate-sub{font-size:12.5px;color:#b8cbe6;margin-top:3px}
+.gate-arrow{flex:0 0 56px;display:flex;align-items:center;justify-content:center;color:#f5c518;font-size:34px;animation:euNudge 2.2s ease-in-out infinite}
+.gate-status{display:flex;align-items:center;gap:8px;background:#0a1a33;color:#f5c518;font-family:'Courier New',monospace;font-size:12px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;padding:9px 14px}
+.gate-status i{width:9px;height:9px;border-radius:50%;background:#42d66b;animation:gateBlink 1.4s ease-in-out infinite}
+@keyframes gateBlink{0%,100%{opacity:1}50%{opacity:.25}}
 </style>
 </head>
 <body>
@@ -364,12 +475,11 @@ buscando disfrutar de la comida mientras cuidamos lo que nutre tu cuerpo.
 </section>
 
 <section id="pedidos">
-<h1 class="section-title">Pedidos</h1>
-<p class="section-subtitle">Roles por caja, pasteles personalizados y más — próximamente con todos los detalles.</p>
-<div class="pedidos-placeholder">
-    🍰 Estamos armando esta sección con cajas de roles, sabores de pastel y precios.<br><br>
-    Mientras tanto, escríbenos por WhatsApp para hacer tu pedido personalizado.
-</div>
+<div class="eu-eyebrow">Terminal ViaFit · Salidas</div>
+<h1 class="section-title">Postres <i>bajo pedido</i></h1>
+<div class="eu-orn">✈</div>
+<p class="ped-sub">Elige tu puerta de embarque.</p>
+<div id="pedidosApp"></div>
 </section>
 
 <section id="sobre">
@@ -729,6 +839,171 @@ function closeDetail() {
     document.body.style.overflow = '';
 }
 window.addEventListener('popstate', closeDetail);
+
+/* ===== PEDIDOS (POSTRES BAJO PEDIDO) ===== */
+/* Fotos: sube 3 por producto con estos nombres (o cámbialos aquí). */
+const PED_WA = '524412030156';
+const PASTELES = [
+  { id:'carrot', name:'Carrot cake', tag:'KETO', desc:'Almendra, zanahoria, nuez y betún de queso crema.', mediano:580, individual:75, imgs:['pastel-carrot-1.jpg','pastel-carrot-2.jpg','pastel-carrot-3.jpg'] },
+  { id:'cheesecake', name:'Cheesecake frutos rojos', tag:'KETO', desc:'Base de nuez y almendra, queso crema y frutos rojos.', mediano:600, individual:75, imgs:['pastel-cheesecake-1.jpg','pastel-cheesecake-2.jpg','pastel-cheesecake-3.jpg'] },
+  { id:'limon', name:'Pastel de limón', tag:'KETO', desc:'Almendra, limón natural y betún cremoso.', mediano:580, individual:75, imgs:['pastel-limon-1.jpg','pastel-limon-2.jpg','pastel-limon-3.jpg'] },
+  { id:'coco', name:'Pastel de coco', tag:'KETO', desc:'Almendra, coco rallado y crema de coco.', mediano:580, individual:75, imgs:['pastel-coco-1.jpg','pastel-coco-2.jpg','pastel-coco-3.jpg'] },
+  { id:'chocolate', name:'Pastel de chocolate', tag:'SIN AZÚCAR', desc:'Cocoa y almendra, sin azúcar y sin harina refinada.', mediano:600, individual:75, imgs:['pastel-chocolate-1.jpg','pastel-chocolate-2.jpg','pastel-chocolate-3.jpg'] },
+  { id:'guayaba', name:'Pastel de guayaba', tag:'SIN AZÚCAR', desc:'Almendra y guayaba, sin azúcar y sin harina refinada.', mediano:600, individual:75, imgs:['pastel-guayaba-1.jpg','pastel-guayaba-2.jpg','pastel-guayaba-3.jpg'] }
+];
+const GLAZES = [
+  { f:'🇫🇷', n:'Coulis de fresa sin azúcar añadida' },
+  { f:'🇧🇷', n:'Mermelada de guayaba sin azúcar añadida' },
+  { f:'🇲🇽', n:'Cajeta al estilo mexicano sin azúcar añadida' },
+  { f:'🇬🇷', n:'Yogur griego con nuez horneada' }
+];
+/* glazes = cuántos glaseados elige el cliente por cada unidad pedida */
+const ROLES = [
+  { id:'duo', name:'Duo mixto', featured:true, unit:'Duo', desc:'Rol sin glaseado + rol con glaseado.', price:100, glazes:1, imgs:['rol-duo-1.jpg','rol-duo-2.jpg','rol-duo-3.jpg'] },
+  { id:'sin', name:'Roles sin glaseado', unit:'Rol', desc:'Roles de canela integrales sin azúcar añadida.', price:50, glazes:0, imgs:['rol-sin-1.jpg','rol-sin-2.jpg','rol-sin-3.jpg'] },
+  { id:'con', name:'Roles con glaseado', unit:'Rol', desc:'Roles de canela integrales sin azúcar añadida, con el glaseado que elijas.', price:60, glazes:1, imgs:['rol-con-1.jpg','rol-con-2.jpg','rol-con-3.jpg'] },
+  { id:'combo', name:'Combo familiar', unit:'Combo', desc:'2 roles con glaseado a elegir + 2 roles sin glaseado.', price:200, glazes:2, imgs:['rol-combo-1.jpg','rol-combo-2.jpg','rol-combo-3.jpg'] }
+];
+const PED_CATS = [
+  { id:'roles', name:'Roles', desc:'Roles de canela integrales', img:'IMG_1716.jpeg' },
+  { id:'pasteles', name:'Pasteles', desc:'Keto y sin harina refinada', img:'489ADFC9-6F4C-4E27-BC35-E08B641F2CB5.png' }
+];
+const ped = { view:'cats', kind:'pastel', item:null, size:'mediano', qty:1, glaze:[] };
+
+function pedPh(label) { return '<div class="ped-ph">🍰<small>' + (label || 'Foto próximamente') + '</small></div>'; }
+function pedImgErr(img) { const d = document.createElement('div'); d.innerHTML = pedPh(); img.replaceWith(d.firstChild); }
+function pedImg(src, alt) { return '<img src="' + src + '" alt="' + alt + '" onerror="pedImgErr(this)">'; }
+function pedMoney(n) { return '$ ' + n.toLocaleString('es-MX'); }
+function pedGo(view, id) {
+    ped.view = view;
+    if (view === 'item') { ped.kind = 'pastel'; ped.item = PASTELES.find(p => p.id === id); ped.size = 'mediano'; ped.qty = 1; ped.glaze = []; }
+    if (view === 'rol') { ped.kind = 'rol'; ped.item = ROLES.find(p => p.id === id); ped.qty = 1; ped.glaze = pedSlots().map(() => null); }
+    pedRender();
+    document.getElementById('pedidos').scrollIntoView({ behavior: 'smooth' });
+}
+function pedRender() {
+    const el = document.getElementById('pedidosApp');
+    if (ped.view === 'cats') {
+        const gates = { roles:'A1', pasteles:'A2' };
+        el.innerHTML = '<div class="gate-list">' + PED_CATS.map(c =>
+            '<button class="gate" onclick="pedGo(\'' + c.id + '\')"><span class="gate-photo" data-label="' + c.name + '"><img src="' + c.img + '" alt="' + c.name + '" onerror="this.remove()"></span>' +
+            '<span class="gate-sign"><span class="gate-no"><small>PUERTA</small><b>' + gates[c.id] + '</b></span><span class="gate-info"><span class="gate-name">' + c.name + '</span><span class="gate-sub">' + c.desc + '</span></span><span class="gate-arrow">→</span></span>' +
+            '<span class="gate-status"><i></i>Embarcando · Pedidos abiertos</span></button>').join('') +
+            '</div><p class="eu-foot">Toca una puerta para abordar tu pedido ✈️</p>';
+    } else if (ped.view === 'roles') {
+        el.innerHTML = '<button class="ped-back" onclick="pedGo(\'cats\')">‹ Categorías</button>' +
+            '<p class="ped-sub" style="margin-bottom:14px">Elige tu opción de roles</p>' +
+            pedListHtml(ROLES.map(r => ({ id:r.id, view:'rol', name:r.name, img:r.imgs[0], price:pedMoney(r.price), featured:r.featured })));
+        pedListInit();
+    } else if (ped.view === 'pasteles') {
+        el.innerHTML = '<button class="ped-back" onclick="pedGo(\'cats\')">‹ Categorías</button>' +
+            '<p class="ped-sub" style="margin-bottom:14px">Elige tu sabor · Mediano: 4 a 7 porciones</p>' +
+            pedListHtml(PASTELES.map(p => ({ id:p.id, view:'item', name:p.name, img:p.imgs[0], price:'Desde ' + pedMoney(p.individual) })));
+        pedListInit();
+    } else {
+        pedRenderItem(el);
+    }
+}
+
+function pedListHtml(items) {
+    const h = items[0];
+    const pages = [];
+    for (let i = 0; i < items.length; i += 2) pages.push(items.slice(i, i + 2));
+    const card = it => '<div class="ped-pcard' + (it.featured ? ' feat' : '') + '">' + (it.featured ? '<span class="ped-pfeat">★ Favorito</span>' : '') +
+        '<div class="ped-pimg" onclick="pedGo(\'' + it.view + '\',\'' + it.id + '\')">' + pedImg(it.img, it.name) + '</div>' +
+        '<div class="ped-pprice">' + it.price + '</div><div class="ped-pname">' + it.name + '</div>' +
+        '<button class="ped-pbtn" onclick="pedGo(\'' + it.view + '\',\'' + it.id + '\')">Ordenar ahora</button></div>';
+    return '<div class="ped-box"><div class="ped-hero" onclick="pedGo(\'' + h.view + '\',\'' + h.id + '\')">' + pedImg(h.img, h.name) + '<span class="ped-hero-tag">' + (h.featured ? '★ ' : '') + h.name + '</span></div>' +
+        '<div class="ped-pages" id="pedPages">' + pages.map(pg => '<div class="ped-page">' + pg.map(card).join('') + '</div>').join('') + '</div>' +
+        '<div class="ped-ctrl"><button class="car-arrow" onclick="pedPage(-1)" aria-label="Anterior">‹</button><span id="pedPageCount">1/' + pages.length + '</span><button class="car-arrow" onclick="pedPage(1)" aria-label="Siguiente">›</button></div></div>';
+}
+function pedListInit() { document.getElementById('pedPages').addEventListener('scroll', pedPageCount); }
+function pedPage(d) { const e = document.getElementById('pedPages'); e.scrollBy({ left: d * e.offsetWidth, behavior: 'smooth' }); }
+function pedPageCount() {
+    const e = document.getElementById('pedPages');
+    const n = e.children.length;
+    document.getElementById('pedPageCount').textContent = Math.min(n, Math.round(e.scrollLeft / e.offsetWidth) + 1) + '/' + n;
+}
+/* una entrada por cada glaseado que debe elegir el cliente */
+function pedSlots() {
+    const p = ped.item, out = [];
+    if (!p || ped.kind !== 'rol' || !p.glazes) return out;
+    for (let u = 0; u < ped.qty; u++) for (let g = 0; g < p.glazes; g++) {
+        let l = '';
+        if (ped.qty > 1) l += p.unit + ' ' + (u + 1);
+        if (p.glazes > 1) l += (l ? ' · ' : '') + 'Rol con glaseado ' + (g + 1);
+        out.push(l || 'Tu glaseado');
+    }
+    return out;
+}
+function pedPrice() {
+    const p = ped.item;
+    const unit = ped.kind === 'rol' ? p.price : (ped.size === 'mediano' ? p.mediano : p.individual);
+    return unit == null ? null : unit * ped.qty;
+}
+function pedRenderItem(el) {
+    const p = ped.item, isRol = ped.kind === 'rol';
+    el.innerHTML = '<button class="ped-back" onclick="pedGo(\'' + (isRol ? 'roles' : 'pasteles') + '\')">‹ ' + (isRol ? 'Roles' : 'Pasteles') + '</button>' +
+        '<div class="ped-gal"><div class="ped-slides" id="pedSlides">' + p.imgs.map(s => '<div class="ped-slide">' + pedImg(s, p.name) + '</div>').join('') + '</div></div>' +
+        '<div class="ped-ctrl"><button class="car-arrow" onclick="pedSlide(-1)" aria-label="Anterior">‹</button><span id="pedCount">1/' + p.imgs.length + '</span><button class="car-arrow" onclick="pedSlide(1)" aria-label="Siguiente">›</button></div>' +
+        '<div class="ped-brand">ViaFit · ' + (isRol ? 'Roles de canela' : p.tag) + '</div><h2 class="ped-name">' + p.name + '</h2><p class="ped-desc">' + p.desc + '</p>' +
+        (isRol ? '' : '<div class="ped-label">Tamaño</div><div class="ped-sizes">' +
+            '<button class="ped-size" id="pedSz-individual" onclick="pedSize(\'individual\')">Individual</button>' +
+            '<button class="ped-size" id="pedSz-mediano" onclick="pedSize(\'mediano\')">Mediano</button></div>') +
+        '<div id="pedGlaze"></div>' +
+        '<div class="ped-total" id="pedTotal"></div><hr class="ped-hr">' +
+        '<div class="ped-label" style="margin-top:0">Cantidad</div>' +
+        '<div class="ped-qty"><button onclick="pedQty(-1)" aria-label="Menos">−</button><span id="pedQty">1</span><button onclick="pedQty(1)" aria-label="Más">+</button></div>' +
+        '<p class="ped-warn" id="pedWarn"></p>' +
+        '<a class="ped-order" id="pedOrder" href="#" target="_blank" onclick="return pedCheck()">Ordenar por WhatsApp</a>' +
+        '<p class="ped-note">' + (isRol ? 'Si tienes alguna alergia, escríbenos por WhatsApp antes de pedir.' : 'Mediano: 4 a 7 porciones. Contienen frutos secos (almendra y nuez). Si tienes alergias o una condición médica, pregúntanos o consulta a tu médico.') + '</p>';
+    document.getElementById('pedSlides').addEventListener('scroll', pedCount);
+    pedUpdate();
+}
+function pedGlazeHtml() {
+    const slots = pedSlots();
+    if (!slots.length) return '';
+    return '<div class="ped-label">Elige tu glaseado</div>' + slots.map((lbl, i) =>
+        '<div class="ped-glaze-row"><div class="ped-glaze-lbl">' + lbl + '</div><div class="ped-chips">' +
+        GLAZES.map((g, gi) => '<button class="ped-chip' + (ped.glaze[i] === gi ? ' on' : '') + '" onclick="pedPick(' + i + ',' + gi + ')"><span class="fl">' + g.f + '</span><span>' + g.n + '</span></button>').join('') +
+        '</div></div>').join('');
+}
+function pedPick(slot, gi) { ped.glaze[slot] = gi; pedUpdate(); document.getElementById('pedWarn').textContent = ''; }
+function pedSlide(d) { const s = document.getElementById('pedSlides'); s.scrollBy({ left: d * s.offsetWidth, behavior: 'smooth' }); }
+function pedCount() {
+    const s = document.getElementById('pedSlides');
+    const n = ped.item.imgs.length;
+    document.getElementById('pedCount').textContent = (Math.min(n, Math.round(s.scrollLeft / s.offsetWidth) + 1)) + '/' + n;
+}
+function pedSize(sz) { ped.size = sz; pedUpdate(); }
+function pedQty(d) {
+    ped.qty = Math.max(1, Math.min(ped.kind === 'rol' ? 10 : 20, ped.qty + d));
+    if (ped.kind === 'rol') { const n = pedSlots().length; ped.glaze = Array.from({ length: n }, (_, i) => ped.glaze[i] == null ? null : ped.glaze[i]); }
+    pedUpdate();
+}
+function pedCheck() {
+    if (ped.glaze.some(g => g == null)) {
+        const w = document.getElementById('pedWarn');
+        w.textContent = 'Elige tu glaseado para continuar';
+        document.getElementById('pedGlaze').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return false;
+    }
+    return true;
+}
+function pedUpdate() {
+    if (ped.kind === 'pastel') ['individual', 'mediano'].forEach(k => document.getElementById('pedSz-' + k).classList.toggle('on', ped.size === k));
+    document.getElementById('pedQty').textContent = ped.qty;
+    document.getElementById('pedGlaze').innerHTML = pedGlazeHtml();
+    const t = pedPrice();
+    const tot = document.getElementById('pedTotal');
+    tot.textContent = t == null ? 'Precio por confirmar' : pedMoney(t);
+    tot.classList.toggle('small', t == null);
+    let msg = 'Hola, quiero pedir: ' + ped.qty + ' x ' + ped.item.name + (ped.kind === 'pastel' ? ' (' + ped.size + ')' : '') + (t == null ? '' : ' · Total: ' + pedMoney(t));
+    const slots = pedSlots();
+    if (slots.length) msg += '\nGlaseados:\n' + slots.map((l, i) => '- ' + l + ': ' + (ped.glaze[i] == null ? '(por elegir)' : GLAZES[ped.glaze[i]].f + ' ' + GLAZES[ped.glaze[i]].n)).join('\n');
+    document.getElementById('pedOrder').href = 'https://wa.me/' + PED_WA + '?text=' + encodeURIComponent(msg);
+}
+pedRender();
 </script>
 
 </body>
