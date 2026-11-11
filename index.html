@@ -453,6 +453,8 @@ const menuItems = [
   { tab:'pasteleria', img:'Browniee .PNG', name:'Brownies Keto extra chocolatosos', tag:'Keto', planeTag:['KETO'], desc:'Brownie keto intenso, extra chocolatoso',
     macros:[175,9,3,15], leaf:'Sin azúcar añadida<br>Bajo en carbohidratos<br>Chocolate oscuro y cacao',
     warn:['No apto para veganos','Contiene huevo, lácteos y almendras','Si tienes diabetes consulta con tu médico o nutriólogo'] },
+  { tab:'pasteleria', img:'55CD5B30-DE22-4F73-AB0E-8C97882C13CF.png', name:'Cheesecake de nuez', tag:'Postre', desc:'Cheesecake de nuez por rebanada',
+    macros:[175,9,3,12], leaf:CAKE_PENDING, warn:null },
   { tab:'bebidas', img:'Berry Matcha Latte.jpg.jpg', name:'Berry Matcha Latte', tag:'Matcha', desc:'Matcha orgánico + leche deslactosada light + mermelada de fresa.',
     macros:null, leaf:CAKE_PENDING, warn:null },
   { tab:'bebidas', img:'Taro Matcha Latte.jpg.jpg', name:'Taro Matcha Latte', tag:'Matcha', desc:'Taro sin azúcar + leche deslactosada light + matcha orgánico.',
@@ -675,11 +677,13 @@ const STORY_ROLL =
   '<div class="acc-label">A nuestra manera</div>' +
   '<p style="margin:0;">En ViaFit guardamos lo mejor de esta tradición, lo suave, lo aromático y lo hecho en casa, con un giro a mejorar tus hábitos alimenticios.</p>';
 const details = {
-  'Cinnamon Roll': { long:'Rol de canela premium, hecho en casa: ultra suave, esponjoso y consciente. Sin azúcar añadida, 100% libre de lácteos de vaca.<br>El balance perfecto entre sabor y salud.', ing:['Alulosa + monk fruit','Leche de soya','Aceite de aguacate','Harina integral'], contains:[], free:['100% vegano','Sin lácteos ni huevo','Sin azúcares añadidas'], compare:COMPARE_ROLL, story:STORY_ROLL },
+  'Cinnamon Roll': { long:'Rol de canela premium, hecho en casa: ultra suave, esponjoso y consciente. Sin azúcar añadida, 100% libre de lácteos de vaca.<br>El balance perfecto entre sabor y salud.', ing:['Alulosa + monk fruit','Leche de soya','Aceite de aguacate','Harina integral'], contains:[], free:['100% vegano','Sin lácteos ni huevo','Sin azúcares añadidas'], compare:COMPARE_ROLL, story:STORY_ROLL,
+    glaze:['🇬🇷 Yogur griego con nuez horneada','🇧🇷 Mermelada de guayaba sin azúcar añadida','🇲🇽 Cajeta sin azúcar añadida al estilo mexicano','🇫🇷 Coulis de fresa sin azúcar añadida'] },
   'Carrot Cake': { long:'Pastel de zanahoria por rebanada. Un clásico reinventado para disfrutarlo sin renunciar a lo que quieres lograr.', ing:null },
   'Chocolate Cake': { long:'Pastel de chocolate por rebanada. Intenso y reconfortante, pensado para que te cuides mientras lo disfrutas.', ing:null },
   'Brownies Keto extra chocolatosos': { long:'Brownie keto intenso y extra chocolatoso. Sin azúcar añadida y bajo en carbohidratos, para antojos que suman a tu día.', ing:['Chocolate oscuro y cacao','Almendras'],
     contains:['No apto para veganos','Contiene huevo, lácteos y almendras'], free:['Sin azúcar añadida','Bajo en carbohidratos'], note:'Si tienes diabetes consulta con tu médico o nutriólogo.' },
+  'Cheesecake de nuez': { long:'Cheesecake de nuez por rebanada. Cremoso, con el toque crocante de la nuez, para disfrutarlo sin renunciar a tus metas.', ing:null },
   'Berry Matcha Latte': { ing:['Matcha orgánico','Leche deslactosada light','Mermelada de fresa'] },
   'Taro Matcha Latte': { ing:['Taro sin azúcar','Leche deslactosada light','Matcha orgánico'] },
   'Choco Matcha Latte': { ing:['Cacao puro','Leche deslactosada light','Matcha orgánico'] },
@@ -713,7 +717,7 @@ function openDetail(idx) {
         '<h1>' + it.name + '</h1><p class="detail-desc">' + long + '</p>' +
         '<div class="detail-quote">Elige hoy lo que tu yo del futuro va a agradecer.</div>' +
         '<a class="detail-wa" href="' + wa + '" target="_blank">Pedir por WhatsApp</a>' +
-        accItem('Ingredientes', ing, true) + accItem('Alérgenos', all, false) + (d.compare ? accItem('Comparación con pastelería tradicional', compareHtml(d.compare), false) : '') + accItem('Información nutricional', nut, false) + (d.story ? accItem('La historia de los roles', d.story, false) : '');
+        accItem('Ingredientes', ing, true) + (d.glaze ? accItem('Glaseados', listHtml(d.glaze), false) : '') + accItem('Alérgenos', all, false) + (d.compare ? accItem('Comparación con pastelería tradicional', compareHtml(d.compare), false) : '') + accItem('Información nutricional', nut, false) + (d.story ? accItem('La historia de los roles', d.story, false) : '');
     const el = document.getElementById('detail');
     el.classList.add('open');
     el.scrollTop = 0;
